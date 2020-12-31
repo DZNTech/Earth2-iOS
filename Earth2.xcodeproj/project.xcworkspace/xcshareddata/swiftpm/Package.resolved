@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": "5.4.1"
+        }
+      },
+      {
+        "package": "Kanna",
+        "repositoryURL": "https://github.com/tid-kijyun/Kanna",
+        "state": {
+          "branch": null,
+          "revision": "c657fb9f5827ef138068215c76ad0bb62bbc92da",
+          "version": "5.2.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
