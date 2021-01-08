@@ -14,10 +14,10 @@ end
 
 target 'E2API' do
     # Network
-    pod 'Alamofire'
-    pod 'AlamofireImage'
-    pod 'AlamofireNetworkActivityIndicator'
-    pod 'AlamofireObjectMapper'
+    pod 'Alamofire', '~> 4.9.1'
+    pod 'AlamofireImage', '~> 3.6.0'
+    pod 'AlamofireNetworkActivityIndicator', '~> 2.4.0'
+    pod 'AlamofireObjectMapper', '~> 5.2.1'
 
     # Data Parsing
     pod 'SwiftyJSON'
