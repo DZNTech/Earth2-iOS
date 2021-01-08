@@ -13,7 +13,6 @@
 		4F963EFE259DDA1B001E9829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFC259DDA1B001E9829 /* Main.storyboard */; };
 		4F963F00259DDA1C001E9829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFF259DDA1C001E9829 /* Assets.xcassets */; };
 		4F963F03259DDA1C001E9829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */; };
-		4F963F0E259DDDB1001E9829 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 4F963F0D259DDDB1001E9829 /* Kanna */; };
 		4F963F12259DDE1F001E9829 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4F963F11259DDE1F001E9829 /* Alamofire */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F963F0E259DDDB1001E9829 /* Kanna in Frameworks */,
 				4F963F12259DDE1F001E9829 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +86,6 @@
 			);
 			name = Earth2;
 			packageProductDependencies = (
-				4F963F0D259DDDB1001E9829 /* Kanna */,
 				4F963F11259DDE1F001E9829 /* Alamofire */,
 			);
 			productName = Earth2;
@@ -119,7 +116,6 @@
 			);
 			mainGroup = 4F963EEA259DDA1B001E9829;
 			packageReferences = (
-				4F963F0C259DDDB1001E9829 /* XCRemoteSwiftPackageReference "Kanna" */,
 				4F963F10259DDE1F001E9829 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4F963EF4259DDA1B001E9829 /* Products */;
@@ -357,14 +353,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4F963F0C259DDDB1001E9829 /* XCRemoteSwiftPackageReference "Kanna" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tid-kijyun/Kanna";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.4;
-			};
-		};
 		4F963F10259DDE1F001E9829 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -376,11 +364,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4F963F0D259DDDB1001E9829 /* Kanna */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4F963F0C259DDDB1001E9829 /* XCRemoteSwiftPackageReference "Kanna" */;
-			productName = Kanna;
-		};
 		4F963F11259DDE1F001E9829 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4F963F10259DDE1F001E9829 /* XCRemoteSwiftPackageReference "Alamofire" */;
