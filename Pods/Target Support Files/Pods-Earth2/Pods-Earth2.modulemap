@@ -1,0 +1,6 @@
+framework module Pods_Earth2 {
+  umbrella header "Pods-Earth2-umbrella.h"
+
+  export *
+  module * { export * }
+}

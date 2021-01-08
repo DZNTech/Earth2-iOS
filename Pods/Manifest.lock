@@ -1,0 +1,68 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - AlamofireNetworkActivityIndicator (2.4.0):
+    - Alamofire (~> 4.8)
+  - AlamofireObjectMapper (5.2.1):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - EmptyDataSet-Swift (5.0.0)
+  - ObjectMapper (3.5.3)
+  - QRCode (2.0)
+  - ShimmerSwift (2.1.1)
+  - SnapKit (5.0.1)
+  - SwiftyJSON (5.0.0)
+  - Valet (4.1.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.9.1)
+  - AlamofireImage (~> 3.6.0)
+  - AlamofireNetworkActivityIndicator (~> 2.4.0)
+  - AlamofireObjectMapper (~> 5.2.1)
+  - EmptyDataSet-Swift
+  - ObjectMapper
+  - QRCode (from `https://github.com/andrewcampoli/QRCode.git`)
+  - ShimmerSwift
+  - SnapKit
+  - SwiftyJSON
+  - Valet
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - AlamofireNetworkActivityIndicator
+    - AlamofireObjectMapper
+    - EmptyDataSet-Swift
+    - ObjectMapper
+    - ShimmerSwift
+    - SnapKit
+    - SwiftyJSON
+    - Valet
+
+EXTERNAL SOURCES:
+  QRCode:
+    :git: https://github.com/andrewcampoli/QRCode.git
+
+CHECKOUT OPTIONS:
+  QRCode:
+    :commit: db3c291b4458d6938d517314be10e0c58c90bc45
+    :git: https://github.com/andrewcampoli/QRCode.git
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  AlamofireNetworkActivityIndicator: 9acc3de3ca6645bf0efed462396b0df13dd3e7b8
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  QRCode: 282441d0cfe8c4c1766b7578361fe93f72757685
+  ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Valet: 11ab0e318b7284888a81392e36136563b4af5deb
+
+PODFILE CHECKSUM: 4dcbd8106fc93690bd96be8ca884b517ab275b15
+
+COCOAPODS: 1.10.0
