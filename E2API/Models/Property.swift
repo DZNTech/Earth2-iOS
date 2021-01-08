@@ -3,34 +3,46 @@
 //  E2API
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-08.
+//  Copyright © 2021 DZN Technologies Inc. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-public class Property: ImmutableMappable {
+public class Property: Mappable {
 
-    public let id: ObjectId
-    public let landTitle: String
-    public let imageUrl: String
-    public let tilesCount: Int
-    public let purchaseValue: Double
-    public let marketValue: Double
-    public let location: String
-    public let latitude: Double
-    public let longitude: Double
+    public var id: ObjectId = ""
+    public var landTitle: String = ""
+    public var imageUrl: String = ""
+    public var tilesCount: Int = 0
+    public var purchaseValue: Double = 0
+    public var marketValue: Double = 0
+    public var location: String = ""
+    public var latitude: Double = 0
+    public var longitude: Double = 0
 
     // MARK: - Initialization
 
-    required public init(map: Map) throws {
-        id = try map.value("id")
-        landTitle = try map.value("land_title")
-        imageUrl = try map.value("image_url")
-        tilesCount = try map.value("tiles_count")
-        purchaseValue = try map.value("purchase_value")
-        marketValue = try map.value("market_value")
-        location = try map.value("location")
-        latitude = try map.value("latitude")
-        longitude = try map.value("longitude")
+    fileprivate static let requiredProperties = ["id"]
+
+    public required convenience init?(map: Map) {
+        for requiredProperty in Self.requiredProperties {
+            if map.JSON[requiredProperty] == nil { return nil }
+        }
+
+        self.init()
+        self.mapping(map: map)
+    }
+
+    public func mapping(map: Map) {
+        id <- map["id"]
+        landTitle <- map["land_title"]
+        imageUrl <- map["image_url"]
+        tilesCount <- map["tiles_count"]
+        purchaseValue <- map["purchase_value"]
+        marketValue <- map["market_value"]
+        location <- map["location"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
     }
 }

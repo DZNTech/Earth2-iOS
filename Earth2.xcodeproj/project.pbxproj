@@ -20,6 +20,14 @@
 		4FC3F19825A871FB0039B94C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F19725A871FB0039B94C /* User.swift */; };
 		4FC3F1B925A875FE0039B94C /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1B825A875FE0039B94C /* Property.swift */; };
 		4FC3F1BC25A876C90039B94C /* E2WebConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1BB25A876C90039B94C /* E2WebConstants.swift */; };
+		4FC3F1C025A9045E0039B94C /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1BF25A9045E0039B94C /* AuthApi.swift */; };
+		4FC3F1C525A904920039B94C /* CompletionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1C425A904920039B94C /* CompletionBlock.swift */; };
+		4FC3F1C925A9051F0039B94C /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1C725A9051F0039B94C /* NetworkAdapter.swift */; };
+		4FC3F1CA25A9051F0039B94C /* RepositoryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1C825A9051F0039B94C /* RepositoryAdapter.swift */; };
+		4FC3F1CD25A90D2A0039B94C /* ErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1CC25A90D2A0039B94C /* ErrorUtil.swift */; };
+		4FC3F1D025A90DA80039B94C /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1CF25A90DA80039B94C /* ApiError.swift */; };
+		4FC3F1D325A90E830039B94C /* ObjectMapper+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */; };
+		4FC3F1D625A90ED70039B94C /* PropertyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D525A90ED70039B94C /* PropertyApi.swift */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		C8894969E61DF5CE1B032325 /* Pods_E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42262C04171D7B9A576961E6 /* Pods_E2API.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +73,14 @@
 		4FC3F19725A871FB0039B94C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4FC3F1B825A875FE0039B94C /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		4FC3F1BB25A876C90039B94C /* E2WebConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2WebConstants.swift; sourceTree = "<group>"; };
+		4FC3F1BF25A9045E0039B94C /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
+		4FC3F1C425A904920039B94C /* CompletionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlock.swift; sourceTree = "<group>"; };
+		4FC3F1C725A9051F0039B94C /* NetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		4FC3F1C825A9051F0039B94C /* RepositoryAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAdapter.swift; sourceTree = "<group>"; };
+		4FC3F1CC25A90D2A0039B94C /* ErrorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorUtil.swift; sourceTree = "<group>"; };
+		4FC3F1CF25A90DA80039B94C /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Extensions.swift"; sourceTree = "<group>"; };
+		4FC3F1D525A90ED70039B94C /* PropertyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyApi.swift; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
 		6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +158,9 @@
 				4FC3F18725A870310039B94C /* E2API.h */,
 				4FC3F19325A870730039B94C /* E2APIConstants.swift */,
 				4FC3F1BB25A876C90039B94C /* E2WebConstants.swift */,
+				4FC3F1BE25A904460039B94C /* Network */,
 				4FC3F19625A871E40039B94C /* Models */,
+				4FC3F1C325A9047F0039B94C /* Utils */,
 				4FC3F18825A870310039B94C /* Info.plist */,
 			);
 			path = E2API;
@@ -153,8 +171,30 @@
 			children = (
 				4FC3F19725A871FB0039B94C /* User.swift */,
 				4FC3F1B825A875FE0039B94C /* Property.swift */,
+				4FC3F1CF25A90DA80039B94C /* ApiError.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4FC3F1BE25A904460039B94C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4FC3F1BF25A9045E0039B94C /* AuthApi.swift */,
+				4FC3F1D525A90ED70039B94C /* PropertyApi.swift */,
+				4FC3F1C725A9051F0039B94C /* NetworkAdapter.swift */,
+				4FC3F1C825A9051F0039B94C /* RepositoryAdapter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4FC3F1C325A9047F0039B94C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4FC3F1CC25A90D2A0039B94C /* ErrorUtil.swift */,
+				4FC3F1C425A904920039B94C /* CompletionBlock.swift */,
+				4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E46E8FA12C00077565EE3B68 /* Pods */ = {
@@ -230,6 +270,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
+				ORGANIZATIONNAME = "DZN Technologies Inc.";
 				TargetAttributes = {
 					4F963EF2259DDA1B001E9829 = {
 						CreatedOnToolsVersion = 12.3;
@@ -358,8 +399,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC3F1C025A9045E0039B94C /* AuthApi.swift in Sources */,
+				4FC3F1C925A9051F0039B94C /* NetworkAdapter.swift in Sources */,
 				4FC3F1B925A875FE0039B94C /* Property.swift in Sources */,
+				4FC3F1D325A90E830039B94C /* ObjectMapper+Extensions.swift in Sources */,
+				4FC3F1D025A90DA80039B94C /* ApiError.swift in Sources */,
+				4FC3F1CD25A90D2A0039B94C /* ErrorUtil.swift in Sources */,
+				4FC3F1CA25A9051F0039B94C /* RepositoryAdapter.swift in Sources */,
+				4FC3F1D625A90ED70039B94C /* PropertyApi.swift in Sources */,
 				4FC3F1BC25A876C90039B94C /* E2WebConstants.swift in Sources */,
+				4FC3F1C525A904920039B94C /* CompletionBlock.swift in Sources */,
 				4FC3F19825A871FB0039B94C /* User.swift in Sources */,
 				4FC3F19425A870730039B94C /* E2APIConstants.swift in Sources */,
 			);
