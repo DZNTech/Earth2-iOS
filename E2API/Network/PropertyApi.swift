@@ -29,7 +29,7 @@ public class PropertyApi: PropertyApiInterface {
     fileprivate let repositoryAdapter = RepositoryAdapter()
 
     public func getMyProperties(currentPage: Int, pageSize: Int, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
-
+        getProperties(forUser: "", completion)
     }
 
     public func getProperties(forUser userId: ObjectId, currentPage: Int = 0, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {

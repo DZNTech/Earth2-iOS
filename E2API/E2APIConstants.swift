@@ -33,7 +33,8 @@ enum ParameterKey {
     static let statusDescription = "statusDescription"
 
     static let id = "id"
-    static let username = "username"
+    static let email = "email"
     static let password = "password"
+    static let username = "username"
     static let userId = "user_id"
 }

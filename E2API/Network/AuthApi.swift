@@ -17,11 +17,11 @@ public protocol AuthApiInterface {
     /**
      Simple account authentication using email/password.
 
-     - parameter username: This can either be a username or email from MultiGP.com
+     - parameter email: Account email.
      - parameter password: Account password.
      - parameter completion: The closure to be called upon completion
      */
-    func login(_ username: String, password: String, _ completion: @escaping ObjectCompletionBlock<User>)
+    func login(_ email: String, password: String, _ completion: @escaping ObjectCompletionBlock<User>)
 }
 
 public class AuthApi: AuthApiInterface {
@@ -29,18 +29,15 @@ public class AuthApi: AuthApiInterface {
     public init() {}
     fileprivate let repositoryAdapter = RepositoryAdapter()
 
-    public func login(_ username: String, password: String, _ completion: @escaping ObjectCompletionBlock<User>) {
+    public func login(_ email: String, password: String, _ completion: @escaping ObjectCompletionBlock<User>) {
 
         let endpoint = EndPoint.userLogin
         let parameters: Parameters = [
-            ParameterKey.username: username,
+            ParameterKey.email: email,
             ParameterKey.password: password
         ]
 
-        repositoryAdapter.getObject(endpoint, type: User.self) { (user, error) in
-            if error?.code == ErrorCode.undefined.rawValue {
-                // invalidate session
-            }
+        repositoryAdapter.getObject(endpoint, parameters: parameters, type: User.self) { (user, error) in
             completion(user, error)
         }
     }
