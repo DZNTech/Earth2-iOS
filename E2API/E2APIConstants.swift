@@ -9,6 +9,7 @@ import UIKit
 
 public typealias ObjectId = String
 
+public let APIBaseUrl: String = "https://www.earth2api.com/"
 public let StandardPageSize: Int = 50
 
 enum EndPoint {
