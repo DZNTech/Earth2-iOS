@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  LoginViewController.swift
 //  Earth2
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-08.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

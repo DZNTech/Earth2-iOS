@@ -1,0 +1,39 @@
+{
+    "status": true,
+    "current_page": 1,
+    "page_count": 1,
+    "data": [{
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "location": "",
+            "image_url": "",
+            "tiles_count": 0,
+            "land_title": "",
+            "purchase_value": 0.64,
+            "market_value": 1.93
+        },
+        {
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "location": "",
+            "image_url": "",
+            "tiles_count": 0,
+            "land_title": "",
+            "purchase_value": 0.64,
+            "market_value": 1.93
+        },
+        {
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "location": "",
+            "image_url": "",
+            "tiles_count": 0,
+            "land_title": "",
+            "purchase_value": 0.64,
+            "market_value": 1.93
+        }
+    ]
+}

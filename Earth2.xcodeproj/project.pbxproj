@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF6259DDA1B001E9829 /* AppDelegate.swift */; };
 		4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */; };
-		4F963EFB259DDA1B001E9829 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EFA259DDA1B001E9829 /* RootViewController.swift */; };
+		4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EFA259DDA1B001E9829 /* LoginViewController.swift */; };
 		4F963EFE259DDA1B001E9829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFC259DDA1B001E9829 /* Main.storyboard */; };
 		4F963F00259DDA1C001E9829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFF259DDA1C001E9829 /* Assets.xcassets */; };
 		4F963F03259DDA1C001E9829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */; };
@@ -28,6 +28,8 @@
 		4FC3F1D025A90DA80039B94C /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1CF25A90DA80039B94C /* ApiError.swift */; };
 		4FC3F1D325A90E830039B94C /* ObjectMapper+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */; };
 		4FC3F1D625A90ED70039B94C /* PropertyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D525A90ED70039B94C /* PropertyApi.swift */; };
+		4FC3F1DC25A9464E0039B94C /* user.login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1DB25A9464D0039B94C /* user.login.json */; };
+		4FC3F1E125A94FE80039B94C /* user.properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E025A94FE80039B94C /* user.properties.json */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		C8894969E61DF5CE1B032325 /* Pods_E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42262C04171D7B9A576961E6 /* Pods_E2API.framework */; };
 /* End PBXBuildFile section */
@@ -61,7 +63,7 @@
 		4F963EF3259DDA1B001E9829 /* Earth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F963EF6259DDA1B001E9829 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4F963EFA259DDA1B001E9829 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		4F963EFA259DDA1B001E9829 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4F963EFD259DDA1B001E9829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F963EFF259DDA1C001E9829 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F963F02259DDA1C001E9829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,8 @@
 		4FC3F1CF25A90DA80039B94C /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Extensions.swift"; sourceTree = "<group>"; };
 		4FC3F1D525A90ED70039B94C /* PropertyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyApi.swift; sourceTree = "<group>"; };
+		4FC3F1DB25A9464D0039B94C /* user.login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.login.json; sourceTree = "<group>"; };
+		4FC3F1E025A94FE80039B94C /* user.properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.properties.json; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
 		6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +147,7 @@
 			children = (
 				4F963EF6259DDA1B001E9829 /* AppDelegate.swift */,
 				4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */,
-				4F963EFA259DDA1B001E9829 /* RootViewController.swift */,
+				4F963EFA259DDA1B001E9829 /* LoginViewController.swift */,
 				4F963EFC259DDA1B001E9829 /* Main.storyboard */,
 				4F963EFF259DDA1C001E9829 /* Assets.xcassets */,
 				4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */,
@@ -162,6 +166,7 @@
 				4FC3F19625A871E40039B94C /* Models */,
 				4FC3F1C325A9047F0039B94C /* Utils */,
 				4FC3F18825A870310039B94C /* Info.plist */,
+				4FC3F1DF25A946560039B94C /* Payload */,
 			);
 			path = E2API;
 			sourceTree = "<group>";
@@ -195,6 +200,15 @@
 				4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FC3F1DF25A946560039B94C /* Payload */ = {
+			isa = PBXGroup;
+			children = (
+				4FC3F1DB25A9464D0039B94C /* user.login.json */,
+				4FC3F1E025A94FE80039B94C /* user.properties.json */,
+			);
+			path = Payload;
 			sourceTree = "<group>";
 		};
 		E46E8FA12C00077565EE3B68 /* Pods */ = {
@@ -315,6 +329,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC3F1E125A94FE80039B94C /* user.properties.json in Resources */,
+				4FC3F1DC25A9464E0039B94C /* user.login.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F963EFB259DDA1B001E9829 /* RootViewController.swift in Sources */,
+				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
 				4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */,
 			);

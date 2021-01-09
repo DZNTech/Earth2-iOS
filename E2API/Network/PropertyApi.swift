@@ -32,7 +32,7 @@ public class PropertyApi: PropertyApiInterface {
         getProperties(forUser: "", completion)
     }
 
-    public func getProperties(forUser userId: ObjectId, currentPage: Int = 0, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
+    public func getProperties(forUser userId: ObjectId, currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
 
         let endpoint = EndPoint.propertyList
         let parameters = [ParameterKey.userId: userId]
