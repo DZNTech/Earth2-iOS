@@ -32,13 +32,19 @@ public class AuthApi: AuthApiInterface {
     public func login(_ email: String, password: String, _ completion: @escaping ObjectCompletionBlock<User>) {
 
         let endpoint = EndPoint.userLogin
-        let parameters: Parameters = [
-            ParameterKey.email: email,
-            ParameterKey.password: password
-        ]
 
-        repositoryAdapter.getObject(endpoint, parameters: parameters, type: User.self) { (user, error) in
-            completion(user, error)
+        if E2APIServices.shared.isLocal {
+            guard let dict = JSONUtil.getLocalJSONObject(for: endpoint) else { return }
+            completion(User.init(JSON: dict), nil)
+        } else {
+            let parameters: Parameters = [
+                ParameterKey.email: email,
+                ParameterKey.password: password
+            ]
+
+            repositoryAdapter.getObject(endpoint, parameters: parameters, type: User.self) { (user, error) in
+                completion(user, error)
+            }
         }
     }
 }

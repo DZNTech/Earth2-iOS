@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-public class Property: Mappable {
+public class Property: Mappable, Descriptable {
 
     public var id: ObjectId = ""
     public var landTitle: String = ""
@@ -44,5 +44,16 @@ public class Property: Mappable {
         location <- map["location"]
         latitude <- map["latitude"]
         longitude <- map["longitude"]
+    }
+
+    public static func properties(for JSONObject: [[String : Any]]) -> [Property] {
+        var objects = [Property]()
+
+        for dict in JSONObject {
+            if let property = Property.init(JSON: dict) {
+                objects.append(property)
+            }
+        }
+        return objects
     }
 }

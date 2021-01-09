@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jOc-JG-4Zm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -15,34 +15,13 @@
                     <view key="view" contentMode="scaleToFill" id="QVE-eT-0Hm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="racesync_logo_splash" translatesAutoresizingMaskIntoConstraints="NO" id="VG6-Cs-Njg">
-                                <rect key="frame" x="27" y="352" width="360" height="87"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="87" id="iKi-yb-uoy"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="SRG-ac-6Ti"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="VG6-Cs-Njg" firstAttribute="leading" secondItem="SRG-ac-6Ti" secondAttribute="leading" constant="27" id="GhX-MK-5Ts"/>
-                            <constraint firstItem="VG6-Cs-Njg" firstAttribute="centerX" secondItem="QVE-eT-0Hm" secondAttribute="centerX" id="euo-HB-lj0"/>
-                            <constraint firstItem="VG6-Cs-Njg" firstAttribute="top" secondItem="SRG-ac-6Ti" secondAttribute="top" constant="308" id="jfn-4y-RfS"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="racesyncLogoView" destination="VG6-Cs-Njg" id="RLb-Kr-P79"/>
-                        <outlet property="racesyncLogoViewHeight" destination="iKi-yb-uoy" id="qmN-RD-GW4"/>
-                        <outlet property="racesyncLogoViewOriginY" destination="jfn-4y-RfS" id="t7E-nc-nam"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Di-bj-vcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="541" y="80"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="racesync_logo_splash" width="360" height="86"/>
-    </resources>
 </document>
