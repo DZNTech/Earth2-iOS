@@ -34,6 +34,8 @@
 		4FC3F1E825A95A7A0039B94C /* E2APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E725A95A7A0039B94C /* E2APISessionManager.swift */; };
 		4FC3F1ED25A95DC20039B94C /* Descriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1EC25A95DC20039B94C /* Descriptable.swift */; };
 		4FC3F1F025A95F050039B94C /* JSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1EF25A95F050039B94C /* JSONUtil.swift */; };
+		4FC3F1F425A9715A0039B94C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1F325A971590039B94C /* Appearance.swift */; };
+		4FC3F1F825A971670039B94C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1F725A971670039B94C /* Color.swift */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		C8894969E61DF5CE1B032325 /* Pods_E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42262C04171D7B9A576961E6 /* Pods_E2API.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +95,8 @@
 		4FC3F1E725A95A7A0039B94C /* E2APISessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2APISessionManager.swift; sourceTree = "<group>"; };
 		4FC3F1EC25A95DC20039B94C /* Descriptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptable.swift; sourceTree = "<group>"; };
 		4FC3F1EF25A95F050039B94C /* JSONUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtil.swift; sourceTree = "<group>"; };
+		4FC3F1F325A971590039B94C /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		4FC3F1F725A971670039B94C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
 		6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +160,7 @@
 				4F963EF6259DDA1B001E9829 /* AppDelegate.swift */,
 				4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */,
 				4F963EFA259DDA1B001E9829 /* LoginViewController.swift */,
+				4FC3F1F225A9714E0039B94C /* UI Utils */,
 				4F963EFC259DDA1B001E9829 /* Main.storyboard */,
 				4F963EFF259DDA1C001E9829 /* Assets.xcassets */,
 				4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */,
@@ -221,6 +226,15 @@
 				4FC3F1E025A94FE80039B94C /* user.properties.json */,
 			);
 			path = Payload;
+			sourceTree = "<group>";
+		};
+		4FC3F1F225A9714E0039B94C /* UI Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4FC3F1F325A971590039B94C /* Appearance.swift */,
+				4FC3F1F725A971670039B94C /* Color.swift */,
+			);
+			path = "UI Utils";
 			sourceTree = "<group>";
 		};
 		E46E8FA12C00077565EE3B68 /* Pods */ = {
@@ -420,6 +434,8 @@
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
 				4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */,
+				4FC3F1F825A971670039B94C /* Color.swift in Sources */,
+				4FC3F1F425A9715A0039B94C /* Appearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

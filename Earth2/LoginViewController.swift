@@ -20,11 +20,11 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .red
 
         authApi.login("ignacio.romeroz@gmail.com", password: "d@GMOVH{q+8AY,71U}xBtwISEdr") { (user, error) in
-            
+            // 
         }
 
         propertyApi.getMyProperties { (properties, error) in
-            
+            //
         }
     }
 }
