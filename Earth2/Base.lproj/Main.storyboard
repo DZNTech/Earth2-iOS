@@ -62,7 +62,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SRG-ac-6Ti"/>
-                        <color key="backgroundColor" red="0.047058823529411764" green="0.9354933647260274" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="top" secondItem="HI4-FX-Cme" secondAttribute="top" id="AhH-YW-hZo"/>
                             <constraint firstItem="tjQ-iL-xaT" firstAttribute="top" secondItem="SRG-ac-6Ti" secondAttribute="top" constant="80" id="C95-3D-T0C"/>
@@ -78,6 +78,7 @@
                     <connections>
                         <outlet property="galaxyView" destination="HI4-FX-Cme" id="bGc-nK-7dh"/>
                         <outlet property="launchImageView" destination="0zb-7Y-fSe" id="v0T-cm-jsF"/>
+                        <outlet property="launchView" destination="tjQ-iL-xaT" id="y19-Kt-lqj"/>
                         <outlet property="subtitleLabel" destination="gcU-qs-0Fu" id="H98-SS-J0V"/>
                         <outlet property="titleLabel" destination="z9m-T6-6zm" id="sDS-Pj-DS0"/>
                     </connections>
