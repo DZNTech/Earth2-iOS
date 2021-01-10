@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         let launchTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLaunchView))
         launchImageView.addGestureRecognizer(launchTapGesture)
         launchImageView.isUserInteractionEnabled = true
-        launchImageView.addGlow(with: Color.lightBlue, radius: 15, opacity: 0.25)
+        launchImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
 
         let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
         view.addGestureRecognizer(backgroundTapGesture)
