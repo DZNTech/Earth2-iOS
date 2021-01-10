@@ -10,15 +10,11 @@ import UIKit
 
 extension UILabel {
 
-    func addCharacterSpacing(kernValue: Double = 15) {
-    if let labelText = text, labelText.count > 0 {
-        let attributedString = NSMutableAttributedString(string: labelText)
-        if #available(iOS 14.0, *) {
-            attributedString.addAttribute(.tracking, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
-        } else {
-            attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
-        }
+    func addCharacterSpacing(kernValue: Double = 10) {
+        guard let text = text, !text.isEmpty else { return }
+
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
         attributedText = attributedString
-        }
     }
 }
