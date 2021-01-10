@@ -3,74 +3,100 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
-	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>162E649F50FEC62B61BDD87D1BD422B4</key>
+		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
-		<key>19622742EBA51E823D6DAE3F8CDBFAD4</key>
+		<key>AlamofireImage.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
-		<key>3F64080413BB03C0B16BFEB621E6E0F2</key>
+		<key>AlamofireNetworkActivityIndicator.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
-		<key>7EFB1301E8890487D7FBF7ED34758B7E</key>
+		<key>AlamofireObjectMapper.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
-		<key>8AEBD34B8221A1C3DF30E85F5B6929ED</key>
+		<key>EmptyDataSet-Swift.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
-		<key>8C796CDB90777AB5D92691D3F8F2DDA5</key>
+		<key>ObjectMapper.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
-		<key>B5AB76607FAE66C0A637C8241113BBDE</key>
+		<key>Pods-E2API.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
-		<key>BF2974CEBD4F57BEFE88471BC9F6361A</key>
+		<key>Pods-Earth2.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
-		<key>C9778AE8394BE451567650E0B239BA21</key>
+		<key>ShimmerSwift.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
-		<key>CEF561CEEBFA5EBBDA6E240FF1B20CEC</key>
+		<key>SnapKit.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
-		<key>D118A6A04828FD3CDA8640CD2B6796D2</key>
+		<key>SwiftValidators.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
-		<key>E3D29E214E770F28213292B63B7A05DA</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
-		<key>EAAA1AD3A8A1B59AB91319EE40752C6D</key>
+		<key>Valet.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

@@ -27,11 +27,24 @@ class GalaxyView: UIView {
         }
     }
 
-    override var backgroundColor: UIColor? {
+    @IBInspectable
+    public var topColor: UIColor = Color.blue {
         didSet {
-
+            gradientLayer.colors = gradientColors
         }
     }
+
+    @IBInspectable
+    public var bottomColor: UIColor = Color.black {
+        didSet {
+            gradientLayer.colors = gradientColors
+        }
+    }
+
+    public lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
 
     func refreshStars() {
         guard showStars else { return }
@@ -40,33 +53,26 @@ class GalaxyView: UIView {
 
     // MARK: - Private Variables
 
-    fileprivate lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-
     fileprivate lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        layer.colors = [Color.clear.cgColor, Color.darkBlue.cgColor]
+        layer.colors = gradientColors
         return layer
     }()
+
+    fileprivate var gradientColors: [CGColor] {
+        return [topColor.cgColor, bottomColor.cgColor]
+    }
 
     // MARK: - Initialization
 
     override init(frame: CGRect) {
-        super.init(frame: frame)  // break point 3
-        setup()
+        super.init(frame: frame)
     }
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)  // break point 4
-        setup()
+        super.init(coder: aDecoder)
     }
 
     // MARK: - Layout
-
-    fileprivate func setup() {
-        self.backgroundColor = Color.blue
-    }
 
     fileprivate func handleShowGradientUpdate() {
         if !showGradient {
@@ -91,7 +97,6 @@ class GalaxyView: UIView {
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setup()
     }
 }
 
@@ -103,13 +108,15 @@ fileprivate extension UIImage {
             for _ in 0...count {
                 let xPos: CGFloat = randomInRange(lo: 5, hi: Int(view.bounds.size.width-5)) // margin of 5
                 let yPos: CGFloat = randomInRange(lo: 5, hi: Int(view.bounds.size.height-5))
+                let rect = CGRect(x: xPos, y: yPos, width: width, height: width)
+                let radius = width/2
 
-                let star = CALayer() // more efficient than UIView
-                star.frame = CGRect(x: xPos, y: yPos, width: width, height: width)
-                star.backgroundColor = color.cgColor
-                star.cornerRadius = width/2
+                let starLayer = CAShapeLayer()
+                starLayer.frame = rect
+                starLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: radius*2, height: radius*2), cornerRadius: width/2).cgPath
+                starLayer.fillColor = color.cgColor
 
-                view.layer.insertSublayer(star, at: 0)
+                view.layer.insertSublayer(starLayer, at: 0)
             }
         }
 

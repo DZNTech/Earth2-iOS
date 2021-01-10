@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import E2API
+import SwiftValidators
 
 class LoginViewController: UIViewController {
 
@@ -20,22 +21,22 @@ class LoginViewController: UIViewController {
     fileprivate lazy var loginFormView: UIView = {
         let view = UIView()
         view.alpha = 1
-        view.backgroundColor = Color.clear
+        view.backgroundColor = Color.white.withAlphaComponent(0.0125)
+        view.layer.cornerRadius = 8
+
         view.addSubview(self.legendLabel)
         view.addSubview(self.emailField)
         view.addSubview(self.passwordField)
         view.addSubview(self.passwordRecoveryButton)
         view.addSubview(self.createAccountButton)
-//        view.addSubview(self.loginButton)
-//        view.addSubview(self.legalButton)
         return view
     }()
 
     fileprivate lazy var legendLabel: UILabel = {
         let label = UILabel()
-        label.text = "Login with earth2.io credentials"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.textColor = Color.white
+        label.text = "Login with earth2.io"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = Color.white.withAlphaComponent(0.7)
         return label
     }()
 
@@ -76,14 +77,6 @@ class LoginViewController: UIViewController {
         return textField
     }()
 
-    fileprivate lazy var errorLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.textColor = Color.white
-        return label
-    }()
-
     fileprivate lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
@@ -102,12 +95,38 @@ class LoginViewController: UIViewController {
         return button
     }()
 
+    fileprivate lazy var statusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Loading..."
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = Color.white
+        label.textAlignment = .center
+        return label
+    }()
+
+    fileprivate lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .medium)
+        view.color = Color.white
+        view.hidesWhenStopped = true
+        return view
+    }()
+
+    // IB
     @IBOutlet fileprivate var launchImageView: UIImageView!
     @IBOutlet fileprivate var galaxyView: GalaxyView!
     @IBOutlet fileprivate var titleLabel: UILabel!
     @IBOutlet fileprivate var subtitleLabel: UILabel!
     @IBOutlet fileprivate var launchView: UIView!
+    @IBOutlet fileprivate var launchViewCenterYConstraint: NSLayoutConstraint?
+    @IBOutlet fileprivate var launchImageViewHeightConstraint: NSLayoutConstraint?
 
+    fileprivate var loginFormViewCenterYConstraint: Constraint?
+    fileprivate var loginFormIntersection: CGRect = .zero
+    fileprivate var launchViewViewHalfHeight: CGFloat = 0
+
+    fileprivate var isKeyboardVisible: Bool = false
+
+    // API
     fileprivate let authApi = AuthApi()
     fileprivate let propertyApi = PropertyApi()
 
@@ -123,6 +142,19 @@ class LoginViewController: UIViewController {
         setupLayout()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Skip login if there's a persisted sessionId
+        if E2APIServices.shared.isLoggedIn {
+            // present home vc
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
+                self.emailField.becomeFirstResponder()
+            }
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -135,53 +167,8 @@ class LoginViewController: UIViewController {
 
     fileprivate func setupLayout() {
 
-        pimpLaunch()
-
-        launchView.isHidden = true
-
-        view.addSubview(loginFormView)
-        loginFormView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(Constants.padding)
-            $0.trailing.equalToSuperview().offset(-Constants.padding)
-            $0.height.greaterThanOrEqualTo(320)
-
-//            loginFormViewCenterYConstraint = $0.centerY.equalToSuperview().constraint
-//            loginFormViewCenterYConstraint?.activate()
-        }
-
-        legendLabel.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview()
-        }
-
-        emailField.snp.makeConstraints {
-            $0.top.equalTo(legendLabel.snp.bottom).offset(Constants.padding*1.5)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(40)
-        }
-
-        passwordField.snp.makeConstraints {
-            $0.top.equalTo(emailField.snp.bottom).offset(Constants.padding*1.5)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.greaterThanOrEqualTo(40)
-        }
-
-        passwordRecoveryButton.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*1.5)
-            $0.leading.equalToSuperview()
-        }
-
-        createAccountButton.snp.makeConstraints {
-            $0.top.equalTo(passwordRecoveryButton.snp.bottom).offset(Constants.padding/2)
-            $0.leading.equalToSuperview()
-        }
-    }
-
-    fileprivate func pimpLaunch() {
         view.bringSubviewToFront(launchImageView)
 
-        let launchTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLaunchView))
-        launchImageView.addGestureRecognizer(launchTapGesture)
         launchImageView.isUserInteractionEnabled = true
         launchImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
 
@@ -193,6 +180,87 @@ class LoginViewController: UIViewController {
 
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
+
+        activityIndicatorView.startAnimating()
+
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-Constants.padding*5)
+        }
+
+        view.addSubview(statusLabel)
+        statusLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(activityIndicatorView.snp.bottom).offset(Constants.padding)
+        }
+
+        layoutLoginForm()
+        setupObservers()
+    }
+
+    fileprivate func layoutLoginForm() {
+
+        loginFormView.alpha = 0
+
+        view.addSubview(loginFormView)
+        loginFormView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+
+            loginFormViewCenterYConstraint = $0.centerY.equalToSuperview().constraint
+            loginFormViewCenterYConstraint?.activate()
+        }
+
+        legendLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+        }
+
+        emailField.snp.makeConstraints {
+            $0.top.equalTo(legendLabel.snp.bottom).offset(Constants.padding*1.5)
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+            $0.height.greaterThanOrEqualTo(40)
+        }
+
+        passwordField.snp.makeConstraints {
+            $0.top.equalTo(emailField.snp.bottom).offset(Constants.padding*1)
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+            $0.height.greaterThanOrEqualTo(40)
+        }
+
+        passwordRecoveryButton.snp.makeConstraints {
+            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+        }
+
+        createAccountButton.snp.makeConstraints {
+            $0.top.equalTo(passwordRecoveryButton.snp.bottom).offset(Constants.padding/2)
+            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.bottom.equalToSuperview().offset(-Constants.padding*2)
+        }
+
+        launchViewViewHalfHeight = launchImageView.frame.height/2
+    }
+
+    fileprivate func setupObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 
     // MARK: - Actions
@@ -211,11 +279,48 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
 
     @objc func didTapView() {
-        galaxyView?.refreshStars()
+        if emailField.isFirstResponder {
+            emailField.resignFirstResponder()
+        } else if passwordField.isFirstResponder {
+            passwordField.resignFirstResponder()
+        } else {
+            galaxyView?.refreshStars()
+        }
     }
 
-    @objc func didPressLoginButton() {
-        //
+    fileprivate func handleReturnKey(for textField: UITextField) {
+
+        func validateEmail() -> Bool {
+            guard let email = emailField.text else { shakeLaunchImageView(); return false }
+            guard Validator.isEmail().apply(email) else { shakeLaunchImageView(); return false }
+            return true
+        }
+
+        func validatePassword() -> Bool {
+            guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakeLaunchImageView(); return false }
+            return true
+        }
+
+        func prepareToSubmit() {
+            textField.resignFirstResponder()
+            loginFormView.isUserInteractionEnabled = false
+            loginFormView.alpha = 0.5
+        }
+
+        if textField == emailField, validateEmail() {
+            if validatePassword() {
+                prepareToSubmit()
+            } else {
+                passwordField.becomeFirstResponder()
+            }
+        } else if textField == passwordField, validatePassword() {
+            if validateEmail() {
+                prepareToSubmit()
+            } else {
+                emailField.becomeFirstResponder()
+                emailField.returnKeyType = .`continue`
+            }
+        }
     }
 
     @objc func didPressCreateAccountButton() {
@@ -226,12 +331,71 @@ class LoginViewController: UIViewController {
         //
     }
 
-    @objc func didTapLaunchView() {
+    @objc func shakeLaunchImageView() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.4
         animation.values = [-20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
         launchImageView.layer.add(animation, forKey: "shake")
+    }
+
+    // MARK: - Actions
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard !isKeyboardVisible else { return }
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardRect = keyboardFrame.cgRectValue
+        loginFormIntersection = keyboardRect.intersection(loginFormView.frame)
+
+        let loginFormRect = loginFormView.frame
+        let launchViewViewCenterY = loginFormIntersection.height + loginFormRect.height + Constants.padding
+
+        UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
+                       delay: 0,
+                       options: []) {
+            self.launchViewCenterYConstraint?.constant = -launchViewViewCenterY
+            self.launchImageViewHeightConstraint?.constant = self.launchViewViewHalfHeight
+            self.loginFormViewCenterYConstraint?.update(offset: -self.loginFormIntersection.height)
+            self.galaxyView.imageView.setY(-self.loginFormIntersection.height)
+
+            self.loginFormView.alpha = 1
+            self.titleLabel.alpha = 0
+            self.subtitleLabel.alpha = 0
+
+            self.view.layoutIfNeeded()
+        } completion: { (finished) in
+
+        }
+
+        isKeyboardVisible = true
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        guard isKeyboardVisible else { return }
+
+        UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
+                       animations: {
+                        self.launchViewCenterYConstraint?.constant += self.loginFormIntersection.height
+                        self.loginFormViewCenterYConstraint?.update(offset: 0)
+                        self.galaxyView.imageView.setY(0)
+
+                        self.view.layoutIfNeeded()
+        },
+                       completion: nil)
+
+        isKeyboardVisible = false
+    }
+
+    fileprivate func moveGalaxy(_ position: CGFloat, duration: TimeInterval) {
+        let animation = CAKeyframeAnimation(keyPath: "galaxyView.imageView.frame.y")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.keyPath = "position.y"
+        animation.values = [0, position]
+        animation.keyTimes = [0, 1]
+        animation.duration = duration
+        animation.isRemovedOnCompletion = true
+        galaxyView.imageView.layer.add(animation, forKey: "move")
     }
 }
 
@@ -250,13 +414,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        if textField == emailField {
-            passwordField.becomeFirstResponder()
-        } else if textField == passwordField {
-            didPressLoginButton()
-        }
-
+        handleReturnKey(for: textField)
         return true
     }
 }

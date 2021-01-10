@@ -19,30 +19,32 @@
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HI4-FX-Cme" customClass="GalaxyView" customModule="Earth2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showGradient" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showStars" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-iL-xaT">
-                                <rect key="frame" x="0.0" y="124" width="414" height="648"/>
+                                <rect key="frame" x="0.0" y="280" width="414" height="346.5"/>
                                 <subviews>
                                     <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="e2_launch" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-7Y-fSe">
-                                        <rect key="frame" x="57" y="117" width="300" height="300"/>
+                                        <rect key="frame" x="50" y="146.5" width="314" height="200"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="PgT-ei-LUK"/>
-                                            <constraint firstAttribute="width" secondItem="0zb-7Y-fSe" secondAttribute="height" multiplier="1:1" id="sWv-S7-brI"/>
+                                            <constraint firstAttribute="height" constant="200" id="lst-cu-B9g"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EARTH2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9m-T6-6zm">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="61.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="45"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPANION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcU-qs-0Fu">
-                                        <rect key="frame" x="0.0" y="82" width="414" height="35"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="COMPANION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcU-qs-0Fu">
+                                        <rect key="frame" x="0.0" y="61.5" width="414" height="35"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -50,13 +52,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="6Gg-Ui-WTR"/>
                                     <constraint firstItem="z9m-T6-6zm" firstAttribute="leading" secondItem="tjQ-iL-xaT" secondAttribute="leading" id="Idq-V6-yID"/>
-                                    <constraint firstItem="0zb-7Y-fSe" firstAttribute="top" secondItem="gcU-qs-0Fu" secondAttribute="bottom" id="Kei-9e-jks"/>
-                                    <constraint firstItem="0zb-7Y-fSe" firstAttribute="centerX" secondItem="tjQ-iL-xaT" secondAttribute="centerX" id="Oy5-5k-NBn"/>
+                                    <constraint firstAttribute="trailing" secondItem="0zb-7Y-fSe" secondAttribute="trailing" constant="50" id="PdR-Mc-72b"/>
+                                    <constraint firstItem="0zb-7Y-fSe" firstAttribute="top" secondItem="gcU-qs-0Fu" secondAttribute="bottom" constant="50" id="Q2b-vD-Qq8"/>
+                                    <constraint firstItem="0zb-7Y-fSe" firstAttribute="leading" secondItem="tjQ-iL-xaT" secondAttribute="leading" constant="50" id="U5S-R9-w5m"/>
                                     <constraint firstAttribute="trailing" secondItem="z9m-T6-6zm" secondAttribute="trailing" id="eEi-eM-4KR"/>
-                                    <constraint firstItem="z9m-T6-6zm" firstAttribute="top" secondItem="tjQ-iL-xaT" secondAttribute="top" constant="20" id="fDU-lE-Fch"/>
+                                    <constraint firstItem="z9m-T6-6zm" firstAttribute="top" secondItem="tjQ-iL-xaT" secondAttribute="top" id="fDU-lE-Fch"/>
                                     <constraint firstItem="gcU-qs-0Fu" firstAttribute="top" secondItem="z9m-T6-6zm" secondAttribute="bottom" id="fdl-Kf-dA6"/>
                                     <constraint firstAttribute="trailing" secondItem="gcU-qs-0Fu" secondAttribute="trailing" id="glK-4P-P3K"/>
+                                    <constraint firstAttribute="bottom" secondItem="0zb-7Y-fSe" secondAttribute="bottom" id="qTT-PT-eMt"/>
                                     <constraint firstItem="gcU-qs-0Fu" firstAttribute="leading" secondItem="tjQ-iL-xaT" secondAttribute="leading" id="y98-1k-kEv"/>
                                 </constraints>
                             </view>
@@ -65,20 +70,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="top" secondItem="HI4-FX-Cme" secondAttribute="top" id="AhH-YW-hZo"/>
-                            <constraint firstItem="tjQ-iL-xaT" firstAttribute="top" secondItem="SRG-ac-6Ti" secondAttribute="top" constant="80" id="C95-3D-T0C"/>
+                            <constraint firstItem="tjQ-iL-xaT" firstAttribute="centerY" secondItem="SRG-ac-6Ti" secondAttribute="centerY" id="Rbc-55-T17"/>
                             <constraint firstItem="HI4-FX-Cme" firstAttribute="bottom" secondItem="QVE-eT-0Hm" secondAttribute="bottom" id="TVG-eD-5Kv"/>
                             <constraint firstItem="HI4-FX-Cme" firstAttribute="leading" secondItem="QVE-eT-0Hm" secondAttribute="leading" id="Ucn-dI-FMY"/>
                             <constraint firstItem="HI4-FX-Cme" firstAttribute="trailing" secondItem="tjQ-iL-xaT" secondAttribute="trailing" id="bdZ-Jm-xtJ"/>
                             <constraint firstItem="tjQ-iL-xaT" firstAttribute="centerX" secondItem="QVE-eT-0Hm" secondAttribute="centerX" id="gff-Y0-Yfz"/>
                             <constraint firstItem="tjQ-iL-xaT" firstAttribute="leading" secondItem="SRG-ac-6Ti" secondAttribute="leading" id="heL-fS-f9O"/>
-                            <constraint firstItem="tjQ-iL-xaT" firstAttribute="centerY" secondItem="QVE-eT-0Hm" secondAttribute="centerY" id="j23-dD-Rag"/>
                             <constraint firstItem="HI4-FX-Cme" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SRG-ac-6Ti" secondAttribute="bottom" id="ymt-74-c5x"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="galaxyView" destination="HI4-FX-Cme" id="bGc-nK-7dh"/>
                         <outlet property="launchImageView" destination="0zb-7Y-fSe" id="v0T-cm-jsF"/>
+                        <outlet property="launchImageViewHeightConstraint" destination="lst-cu-B9g" id="mlv-Fq-oDP"/>
                         <outlet property="launchView" destination="tjQ-iL-xaT" id="y19-Kt-lqj"/>
+                        <outlet property="launchViewCenterYConstraint" destination="Rbc-55-T17" id="aWq-1H-t3a"/>
                         <outlet property="subtitleLabel" destination="gcU-qs-0Fu" id="H98-SS-J0V"/>
                         <outlet property="titleLabel" destination="z9m-T6-6zm" id="sDS-Pj-DS0"/>
                     </connections>
@@ -89,7 +95,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="e2_launch" width="1024" height="1024"/>
+        <image name="e2_launch" width="424" height="251"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

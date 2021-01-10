@@ -21,4 +21,28 @@ extension UIView {
         layer.borderColor = color.cgColor
         layer.borderWidth = radius
     }
+
+    func setY(_ y: CGFloat) {
+        var rect = frame
+        rect.origin.y = y
+        frame = rect
+    }
+
+    func setX(_ x: CGFloat) {
+        var rect = frame
+        rect.origin.x = x
+        frame = rect
+    }
+
+    func setWidth(_ width: CGFloat) {
+        var rect = frame
+        rect.size.width = width
+        frame = rect
+    }
+
+    func setHeight(_ height: CGFloat) {
+        var rect = frame
+        rect.size.height = height
+        frame = rect
+    }
 }

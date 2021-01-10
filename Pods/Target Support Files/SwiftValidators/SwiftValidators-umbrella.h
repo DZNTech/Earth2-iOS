@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double QRCodeVersionNumber;
-FOUNDATION_EXPORT const unsigned char QRCodeVersionString[];
+FOUNDATION_EXPORT double SwiftValidatorsVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftValidatorsVersionString[];
 

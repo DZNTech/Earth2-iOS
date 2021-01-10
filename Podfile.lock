@@ -9,9 +9,9 @@ PODS:
     - ObjectMapper (~> 3.4)
   - EmptyDataSet-Swift (5.0.0)
   - ObjectMapper (3.5.3)
-  - QRCode (2.0)
   - ShimmerSwift (2.1.1)
   - SnapKit (5.0.1)
+  - SwiftValidators (9.0.3)
   - SwiftyJSON (5.0.0)
   - Valet (4.1.1)
 
@@ -22,9 +22,9 @@ DEPENDENCIES:
   - AlamofireObjectMapper (~> 5.2.1)
   - EmptyDataSet-Swift
   - ObjectMapper
-  - QRCode (from `https://github.com/andrewcampoli/QRCode.git`)
   - ShimmerSwift
   - SnapKit
+  - SwiftValidators
   - SwiftyJSON
   - Valet
 
@@ -38,17 +38,9 @@ SPEC REPOS:
     - ObjectMapper
     - ShimmerSwift
     - SnapKit
+    - SwiftValidators
     - SwiftyJSON
     - Valet
-
-EXTERNAL SOURCES:
-  QRCode:
-    :git: https://github.com/andrewcampoli/QRCode.git
-
-CHECKOUT OPTIONS:
-  QRCode:
-    :commit: db3c291b4458d6938d517314be10e0c58c90bc45
-    :git: https://github.com/andrewcampoli/QRCode.git
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -57,12 +49,12 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  QRCode: 282441d0cfe8c4c1766b7578361fe93f72757685
   ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftValidators: b1cb650ce02ef6ad894f1d471f970b249c794342
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Valet: 11ab0e318b7284888a81392e36136563b4af5deb
 
-PODFILE CHECKSUM: b7f02fe1f42f7adbc3e0e9b0ee376dfd3e3d5464
+PODFILE CHECKSUM: 4540a1ad6c808a848fb72a983f616bd237d66974
 
 COCOAPODS: 1.10.1

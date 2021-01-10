@@ -6,10 +6,11 @@ inhibit_all_warnings!
 
 target 'Earth2' do
   # UI
-  pod 'EmptyDataSet-Swift'
   pod 'SnapKit'
-  pod 'QRCode', :git => 'https://github.com/andrewcampoli/QRCode.git', :inhibit_warnings => true
+  pod 'SwiftValidators', :inhibit_warnings => true
   pod 'ShimmerSwift'
+  pod 'EmptyDataSet-Swift'
+
 end
 
 target 'E2API' do
