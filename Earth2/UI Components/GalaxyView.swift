@@ -126,6 +126,8 @@ fileprivate extension UIImage {
         insert(stars: 3, with: 150, and: Color.white.withAlphaComponent(0.1), in: view)
         insert(stars: 4, with: 25, and: Color.white.withAlphaComponent(0.4), in: view)
         insert(stars: 6, with: 5, and: Color.white.withAlphaComponent(0.9), in: view)
+        insert(stars: 4, with: 0, and: UIColor(hex: "ffdc92").withAlphaComponent(0.5), in: view) // sun
+        insert(stars: 3, with: 0, and: UIColor(hex: "93dffd").withAlphaComponent(0.7), in: view) // venus
 
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
 
