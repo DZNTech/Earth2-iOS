@@ -20,19 +20,26 @@ enum ErrorCode: Int {
 class ErrorUtil {
 
     static func parseError<T>(_ response: DataResponse<T>) -> NSError {
-        guard let data = response.data, let value = JSON(data).dictionaryObject else {
+        guard let data = response.data, let dict = JSON(data).dictionaryObject else {
             return generalError
         }
 
-        let status: Bool? = value[ParameterKey.status] as? Bool
-        let description: String? = value[ParameterKey.statusDescription] as? String
-        let httpStatus: Int? = value[ParameterKey.httpStatus] as? Int
+        if let description = dict[ParameterKey.error] as? String {
+            return generateError(description, withCode: .malfunction)
+        }
+        if let description = dict[ParameterKey.detail] as? String {
+            return generateError(description, withCode: .malfunction)
+        }
+
+        let status: Bool? = dict[ParameterKey.status] as? Bool
+        let description: String? = dict[ParameterKey.statusDescription] as? String
+        let httpStatus: Int? = dict[ParameterKey.httpStatus] as? Int
 
         if let status = status, status == false, let description = description, let httpStatus = httpStatus {
             return NSError(domain: "Error", code: httpStatus, userInfo: [NSLocalizedDescriptionKey : description])
         } else if let status = status, status == false {
             return undefinedError
-        } else if let apiError = ApiError.from(JSON: value) {
+        } else if let apiError = ApiError.from(JSON: dict) {
             return formError(apiError)
         } else {
             return generalError
@@ -48,7 +55,7 @@ class ErrorUtil {
 
         var errors = [NSError]()
 
-        for (_, value) in json[ParameterKey.errors] {
+        for (_, value) in json[ParameterKey.error] {
             if let content = value.array?.first, let description = content.string {
                 errors += [generateError(description, withCode: .malfunction)]
             }

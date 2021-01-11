@@ -329,10 +329,13 @@ class LoginViewController: UIViewController {
             setLoading(true)
 
             authApi.login(email, password: password) { [weak self] (user, error) in
-
                 if let user = user {
                     self?.setStatus("Welcome back \(user.username)")
                     self?.activityIndicatorView.animate(false)
+                    //self?.presentHome()
+                } else if let error = error {
+                    self?.setLoading(false)
+                    self?.setStatus(error.localizedDescription)
                 } else {
                     self?.setLoading(false)
                 }
