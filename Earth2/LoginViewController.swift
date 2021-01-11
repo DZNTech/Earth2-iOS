@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
         textField.borderStyle = .roundedRect
+        textField.text = E2APIServices.shared.credential.email
         textField.setPlaceholder("Email", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -72,6 +73,7 @@ class LoginViewController: UIViewController {
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
         textField.borderStyle = .roundedRect
+        textField.text = E2APIServices.shared.credential.password
         textField.setPlaceholder("Password", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -153,8 +155,6 @@ class LoginViewController: UIViewController {
                 self.emailField.becomeFirstResponder()
             }
         }
-
-        presentHome()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -169,15 +169,15 @@ class LoginViewController: UIViewController {
 
     fileprivate func setupLayout() {
 
+        let viewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
+        view.addGestureRecognizer(viewTapGesture)
+
         galaxyView.topColor = Color.blue
         galaxyView.bottomColor = Color.black
 
         launchImageView.isUserInteractionEnabled = true
         launchImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
         view.bringSubviewToFront(launchImageView)
-
-        let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
-        view.addGestureRecognizer(backgroundTapGesture)
 
         titleLabel.addCharacterSpacing(kernValue: 13)
         titleLabel.addGlow(with: Color.blue, radius: 3)

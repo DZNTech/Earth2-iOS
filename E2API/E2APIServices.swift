@@ -12,6 +12,7 @@ import AlamofireNetworkActivityIndicator
 public class E2APIServices {
 
     public static let shared = E2APIServices()
+    public let credential = APICredential()
     public var isLocal: Bool = true
 
     public var isLoggedIn: Bool {

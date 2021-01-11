@@ -55,6 +55,7 @@ class GalaxyView: UIView {
 
     fileprivate lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
+        layer.frame = bounds
         layer.colors = gradientColors
         return layer
     }()
@@ -80,7 +81,6 @@ class GalaxyView: UIView {
         } else if gradientLayer.superlayer == nil {
             layer.insertSublayer(gradientLayer, at: 0)
         }
-        gradientLayer.frame = bounds
     }
 
     fileprivate func updateStarsComposition() {
