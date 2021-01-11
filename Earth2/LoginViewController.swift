@@ -237,7 +237,7 @@ class LoginViewController: UIViewController {
         }
 
         passwordRecoveryButton.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
+            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*3)
             $0.leading.equalToSuperview().offset(Constants.padding)
         }
 
