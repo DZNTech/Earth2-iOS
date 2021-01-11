@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Valet
 
 public class APICredential {
     public let apiKey: String

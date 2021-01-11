@@ -33,18 +33,48 @@ public class AuthApi: AuthApiInterface {
 
         let endpoint = EndPoint.userLogin
 
-        if E2APIServices.shared.isLocal {
+        // local use
+        guard !E2APIServices.shared.isLocal else {
             guard let dict = JSONUtil.getLocalJSONObject(for: endpoint) else { return }
             completion(User.init(JSON: dict), nil)
-        } else {
-            let parameters: Parameters = [
-                ParameterKey.email: email,
-                ParameterKey.password: password
-            ]
+            return
+        }
 
-            repositoryAdapter.getObject(endpoint, parameters: parameters, type: User.self) { (user, error) in
-                completion(user, error)
-            }
+        let parameters: Parameters = [
+            ParameterKey.email: email,
+            ParameterKey.password: password
+        ]
+
+        repositoryAdapter.networkAdapter.httpRequest(endpoint, method: .post, parameters: parameters) { (request) in
+            print("Starting request \(String(describing: request.request?.url)) with parameters \(String(describing: parameters))")
+            request.responseObject(keyPath: ParameterKey.data, completionHandler: { (response: DataResponse<User>) in
+                print("Ended request with code \(String(describing: response.response?.statusCode))")
+
+                if let code = response.response?.statusCode, code == 401 {
+                    print("Detected 401. Should log out User!")
+                }
+
+                switch response.result {
+                case .success(let object):
+                    guard let data = response.data else { return }
+                    let json = JSON(data)
+
+                    if let errors = ErrorUtil.errors(fromJSON: json) {
+                        completion(nil, errors.first)
+                    } else {
+                        E2APIServices.shared.myUser = object
+                        E2APISessionManager.handleSessionJSON(json)
+                        E2APISessionManager.setSessionEmail(email)
+                        E2APISessionManager.setSessionPassword(password)
+
+                        completion(object, nil)
+                    }
+                case .failure:
+                    let error = ErrorUtil.parseError(response)
+                    print("network error \(error.debugDescription)")
+                    completion(nil, error)
+                }
+            })
         }
     }
 }

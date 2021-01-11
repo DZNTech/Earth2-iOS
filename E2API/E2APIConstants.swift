@@ -10,23 +10,23 @@ import UIKit
 
 public typealias ObjectId = String
 
-public let APIBaseUrl: String = "https://www.earth2api.com/"
-public let APIKey: String = "OOA8TueUjeFwmVVpjb0`;-]Q7E{"
-
+public let APIBaseUrl: String = "https://earth2api.herokuapp.com/"
 public let StandardPageSize: Int = 50
 
 enum EndPoint {
-    static let userLogin = "user/login"
-    static let propertyList = "user/properties"
+    static let userLogin = "users/login/"
+    static let propertyList = "users/properties/"
 }
 
 enum ParameterKey {
-    static let apiKey = "apiKey"
+    static let apiKey = "Api-Key"
     static let contentType = "Content-type"
+    static let authorization = "Authorization"
     static let httpStatus = "httpStatus"
     static let errors = "errors"
     static let status = "status"
     static let data = "data"
+    static let sessionId = "sessionId"
 
     static let currentPage = "currentPage"
     static let pageSize = "pageSize"

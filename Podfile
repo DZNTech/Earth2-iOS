@@ -24,7 +24,7 @@ target 'E2API' do
     pod 'ObjectMapper', :inhibit_warnings => true
 
     # Security
-    pod 'Valet'
+    pod 'Valet', '~> 3.2.8'
 end
 
 post_install do |pi|

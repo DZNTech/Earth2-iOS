@@ -15,11 +15,11 @@ public class Property: Mappable, Descriptable {
     public var landTitle: String = ""
     public var imageUrl: String = ""
     public var tilesCount: Int = 0
-    public var purchaseValue: Double = 0
-    public var marketValue: Double = 0
+    public var purchaseValue: Float = 0
+    public var marketValue: Float = 0
     public var location: String = ""
-    public var latitude: Double = 0
-    public var longitude: Double = 0
+    public var latitude: Float = 0
+    public var longitude: Float = 0
 
     // MARK: - Initialization
 

@@ -25,7 +25,7 @@ class NetworkAdapter {
         _ endpoint: String,
         method: HTTPMethod = .get,
         parameters: Parameters? = nil,
-        nestParameters: Bool = true,
+        nestParameters: Bool = false,
         encoding: ParameterEncoding = JSONEncoding.default,
         headers: [String : String] = [:],
         authProtected: Bool = true,
@@ -41,8 +41,6 @@ class NetworkAdapter {
             params = parameters
         }
 
-        params[ParameterKey.apiKey] = APIKey
-
         formHeaders(headers, authProtected: authProtected) { [unowned self] (headers) in
             let request = self.sessionManager.request(url, method: method, parameters: params, encoding: encoding, headers: headers)
                 .validate(statusCode: 200...302)
@@ -51,18 +49,6 @@ class NetworkAdapter {
         }
     }
 
-    func httpUpload(_ data: Data, url: String, method: HTTPMethod = .post, headers: [String: String]? = nil, completion: UploadRequestCompletion?) {
-
-        var httpHeaders: [String : String] = headers ?? [:]
-        httpHeaders[ParameterKey.apiKey] = APIKey
-
-        formHeaders(httpHeaders, authProtected: true) { [unowned self] (headers) in
-            let request = self.sessionManager.upload(data, to: url, method: method, headers: headers)
-                .validate(statusCode: 200...302)
-                .validate(contentType: ["application/json"])
-            completion?(request)
-        }
-    }
 
     func httpCancelRequests(with endpoint: String) {
         self.sessionManager.session.getTasksWithCompletionHandler { (sessionDataTask, _, _) in
@@ -93,12 +79,8 @@ fileprivate extension NetworkAdapter {
     func formHeaders(_ headers: [String: String]?, authProtected: Bool, completion: @escaping ([String: String]) -> Void) {
         var headers = SessionManager.defaultHTTPHeaders
         headers[ParameterKey.contentType] = "application/json"
+        headers["Connection"] = "keep-alive"
+        headers[ParameterKey.authorization] = "\(ParameterKey.apiKey) \(E2APIServices.shared.credential.apiKey)"
         completion(headers)
-    }
-
-    func authorizationHeader() -> String {
-        guard let data = "mgp:TestMe!".data(using: .utf8) else { return "" }
-        let credential = data.base64EncodedString(options: [])
-        return "Basic \(credential)"
     }
 }

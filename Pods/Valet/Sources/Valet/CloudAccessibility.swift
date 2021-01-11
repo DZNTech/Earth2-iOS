@@ -22,16 +22,18 @@ import Foundation
 
 
 @objc(VALCloudAccessibility)
-public enum CloudAccessibility: Int, CaseIterable, CustomStringConvertible, Equatable {
+public enum CloudAccessibility: Int, CustomStringConvertible, Equatable {
     /// Valet data can only be accessed while the device is unlocked. This attribute is recommended for data that only needs to be accessible while the application is in the foreground. Valet data with this attribute will migrate to a new device when using encrypted backups.
     case whenUnlocked = 1
     /// Valet data can only be accessed once the device has been unlocked after a restart. This attribute is recommended for data that needs to be accessible by background applications. Valet data with this attribute will migrate to a new device when using encrypted backups.
-    case afterFirstUnlock = 2
-
+    case afterFirstUnlock
+    /// Valet data can always be accessed regardless of the lock state of the device. This attribute is not recommended. Valet data with this attribute will migrate to a new device when using encrypted backups.
+    case always
+    
     // MARK: CustomStringConvertible
     
     public var description: String {
-        accessibility.description
+        return accessibility.description
     }
     
     // MARK: Public Properties
@@ -42,11 +44,22 @@ public enum CloudAccessibility: Int, CaseIterable, CustomStringConvertible, Equa
             return .whenUnlocked
         case .afterFirstUnlock:
             return .afterFirstUnlock
+        case .always:
+            return .always
         }
     }
     
     public var secAccessibilityAttribute: String {
-        accessibility.secAccessibilityAttribute
+        return accessibility.secAccessibilityAttribute
     }
-
+    
+    // MARK: Internal
+    
+    internal static func allValues() -> [CloudAccessibility] {
+        return [
+            .whenUnlocked,
+            .afterFirstUnlock,
+            .always
+        ]
+    }
 }

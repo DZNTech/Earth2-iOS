@@ -21,107 +21,137 @@
 import Foundation
 
 
+@available(macOS 10.11, *)
 public final class SecureEnclave {
-        
-    // MARK: Internal Methods
+    
+    // MARK: Result
+    
+    public enum Result<Type: Equatable>: Equatable {
+        /// Data was retrieved from the keychain.
+        case success(Type)
+        /// User dismissed the user-presence prompt.
+        case userCancelled
+        /// No data was found for the requested key.
+        case itemNotFound
 
-    /// - Parameter service: The service of the keychain slice we want to check if we can access.
-    /// - Returns: `true` if the keychain is accessible for reading and writing, `false` otherwise.
-    /// - Note: Determined by writing a value to the keychain and then reading it back out.
-    internal static func canAccessKeychain(with service: Service) -> Bool {
+        // MARK: Initialization
+
+        init(_ dataResult: SecItem.DataResult<Type>) {
+            switch dataResult {
+            case let .success(value):
+                self = .success(value)
+
+            case let .error(status):
+                let userCancelled = (status == errSecUserCanceled || status == errSecAuthFailed)
+                if userCancelled {
+                    self = .userCancelled
+                } else {
+                    self = .itemNotFound
+                }
+            }
+        }
+
+        // MARK: Equatable
+        
+        public static func ==(lhs: Result<Type>, rhs: Result<Type>) -> Bool {
+            switch (lhs, rhs) {
+            case let (.success(lhsResult), .success(rhsResult)):
+                return lhsResult == rhsResult
+            case (.userCancelled, .userCancelled):
+                return true
+            case (.itemNotFound, .itemNotFound):
+                return true
+            case (.success, _),
+                 (.userCancelled, _),
+                 (.itemNotFound, _):
+              return false
+          }
+        }
+    }
+    
+    // MARK: Internal Methods
+    
+    /// - parameter service: The service of the keychain slice we want to check if we can access.
+    /// - parameter identifier: A non-empty identifier that scopes the slice of keychain we want to access.
+    /// - returns: `true` if the keychain is accessible for reading and writing, `false` otherwise.
+    /// - note: Determined by writing a value to the keychain and then reading it back out.
+    internal static func canAccessKeychain(with service: Service, identifier: Identifier) -> Bool {
         // To avoid prompting the user for Touch ID or passcode, create a Valet with our identifier and accessibility and ask it if it can access the keychain.
         let noPromptValet: Valet
         switch service {
-        #if os(macOS)
-        case let .standardOverride(identifier, _):
+        case .standard:
             noPromptValet = .valet(with: identifier, accessibility: .whenPasscodeSetThisDeviceOnly)
-        #endif
-        case let .standard(identifier, _):
-            noPromptValet = .valet(with: identifier, accessibility: .whenPasscodeSetThisDeviceOnly)
-        #if os(macOS)
-        case let .sharedGroupOverride(identifier, _):
-            noPromptValet = .sharedGroupValet(withExplicitlySet: identifier, accessibility: .whenPasscodeSetThisDeviceOnly)
-        #endif
-        case let .sharedGroup(identifier, _):
-            noPromptValet = .sharedGroupValet(with: identifier, accessibility: .whenPasscodeSetThisDeviceOnly)
+        case .sharedAccessGroup:
+            noPromptValet = .sharedAccessGroupValet(with: identifier, accessibility: .whenPasscodeSetThisDeviceOnly)
         }
         
         return noPromptValet.canAccessKeychain()
     }
-
-    /// - Parameters:
-    ///   - object: A Data value to be inserted into the keychain.
-    ///   - key: A key that can be used to retrieve the `object` from the keychain.
-    ///   - options: A base query used to scope the calls in the keychain.
-    /// - Throws: An error of type `KeychainError`.
-    internal static func setObject(_ object: Data, forKey key: String, options: [String : AnyHashable]) throws {
+    
+    /// - parameter object: A Data value to be inserted into the keychain.
+    /// - parameter key: A Key that can be used to retrieve the `object` from the keychain.
+    /// - parameter options: A base query used to scope the calls in the keychain.
+    /// - returns: `false` if the keychain is not accessible.
+    @discardableResult
+    internal static func set(object: Data, forKey key: String, options: [String : AnyHashable]) -> Bool {
         // Remove the key before trying to set it. This will prevent us from calling SecItemUpdate on an item stored on the Secure Enclave, which would cause iOS to prompt the user for authentication.
-        try Keychain.removeObject(forKey: key, options: options)
+        _ = Keychain.removeObject(forKey: key, options: options)
         
-        try Keychain.setObject(object, forKey: key, options: options)
+        return Keychain.set(object: object, forKey: key, options: options).didSucceed
     }
-
-    /// - Parameters:
-    ///   - key: A key used to retrieve the desired object from the keychain.
-    ///   - userPrompt: The prompt displayed to the user in Apple's Face ID, Touch ID, or passcode entry UI.
-    ///   - options: A base query used to scope the calls in the keychain.
-    /// - Returns: The data currently stored in the keychain for the provided key.
-    /// - Throws: An error of type `KeychainError`.
-    internal static func object(forKey key: String, withPrompt userPrompt: String, options: [String : AnyHashable]) throws -> Data {
+    
+    /// - parameter key: A Key used to retrieve the desired object from the keychain.
+    /// - parameter userPrompt: The prompt displayed to the user in Apple's Face ID, Touch ID, or passcode entry UI.
+    /// - parameter options: A base query used to scope the calls in the keychain.
+    /// - returns: The data currently stored in the keychain for the provided key. Returns `.itemNotFound` if no object exists in the keychain for the specified key, or if the keychain is inaccessible. Returns `.userCancelled` if the user cancels the user-presence prompt.
+    internal static func object(forKey key: String, withPrompt userPrompt: String, options: [String : AnyHashable]) -> Result<Data> {
         var secItemQuery = options
         if !userPrompt.isEmpty {
             secItemQuery[kSecUseOperationPrompt as String] = userPrompt
         }
         
-        return try Keychain.object(forKey: key, options: secItemQuery)
+        return Result(Keychain.object(forKey: key, options: secItemQuery))
     }
-
-    /// - Parameters:
-    ///   - key: The key to look up in the keychain.
-    ///   - options: A base query used to scope the calls in the keychain.
-    /// - Returns: `true` if a value has been set for the given key, `false` otherwise.
-    /// - Throws: An error of type `KeychainError`.
-    internal static func containsObject(forKey key: String, options: [String : AnyHashable]) throws -> Bool {
+    
+    /// - parameter key: The key to look up in the keychain.
+    /// - parameter options: A base query used to scope the calls in the keychain.
+    /// - returns: `true` if a value has been set for the given key, `false` otherwise.
+    internal static func containsObject(forKey key: String, options: [String : AnyHashable]) -> Bool {
         var secItemQuery = options
         secItemQuery[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
-
-        let status = Keychain.performCopy(forKey: key, options: secItemQuery)
-        switch status {
-        case errSecSuccess,
-             errSecInteractionNotAllowed:
-            // An item exists in the keychain if we could successfully copy the item, or if we got an error telling us we weren't allowed to copy the item since we couldn't prompt the user.
+        
+        switch Keychain.containsObject(forKey: key, options: secItemQuery) {
+        case .success:
             return true
-        case errSecItemNotFound:
-            return false
-        default:
-            throw KeychainError(status: status)
+            
+        case let .error(status):
+            let keyAlreadyInKeychain = (status == errSecInteractionNotAllowed || status == errSecSuccess)
+            return keyAlreadyInKeychain
         }
     }
-
-    /// - Parameters:
-    ///   - string: A String value to be inserted into the keychain.
-    ///   - key: A key that can be used to retrieve the `string` from the keychain.
-    ///   - options: A base query used to scope the calls in the keychain.
-    /// - Throws: An error of type `KeychainError`.
-    internal static func setString(_ string: String, forKey key: String, options: [String : AnyHashable]) throws {
+    
+    /// - parameter string: A String value to be inserted into the keychain.
+    /// - parameter key: A Key that can be used to retrieve the `string` from the keychain.
+    /// - parameter options: A base query used to scope the calls in the keychain.
+    /// - returns: `true` if the operation succeeded, or `false` if the keychain is not accessible.
+    @discardableResult
+    internal static func set(string: String, forKey key: String, options: [String : AnyHashable]) -> Bool {
         // Remove the key before trying to set it. This will prevent us from calling SecItemUpdate on an item stored on the Secure Enclave, which would cause iOS to prompt the user for authentication.
-        try Keychain.removeObject(forKey: key, options: options)
+        _ = Keychain.removeObject(forKey: key, options: options)
         
-        try Keychain.setString(string, forKey: key, options: options)
+        return Keychain.set(string: string, forKey: key, options: options).didSucceed
     }
-
-    /// - Parameters:
-    ///   - key: A key used to retrieve the desired object from the keychain.
-    ///   - userPrompt: The prompt displayed to the user in Apple's Face ID, Touch ID, or passcode entry UI.
-    ///   - options: A base query used to scope the calls in the keychain.
-    /// - Returns: The string currently stored in the keychain for the provided key.
-    /// - Throws: An error of type `KeychainError`.
-    internal static func string(forKey key: String, withPrompt userPrompt: String, options: [String : AnyHashable]) throws -> String {
+    
+    /// - parameter key: A Key used to retrieve the desired object from the keychain.
+    /// - parameter userPrompt: The prompt displayed to the user in Apple's Face ID, Touch ID, or passcode entry UI.
+    /// - parameter options: A base query used to scope the calls in the keychain.
+    /// - returns: The string currently stored in the keychain for the provided key. Returns `nil` if no string exists in the keychain for the specified key, or if the keychain is inaccessible.
+    internal static func string(forKey key: String, withPrompt userPrompt: String, options: [String : AnyHashable]) -> Result<String> {
         var secItemQuery = options
         if !userPrompt.isEmpty {
             secItemQuery[kSecUseOperationPrompt as String] = userPrompt
         }
 
-        return try Keychain.string(forKey: key, options: secItemQuery)
+        return Result(Keychain.string(forKey: key, options: secItemQuery))
     }
 }

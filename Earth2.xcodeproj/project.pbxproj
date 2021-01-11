@@ -45,6 +45,7 @@
 		4FC3F28A25AB995B0039B94C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F28925AB995B0039B94C /* HomeViewController.swift */; };
 		4FC3F2B625AC00010039B94C /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F2B525AC00000039B94C /* Credentials.plist */; };
 		4FC3F2B925AC00210039B94C /* E2APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F2B825AC00210039B94C /* E2APICredentials.swift */; };
+		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		C8894969E61DF5CE1B032325 /* Pods_E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42262C04171D7B9A576961E6 /* Pods_E2API.framework */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		4FC3F28925AB995B0039B94C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4FC3F2B525AC00000039B94C /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Credentials.plist; path = ../../Credentials.plist; sourceTree = "<group>"; };
 		4FC3F2B825AC00210039B94C /* E2APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2APICredentials.swift; sourceTree = "<group>"; };
+		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
 		6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,8 +227,8 @@
 			children = (
 				4FC3F1BF25A9045E0039B94C /* AuthApi.swift */,
 				4FC3F1D525A90ED70039B94C /* PropertyApi.swift */,
-				4FC3F1C725A9051F0039B94C /* NetworkAdapter.swift */,
 				4FC3F1C825A9051F0039B94C /* RepositoryAdapter.swift */,
+				4FC3F1C725A9051F0039B94C /* NetworkAdapter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -276,6 +278,7 @@
 				4FC3F26B25AAE8B20039B94C /* UIView+Extensions.swift */,
 				4FC3F26E25AAFFA30039B94C /* UIColor+Extensions.swift */,
 				4FC3F27625AB08550039B94C /* UITextField+Extensions.swift */,
+				4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */,
 			);
 			path = "UI Extensions";
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				4FC3F1F825A971670039B94C /* Color.swift in Sources */,
 				4FC3F1F425A9715A0039B94C /* Appearance.swift in Sources */,
 				4FC3F26C25AAE8B20039B94C /* UIView+Extensions.swift in Sources */,
+				4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */,
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
 				4FC3F26825AAD7D40039B94C /* UILabel+Extensions.swift in Sources */,
 				4FC3F28A25AB995B0039B94C /* HomeViewController.swift in Sources */,

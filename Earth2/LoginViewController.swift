@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     fileprivate lazy var loginFormView: UIView = {
         let view = UIView()
         view.alpha = 1
-        view.backgroundColor = Color.white.withAlphaComponent(0.0125)
+        view.backgroundColor = Color.white.withAlphaComponent(0.025)
         view.layer.cornerRadius = 8
 
         view.addSubview(self.legendLabel)
@@ -99,7 +99,6 @@ class LoginViewController: UIViewController {
 
     fileprivate lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Loading..."
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = Color.white
         label.textAlignment = .center
@@ -123,7 +122,7 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var launchImageViewHeightConstraint: NSLayoutConstraint?
 
     fileprivate var loginFormViewCenterYConstraint: Constraint?
-    fileprivate var loginFormIntersection: CGRect = .zero
+    fileprivate var verticalOffset: CGFloat = 0
     fileprivate var launchViewViewHalfHeight: CGFloat = 0
 
     fileprivate var isKeyboardVisible: Bool = false
@@ -185,7 +184,7 @@ class LoginViewController: UIViewController {
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
 
-        activityIndicatorView.startAnimating()
+        statusLabel.isHidden = true
 
         view.addSubview(activityIndicatorView)
         activityIndicatorView.snp.makeConstraints {
@@ -219,36 +218,36 @@ class LoginViewController: UIViewController {
 
         legendLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Constants.padding*2)
-            $0.leading.equalToSuperview().offset(Constants.padding*2)
-            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding)
+            $0.trailing.equalToSuperview().offset(-Constants.padding)
         }
 
         emailField.snp.makeConstraints {
             $0.top.equalTo(legendLabel.snp.bottom).offset(Constants.padding*1.5)
-            $0.leading.equalToSuperview().offset(Constants.padding*2)
-            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding)
+            $0.trailing.equalToSuperview().offset(-Constants.padding)
             $0.height.greaterThanOrEqualTo(40)
         }
 
         passwordField.snp.makeConstraints {
             $0.top.equalTo(emailField.snp.bottom).offset(Constants.padding*1)
-            $0.leading.equalToSuperview().offset(Constants.padding*2)
-            $0.trailing.equalToSuperview().offset(-Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding)
+            $0.trailing.equalToSuperview().offset(-Constants.padding)
             $0.height.greaterThanOrEqualTo(40)
         }
 
         passwordRecoveryButton.snp.makeConstraints {
             $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
-            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding)
         }
 
         createAccountButton.snp.makeConstraints {
             $0.top.equalTo(passwordRecoveryButton.snp.bottom).offset(Constants.padding/2)
-            $0.leading.equalToSuperview().offset(Constants.padding*2)
+            $0.leading.equalToSuperview().offset(Constants.padding)
             $0.bottom.equalToSuperview().offset(-Constants.padding*2)
         }
 
-        launchViewViewHalfHeight = launchImageView.frame.height/2
+        launchViewViewHalfHeight = launchImageView.frame.height*3/4
     }
 
     fileprivate func setupObservers() {
@@ -267,6 +266,22 @@ class LoginViewController: UIViewController {
         )
     }
 
+    fileprivate func setLoading(_ loading: Bool = true) {
+        setStatus(loading ? "Loading..." : nil)
+        activityIndicatorView.animate(loading)
+        enableLoginForm(!loading)
+    }
+
+    fileprivate func setStatus(_ message: String?) {
+        statusLabel.text = message
+        statusLabel.isHidden = message == nil
+    }
+
+    fileprivate func enableLoginForm(_ enable: Bool = true) {
+        loginFormView.isUserInteractionEnabled = enable
+        loginFormView.alpha = enable ? 1 : 0.5
+    }
+
     fileprivate func presentHome() {
         let homeVC = HomeViewController()
         homeVC.modalPresentationStyle = .fullScreen
@@ -276,10 +291,6 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
 
     fileprivate func loadContent() {
-
-        authApi.login("", password: "") { (user, error) in
-            //
-        }
 
         propertyApi.getMyProperties { (properties, error) in
             //
@@ -312,11 +323,20 @@ class LoginViewController: UIViewController {
         }
 
         func prepareToSubmit() {
-            textField.resignFirstResponder()
-            loginFormView.isUserInteractionEnabled = false
-            loginFormView.alpha = 0.5
+            guard let email = emailField.text, let password = passwordField.text else { return }
 
-            presentHome()
+            textField.resignFirstResponder()
+            setLoading(true)
+
+            authApi.login(email, password: password) { [weak self] (user, error) in
+
+                if let user = user {
+                    self?.setStatus("Welcome back \(user.username)")
+                    self?.activityIndicatorView.animate(false)
+                } else {
+                    self?.setLoading(false)
+                }
+            }
         }
 
         if textField == emailField, validateEmail() {
@@ -358,18 +378,17 @@ class LoginViewController: UIViewController {
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
         let keyboardRect = keyboardFrame.cgRectValue
-        loginFormIntersection = keyboardRect.intersection(loginFormView.frame)
+        let verticalOffset = keyboardRect.intersection(loginFormView.frame).height + Constants.padding
 
         let loginFormRect = loginFormView.frame
-        let launchViewViewCenterY = loginFormIntersection.height + loginFormRect.height + Constants.padding
+        let launchViewViewCenterY = verticalOffset + loginFormRect.height + Constants.padding
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
                        delay: 0,
                        options: []) {
             self.launchViewCenterYConstraint?.constant = -launchViewViewCenterY
             self.launchImageViewHeightConstraint?.constant = self.launchViewViewHalfHeight
-            self.loginFormViewCenterYConstraint?.update(offset: -self.loginFormIntersection.height)
-            self.galaxyView.imageView.setY(-self.loginFormIntersection.height)
+            self.loginFormViewCenterYConstraint?.update(offset: -verticalOffset)
 
             self.loginFormView.alpha = 1
             self.titleLabel.alpha = 0
@@ -388,9 +407,8 @@ class LoginViewController: UIViewController {
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
                        animations: {
-                        self.launchViewCenterYConstraint?.constant += self.loginFormIntersection.height
+                        self.launchViewCenterYConstraint?.constant += self.verticalOffset
                         self.loginFormViewCenterYConstraint?.update(offset: 0)
-                        self.galaxyView.imageView.setY(0)
 
                         self.view.layoutIfNeeded()
         },

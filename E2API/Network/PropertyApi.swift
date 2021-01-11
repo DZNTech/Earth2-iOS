@@ -36,16 +36,16 @@ public class PropertyApi: PropertyApiInterface {
 
         let endpoint = EndPoint.propertyList
 
-
-        if E2APIServices.shared.isLocal {
+        guard !E2APIServices.shared.isLocal else {
             guard let dict = JSONUtil.getLocalJSONObjects(for: endpoint) else { return }
             completion(Property.properties(for: dict), nil)
-        } else {
-            let parameters = [ParameterKey.userId: userId]
+            return
+        }
 
-            repositoryAdapter.getObjects(endpoint, parameters: parameters, currentPage: currentPage, pageSize: pageSize, type: Property.self) { (properties, error) in
-                completion(properties, error)
-            }
+        let parameters = [ParameterKey.userId: userId]
+
+        repositoryAdapter.getObjects(endpoint, parameters: parameters, currentPage: currentPage, pageSize: pageSize, type: Property.self) { (properties, error) in
+            completion(properties, error)
         }
     }
 }

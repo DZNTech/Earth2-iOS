@@ -18,10 +18,10 @@ public class User: Mappable, Descriptable {
     public var referralCode: String = ""
     public var imageUrl: String = ""
     public var propertyCount: Int = 0
-    public var netWorth: Double = 0
-    public var balance: Double = 0
-    public var propertyIncreaseNet: Double = 0
-    public var propertyIncreasePct: Double = 0
+    public var netWorth: Float = 0
+    public var balance: Float = 0
+    public var profitIncreaseNet: Float = 0
+    public var profitIncreasePct: Float = 0
 
     // MARK: - Initialization
 
@@ -40,13 +40,17 @@ public class User: Mappable, Descriptable {
         id <- map["id"]
         username <- map["username"]
         country <- map["country"]
-        phone <- map["phone"]
+
         referralCode <- map["referral_code"]
         imageUrl <- map["image_url"]
         propertyCount <- map["property_count"]
         netWorth <- map["net_worth"]
         balance <- map["balance"]
-        propertyIncreaseNet <- map["property_increase_net"]
-        propertyIncreasePct <- map["property_increase_pct"]
+        profitIncreaseNet <- map["profit_increase_net"]
+        profitIncreasePct <- map["profit_increase_pct"]
+
+        if let value = map.JSON["phone"] as? String, value != "None" {
+            phone <- map["phone"]
+        }
     }
 }

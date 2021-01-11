@@ -26,12 +26,12 @@ class RepositoryAdapter {
                 }
 
                 switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
+                case .success(let object):
+                    let json = JSON(object)
                     if let errors = ErrorUtil.errors(fromJSON: json) {
                         completion(nil, errors.first)
                     } else {
-                        completion(value, nil)
+                        completion(object, nil)
                     }
                 case .failure:
                     let error = ErrorUtil.parseError(response)
@@ -72,14 +72,14 @@ class RepositoryAdapter {
                 }
 
                 switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
+                case .success(let objects):
+                    let json = JSON(objects)
                     if let errors = ErrorUtil.errors(fromJSON: json) {
                         completion(nil, errors.first)
                         log += " Network Error: \(errors.first.debugDescription)"
                     } else {
-                        completion(value, nil)
-                        log += "(\(value.count) objects)"
+                        completion(objects, nil)
+                        log += "(\(objects.count) objects)"
                     }
                 case .failure:
                     let error = ErrorUtil.parseError(response)
