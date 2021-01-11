@@ -11,7 +11,7 @@ import UIKit
 // Color Palette
 public struct Color {
     // RGB
-    public static let lightBlue: UIColor =      #colorLiteral(red: 0, green: 0.4823529412, blue: 0.9098039216, alpha: 1) // #007be8
+    public static let lightBlue: UIColor =      #colorLiteral(red: 0.1882352941, green: 0.4823529412, blue: 0.968627451, alpha: 1) // #307bf7
     public static let blue: UIColor =           #colorLiteral(red: 0.1333333333, green: 0.09019607843, blue: 0.368627451, alpha: 1) // #22175e
     public static let darkBlue: UIColor =       #colorLiteral(red: 0.04705882353, green: 0.03921568627, blue: 0.1607843137, alpha: 1) // #0c0a29
 

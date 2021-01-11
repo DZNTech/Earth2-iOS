@@ -16,14 +16,14 @@ class GalaxyView: UIView {
     @IBInspectable
     public var showStars: Bool = true {
         didSet {
-            handleShowStarsUpdate()
+            updateStarsComposition()
         }
     }
 
     @IBInspectable
     public var showGradient: Bool = true {
         didSet {
-            handleShowGradientUpdate()
+            updateGradient()
         }
     }
 
@@ -72,9 +72,9 @@ class GalaxyView: UIView {
         super.init(coder: aDecoder)
     }
 
-    // MARK: - Layout
+    // MARK: - Composition
 
-    fileprivate func handleShowGradientUpdate() {
+    fileprivate func updateGradient() {
         if !showGradient {
             gradientLayer.removeFromSuperlayer()
         } else if gradientLayer.superlayer == nil {
@@ -83,7 +83,7 @@ class GalaxyView: UIView {
         gradientLayer.frame = bounds
     }
 
-    fileprivate func handleShowStarsUpdate() {
+    fileprivate func updateStarsComposition() {
         if !showStars {
             imageView.image = nil
         } else if imageView.superview == nil {
@@ -102,7 +102,8 @@ class GalaxyView: UIView {
 
 fileprivate extension UIImage {
 
-    static func generateStars(in bounds: CGRect) -> UIImage {
+    static func generateStars(in bounds: CGRect) -> UIImage? {
+        guard !bounds.isEmpty else { return nil }
 
         func insert(stars width: CGFloat, with count: Int, and color: UIColor, in view: UIView) {
             for _ in 0...count {

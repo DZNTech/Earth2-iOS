@@ -153,6 +153,8 @@ class LoginViewController: UIViewController {
                 self.emailField.becomeFirstResponder()
             }
         }
+
+        presentHome()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -167,10 +169,12 @@ class LoginViewController: UIViewController {
 
     fileprivate func setupLayout() {
 
-        view.bringSubviewToFront(launchImageView)
+        galaxyView.topColor = Color.blue
+        galaxyView.bottomColor = Color.black
 
         launchImageView.isUserInteractionEnabled = true
         launchImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
+        view.bringSubviewToFront(launchImageView)
 
         let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
         view.addGestureRecognizer(backgroundTapGesture)
@@ -263,6 +267,12 @@ class LoginViewController: UIViewController {
         )
     }
 
+    fileprivate func presentHome() {
+        let homeVC = HomeViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        present(homeVC, animated: true, completion: nil)
+    }
+
     // MARK: - Actions
 
     fileprivate func loadContent() {
@@ -305,6 +315,8 @@ class LoginViewController: UIViewController {
             textField.resignFirstResponder()
             loginFormView.isUserInteractionEnabled = false
             loginFormView.alpha = 0.5
+
+            presentHome()
         }
 
         if textField == emailField, validateEmail() {

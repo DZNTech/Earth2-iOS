@@ -10,7 +10,6 @@ target 'Earth2' do
   pod 'SwiftValidators', :inhibit_warnings => true
   pod 'ShimmerSwift'
   pod 'EmptyDataSet-Swift'
-
 end
 
 target 'E2API' do
