@@ -80,7 +80,7 @@ fileprivate extension NetworkAdapter {
         var headers = SessionManager.defaultHTTPHeaders
         headers[ParameterKey.contentType] = "application/json"
         headers["Connection"] = "keep-alive"
-        headers[ParameterKey.authorization] = "\(ParameterKey.apiKey) \(E2APIServices.shared.credential.apiKey)"
+        headers[ParameterKey.authorization] = "\(ParameterKey.apiKey) \(APIServices.shared.credential.e2APIKey)"
         completion(headers)
     }
 }

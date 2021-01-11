@@ -1,5 +1,5 @@
 //
-//  E2APIServices.swift
+//  APIServices.swift
 //  E2API
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-08.
@@ -9,10 +9,10 @@
 import Foundation
 import AlamofireNetworkActivityIndicator
 
-public class E2APIServices {
+public class APIServices {
 
-    public static let shared = E2APIServices()
-    public let credential = APICredential()
+    public static let shared = APIServices()
+    public let credential = APICredentials()
 
     public var isLocal: Bool = false
 

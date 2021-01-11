@@ -4,13 +4,13 @@
         "username": "Zenith 5KVO65G0HS 5%",
         "country": "Canada",
         "email": "ignacio.romeroz@gmail.com",
-        "phone": null,
+        "phone": "None",
         "referral_code": "5KVO65G0HS",
-        "image_url": "https://s3-ap-southeast-2.amazonaws.com/prod-app-media.earth2.io/thumbnails/609c3f3c-c65a-46c6-98b4-d09ec1da979c_avatar_4523a447-10a9-49b7-badc-3341521a9e74.jpeg",
-        "property_count": 522,
-        "net_worth": 1095.35,
-        "balance": 64.92,
-        "property_increase_net": 580.48,
-        "property_increase_pct": 112.743
+        "image_url": "https://s.gravatar.com/avatar/fc5c6d1397195eb26fb7bc068b6dc0cf?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fig.png",
+        "property_count": 539,
+        "balance": 51.95,
+        "net_worth": 1334.48,
+        "profit_increase_net": 801.98,
+        "profit_increase_pct": 150.60657276995306
     }
 }

@@ -1,5 +1,5 @@
 //
-//  E2APIConstants.swift
+//  APIConstants.swift
 //  E2API
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-08.

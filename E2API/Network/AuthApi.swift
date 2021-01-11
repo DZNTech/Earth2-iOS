@@ -34,7 +34,7 @@ public class AuthApi: AuthApiInterface {
         let endpoint = EndPoint.userLogin
 
         // local use
-        guard !E2APIServices.shared.isLocal else {
+        guard !APIServices.shared.isLocal else {
             guard let dict = JSONUtil.getLocalJSONObject(for: endpoint) else { return }
             completion(User.init(JSON: dict), nil)
             return
@@ -62,10 +62,10 @@ public class AuthApi: AuthApiInterface {
                     if let errors = ErrorUtil.errors(fromJSON: json) {
                         completion(nil, errors.first)
                     } else {
-                        E2APIServices.shared.myUser = object
-                        E2APISessionManager.handleSessionJSON(json)
-                        E2APISessionManager.setSessionEmail(email)
-                        E2APISessionManager.setSessionPassword(password)
+                        APIServices.shared.myUser = object
+                        APISessionManager.handleSessionJSON(json)
+                        APISessionManager.setSessionEmail(email)
+                        APISessionManager.setSessionPassword(password)
 
                         completion(object, nil)
                     }

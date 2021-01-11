@@ -36,7 +36,7 @@ public class PropertyApi: PropertyApiInterface {
 
         let endpoint = EndPoint.propertyList
 
-        guard !E2APIServices.shared.isLocal else {
+        guard !APIServices.shared.isLocal else {
             guard let dict = JSONUtil.getLocalJSONObjects(for: endpoint) else { return }
             completion(Property.properties(for: dict), nil)
             return

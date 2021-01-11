@@ -1,5 +1,5 @@
 //
-//  E2APICredentials.swift
+//  APICredentials.swift
 //  E2API
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-10.
@@ -7,19 +7,21 @@
 //
 
 import Foundation
-import Valet
 
-public class APICredential {
-    public let apiKey: String
+public class APICredentials {
     public let email: String?
     public let password: String?
 
+    public let e2APIKey: String
+    public let mapboxAPIKey: String
+
     init() {
-        apiKey = "oq9CUUTI.MJOrA7W4kZbnBuAUySLQ6Y7Fab5ZF6CN"
+        e2APIKey = "oq9CUUTI.MJOrA7W4kZbnBuAUySLQ6Y7Fab5ZF6CN"
+        mapboxAPIKey = "pk.eyJ1IjoiZHpuIiwiYSI6ImNranN3dnVpNDA0eXozM3FzcjlxMzIweXkifQ.bFoLTSgzwGTaoVfmUQ5XYw"
 
         // Development tool for auto-completing the login screen
         #if DEBUG
-            let bundle = Bundle(for: APICredential.self)
+            let bundle = Bundle(for: APICredentials.self)
 
             // TODO: Throw and print error
             if let path = bundle.path(forResource: "Credentials", ofType: "plist"),

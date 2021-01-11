@@ -1,5 +1,5 @@
 //
-//  E2APISessionManager.swift
+//  APISessionManager.swift
 //  E2API
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-08.
@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import Valet
 
-class E2APISessionManager {
+class APISessionManager {
 
     // MARK: - Session
 

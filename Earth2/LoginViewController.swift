@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
         textField.borderStyle = .roundedRect
-        textField.text = E2APIServices.shared.credential.email
+        textField.text = APIServices.shared.credential.email
         textField.setPlaceholder("Email", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
         textField.borderStyle = .roundedRect
-        textField.text = E2APIServices.shared.credential.password
+        textField.text = APIServices.shared.credential.password
         textField.setPlaceholder("Password", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -147,7 +147,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if E2APIServices.shared.isLoggedIn {
+        if APIServices.shared.isLoggedIn {
             // present home vc
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {

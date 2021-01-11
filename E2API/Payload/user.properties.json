@@ -1,39 +1,377 @@
 {
     "status": true,
-    "current_page": 1,
-    "page_count": 1,
-    "data": [{
-            "id": "",
-            "latitude": "",
-            "longitude": "",
-            "location": "",
-            "image_url": "",
-            "tiles_count": 0,
-            "land_title": "",
-            "purchase_value": 0.64,
-            "market_value": 1.93
+    "current_page": "1",
+    "page_count": "1",
+    "data": [
+        {
+            "latitude": "-64.72312",
+            "longitude": "-4.179247",
+            "location": "Tefé, Amazonas, Brazil",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-64.72312, -4.179247}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "3 tiles",
+            "land_title": "Tefé",
+            "purchase_value": "1.70",
+            "market_value": "5.09"
         },
         {
-            "id": "",
-            "latitude": "",
-            "longitude": "",
-            "location": "",
-            "image_url": "",
-            "tiles_count": 0,
-            "land_title": "",
-            "purchase_value": 0.64,
-            "market_value": 1.93
+            "latitude": "-71.476107",
+            "longitude": "-38.046469",
+            "location": "Villucura, Quilaco, Bío Bío, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-71.476107, -38.046469}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "10 tiles",
+            "land_title": "Villucura",
+            "purchase_value": "1.00",
+            "market_value": "10.04"
         },
         {
-            "id": "",
-            "latitude": "",
-            "longitude": "",
-            "location": "",
-            "image_url": "",
-            "tiles_count": 0,
-            "land_title": "",
-            "purchase_value": 0.64,
-            "market_value": 1.93
+            "latitude": "-71.914873",
+            "longitude": "-39.868971",
+            "location": "Neltume, Panguipulli, Los Ríos, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-71.914873, -39.868971}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "4 tiles",
+            "land_title": "Neltume",
+            "purchase_value": "1.00",
+            "market_value": "4.02"
+        },
+        {
+            "latitude": "-71.500912",
+            "longitude": "-30.254619",
+            "location": "Tongoy, Coquimbo, Coquimbo, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-71.500912, -30.254619}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "13 tiles",
+            "land_title": "Tongoy",
+            "purchase_value": "1.00",
+            "market_value": "13.05"
+        },
+        {
+            "latitude": "-70.756932",
+            "longitude": "-33.542253",
+            "location": "Las Industrias, Maipú, Santiago Metropolitan, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-70.756932, -33.542253}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "2 tiles",
+            "land_title": "Las Industrias",
+            "purchase_value": "1.00",
+            "market_value": "2.01"
+        },
+        {
+            "latitude": "-58.538246",
+            "longitude": "-34.813944",
+            "location": "Ezeiza, Buenos Aires, Argentina",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-58.538246, -34.813944}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "2 tiles",
+            "land_title": "Ezeiza",
+            "purchase_value": "0.69",
+            "market_value": "1.38"
+        },
+        {
+            "latitude": "6.159124",
+            "longitude": "46.209002",
+            "location": "Genève, Geneva, Switzerland",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/6.159124, 46.209002}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "3 tiles",
+            "land_title": "Genève",
+            "purchase_value": "2.43",
+            "market_value": "7.29"
+        },
+        {
+            "latitude": "7.417488",
+            "longitude": "43.741957",
+            "location": "Sainte-Dévote, Beausoleil, Alpes-Maritimes, France",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/7.417488, 43.741957}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "1 tiles",
+            "land_title": "Sainte-Dévote",
+            "purchase_value": "4.07",
+            "market_value": "4.07"
+        },
+        {
+            "latitude": "144.946832",
+            "longitude": "-37.817785",
+            "location": "Docklands, Victoria, Australia",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/144.946832, -37.817785}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "2 tiles",
+            "land_title": "Docklands",
+            "purchase_value": "5.83",
+            "market_value": "11.65"
+        },
+        {
+            "latitude": "144.966144",
+            "longitude": "-37.814531",
+            "location": "Melbourne, Victoria, Australia",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/144.966144, -37.814531}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "8 tiles",
+            "land_title": "Melbourne",
+            "purchase_value": "5.83",
+            "market_value": "46.61"
+        },
+        {
+            "latitude": "36.745835",
+            "longitude": "-1.37539",
+            "location": "Karen, Nairobi, Kenya",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/36.745835, -1.37539}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "4 tiles",
+            "land_title": "Karen",
+            "purchase_value": "0.31",
+            "market_value": "1.24"
+        },
+        {
+            "latitude": "-123.165064",
+            "longitude": "49.179403",
+            "location": "Richmond, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.165064, 49.179403}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "4 tiles",
+            "land_title": "Richmond",
+            "purchase_value": "5.37",
+            "market_value": "21.49"
+        },
+        {
+            "latitude": "-123.041382",
+            "longitude": "49.284604",
+            "location": "Vancouver, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.041382, 49.284604}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "8 tiles",
+            "land_title": "Vancouver",
+            "purchase_value": "5.37",
+            "market_value": "42.98"
+        },
+        {
+            "latitude": "-123.033314",
+            "longitude": "49.2827",
+            "location": "Vancouver, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.033314, 49.2827}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "8 tiles",
+            "land_title": "Vancouver",
+            "purchase_value": "5.37",
+            "market_value": "42.98"
+        },
+        {
+            "latitude": "-123.040438",
+            "longitude": "49.285612",
+            "location": "Vancouver, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.040438, 49.285612}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "11 tiles",
+            "land_title": "Vancouver",
+            "purchase_value": "5.37",
+            "market_value": "59.10"
+        },
+        {
+            "latitude": "-158.125362",
+            "longitude": "21.337511",
+            "location": "Kapolei, Hawaii, United States",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-158.125362, 21.337511}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "5 tiles",
+            "land_title": "Kapolei",
+            "purchase_value": "34.84",
+            "market_value": "174.18"
+        },
+        {
+            "latitude": "-57.82259",
+            "longitude": "-51.691979",
+            "location": "Stanley, Falkland Islands",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-57.82259, -51.691979}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "76 tiles",
+            "land_title": "Stanley",
+            "purchase_value": "0.26",
+            "market_value": "19.46"
+        },
+        {
+            "latitude": "-57.863445",
+            "longitude": "-51.691927",
+            "location": "Stanley, Falkland Islands",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-57.863445, -51.691927}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "5 tiles",
+            "land_title": "Stanley",
+            "purchase_value": "0.26",
+            "market_value": "1.28"
+        },
+        {
+            "latitude": "113.874578",
+            "longitude": "22.468862",
+            "location": "Guangdong, China",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/113.874578, 22.468862}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "11 tiles",
+            "land_title": "Guangdong",
+            "purchase_value": "4.01",
+            "market_value": "44.07"
+        },
+        {
+            "latitude": "2.365322",
+            "longitude": "48.847491",
+            "location": "12th arrondissement of Paris, Paris, France",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/2.365322, 48.847491}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "27 tiles",
+            "land_title": "12th arrondissement of Paris",
+            "purchase_value": "4.07",
+            "market_value": "109.81"
+        },
+        {
+            "latitude": "3.140716",
+            "longitude": "36.735445",
+            "location": "Algiers, Algeria",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/3.140716, 36.735445}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "56 tiles",
+            "land_title": "Djamaa el Djazaïr, Algiers",
+            "purchase_value": "0.32",
+            "market_value": "17.64"
+        },
+        {
+            "latitude": "-77.538329",
+            "longitude": "26.08793",
+            "location": "Moore's Island, Bahamas",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-77.538329, 26.08793}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "28 tiles",
+            "land_title": "Moore's Island",
+            "purchase_value": "0.86",
+            "market_value": "24.14"
+        },
+        {
+            "latitude": "-70.632134",
+            "longitude": "-33.437243",
+            "location": "Parque Bustamante, Providencia, Santiago Metropolitan, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-70.632134, -33.437243}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "6 tiles",
+            "land_title": "Parque Bustamante",
+            "purchase_value": "1.00",
+            "market_value": "6.02"
+        },
+        {
+            "latitude": "57.486563",
+            "longitude": "-20.14266",
+            "location": "Port Louis, Port Louis, Mauritius",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/57.486563, -20.14266}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "30 tiles",
+            "land_title": "Port Louis",
+            "purchase_value": "0.37",
+            "market_value": "10.98"
+        },
+        {
+            "latitude": "-123.153562",
+            "longitude": "49.020084",
+            "location": "Delta, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.153562, 49.020084}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "25 tiles",
+            "land_title": "Delta Port",
+            "purchase_value": "5.37",
+            "market_value": "134.33"
+        },
+        {
+            "latitude": "-123.054686",
+            "longitude": "49.143313",
+            "location": "Richmond, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.054686, 49.143313}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "6 tiles",
+            "land_title": "Richmond",
+            "purchase_value": "5.37",
+            "market_value": "32.24"
+        },
+        {
+            "latitude": "-123.112878",
+            "longitude": "49.176429",
+            "location": "Richmond, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.112878, 49.176429}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "10 tiles",
+            "land_title": "Richmond",
+            "purchase_value": "5.37",
+            "market_value": "53.73"
+        },
+        {
+            "latitude": "-122.670936",
+            "longitude": "49.270381",
+            "location": "Pitt Meadows, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-122.670936, 49.270381}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "16 tiles",
+            "land_title": "Pitt Meadows",
+            "purchase_value": "5.37",
+            "market_value": "85.97"
+        },
+        {
+            "latitude": "-72.623233",
+            "longitude": "-38.740428",
+            "location": "Estadio Municipal, Temuco, Araucanía, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-72.623233, -38.740428}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "25 tiles",
+            "land_title": "Estadio Municipal",
+            "purchase_value": "1.00",
+            "market_value": "25.10"
+        },
+        {
+            "latitude": "-72.619887",
+            "longitude": "-38.74257",
+            "location": "Estadio Municipal, Temuco, Araucanía, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-72.619887, -38.74257}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "13 tiles",
+            "land_title": "Estadio Municipal",
+            "purchase_value": "1.00",
+            "market_value": "13.05"
+        },
+        {
+            "latitude": "-72.621775",
+            "longitude": "-38.74103",
+            "location": "Estadio Municipal, Temuco, Araucanía, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-72.621775, -38.74103}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "16 tiles",
+            "land_title": "Estadio Municipal",
+            "purchase_value": "1.00",
+            "market_value": "16.06"
+        },
+        {
+            "latitude": "-70.610676",
+            "longitude": "-33.464528",
+            "location": "Estadio Nacional, Ñuñoa, Santiago Metropolitan, Chile",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-70.610676, -33.464528}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "54 tiles",
+            "land_title": "Estadio Nacional",
+            "purchase_value": "1.00",
+            "market_value": "54.22"
+        },
+        {
+            "latitude": "6.156378",
+            "longitude": "46.206686",
+            "location": "Geneva, Switzerland",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/6.156378, 46.206686}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "5 tiles",
+            "land_title": "Geneva",
+            "purchase_value": "2.43",
+            "market_value": "12.14"
+        },
+        {
+            "latitude": "6.218777",
+            "longitude": "46.364463",
+            "location": "Crans-près-Céligny, Vaud, Switzerland",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/6.218777, 46.364463}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "9 tiles",
+            "land_title": "Crans-près-Céligny",
+            "purchase_value": "2.43",
+            "market_value": "21.86"
+        },
+        {
+            "latitude": "12.492485",
+            "longitude": "41.898827",
+            "location": "Roma, Rome, Italy",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/12.492485, 41.898827}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "8 tiles",
+            "land_title": "Roma",
+            "purchase_value": "8.86",
+            "market_value": "70.89"
+        },
+        {
+            "latitude": "-122.703638",
+            "longitude": "49.20986",
+            "location": "Pitt Meadows, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-122.703638, 49.20986}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "5 tiles",
+            "land_title": "Pitt Meadows",
+            "purchase_value": "5.37",
+            "market_value": "26.87"
+        },
+        {
+            "latitude": "-123.167897",
+            "longitude": "49.177271",
+            "location": "Richmond, British Columbia, Canada",
+            "image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-123.167897, 49.177271}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+            "tiles_count": "20 tiles",
+            "land_title": "Richmond",
+            "purchase_value": "5.37",
+            "market_value": "107.46"
         }
     ]
 }
