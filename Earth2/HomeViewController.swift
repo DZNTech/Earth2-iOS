@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
         return view
     }()
 
+    fileprivate let propertyApi = PropertyApi()
+
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
     }
@@ -56,6 +58,12 @@ class HomeViewController: UIViewController {
         self.view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+    }
+
+    fileprivate func loadContent() {
+        propertyApi.getMyProperties { (properties, error) in
+            //
         }
     }
 }

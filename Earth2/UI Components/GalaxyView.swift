@@ -63,7 +63,7 @@ class GalaxyView: UIView {
         super.init(coder: aDecoder)
     }
 
-    // MARK: - Composition
+    // MARK: - Layout
 
     fileprivate func updateGradient() {
         if let layer = gradientLayer {

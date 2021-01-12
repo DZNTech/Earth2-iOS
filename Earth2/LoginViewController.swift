@@ -98,19 +98,10 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action:#selector(didPressPasswordRecoveryButton), for: .touchUpInside)
         return button
     }()
-
-    fileprivate lazy var statusLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = Color.white
-        label.textAlignment = .center
-        return label
-    }()
-
-    fileprivate lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .medium)
-        view.color = Color.white
-        view.hidesWhenStopped = true
+    
+    fileprivate lazy var loadingBanner: LoadingBanner = {
+        let view = LoadingBanner()
+        view.tintColor = Color.white
         return view
     }()
 
@@ -130,7 +121,6 @@ class LoginViewController: UIViewController {
 
     // API
     fileprivate let authApi = AuthApi()
-    fileprivate let propertyApi = PropertyApi()
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
@@ -185,22 +175,16 @@ class LoginViewController: UIViewController {
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
 
-        statusLabel.isHidden = true
-
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.snp.makeConstraints {
+        view.addSubview(loadingBanner)
+        loadingBanner.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-Constants.padding*5)
-        }
-
-        view.addSubview(statusLabel)
-        statusLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(activityIndicatorView.snp.bottom).offset(Constants.padding)
+            $0.bottom.equalToSuperview().offset(-Constants.padding*6)
         }
 
         layoutLoginForm()
         setupObservers()
+
+        loadingBanner.setLoading(true)
     }
 
     fileprivate func layoutLoginForm() {
@@ -265,35 +249,19 @@ class LoginViewController: UIViewController {
         )
     }
 
-    fileprivate func setLoading(_ loading: Bool = true) {
-        setStatus(loading ? "Loading..." : nil)
-        activityIndicatorView.animate(loading)
-        enableLoginForm(!loading)
-    }
-
-    fileprivate func setStatus(_ message: String?) {
-        statusLabel.text = message
-        statusLabel.isHidden = message == nil
-    }
-
     fileprivate func enableLoginForm(_ enable: Bool = true) {
         loginFormView.isUserInteractionEnabled = enable
-        loginFormView.alpha = enable ? 1 : 0.5
+        loginFormView.alpha = enable ? 1 : 0.75
+        emailField.alpha = enable ? 1 : 0.5
+        passwordField.alpha = enable ? 1 : 0.5
+        passwordRecoveryButton.alpha = enable ? 1 : 0.5
+        createAccountButton.alpha = enable ? 1 : 0.5
     }
 
     fileprivate func presentHome() {
         let homeVC = HomeViewController()
         homeVC.modalPresentationStyle = .fullScreen
         present(homeVC, animated: true, completion: nil)
-    }
-
-    // MARK: - Actions
-
-    fileprivate func loadContent() {
-
-        propertyApi.getMyProperties { (properties, error) in
-            //
-        }
     }
 
     // MARK: - Actions
@@ -325,18 +293,21 @@ class LoginViewController: UIViewController {
             guard let email = emailField.text, let password = passwordField.text else { return }
 
             textField.resignFirstResponder()
-            setLoading(true)
+            loadingBanner.setLoading(true)
+            enableLoginForm(false)
 
             authApi.login(email, password: password) { [weak self] (user, error) in
                 if let user = user {
-                    self?.setStatus("Welcome back \(user.username)")
-                    self?.activityIndicatorView.animate(false)
+                    self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
                     //self?.presentHome()
-                } else if let error = error {
-                    self?.setLoading(false)
-                    self?.setStatus(error.localizedDescription)
                 } else {
-                    self?.setLoading(false)
+                    self?.enableLoginForm(true)
+
+                    if let error = error {
+                        self?.loadingBanner.setError(error)
+                    } else {
+                        self?.loadingBanner.setLoading(false)
+                    }
                 }
             }
         }

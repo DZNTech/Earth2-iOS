@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */; };
 		4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */; };
+		4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */; };
 		4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF6259DDA1B001E9829 /* AppDelegate.swift */; };
 		4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */; };
 		4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EFA259DDA1B001E9829 /* LoginViewController.swift */; };
@@ -103,6 +104,7 @@
 		4F2117F825AD570B007CB0BD /* Earth2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Earth2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyComposerTests.swift; sourceTree = "<group>"; };
 		4F2117FC25AD570C007CB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBanner.swift; sourceTree = "<group>"; };
 		4F963EF3259DDA1B001E9829 /* Earth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F963EF6259DDA1B001E9829 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			children = (
 				4FC3F1FB25AA676D0039B94C /* GalaxyView.swift */,
 				4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */,
+				4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				4FC3F1FC25AA676E0039B94C /* GalaxyView.swift in Sources */,
 				4FC3F27325AB06000039B94C /* UniversalConstants.swift in Sources */,
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
+				4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
 				4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */,
 				4FC3F1F825A971670039B94C /* Color.swift in Sources */,
