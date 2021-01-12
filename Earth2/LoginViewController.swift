@@ -247,7 +247,7 @@ class LoginViewController: UIViewController {
             $0.bottom.equalToSuperview().offset(-Constants.padding*2)
         }
 
-        launchViewViewHalfHeight = launchImageView.frame.height*3/4
+        launchViewViewHalfHeight = launchImageView.frame.height/2 // needs to be dynamic!
     }
 
     fileprivate func setupObservers() {
