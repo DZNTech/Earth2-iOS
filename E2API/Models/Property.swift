@@ -11,7 +11,6 @@ import ObjectMapper
 
 public class Property: Mappable, Descriptable {
 
-    public var id: ObjectId = ""
     public var landTitle: String = ""
     public var imageUrl: String = ""
     public var tilesCount: Int = 0
@@ -23,19 +22,12 @@ public class Property: Mappable, Descriptable {
 
     // MARK: - Initialization
 
-    fileprivate static let requiredProperties = ["id"]
-
     public required convenience init?(map: Map) {
-        for requiredProperty in Self.requiredProperties {
-            if map.JSON[requiredProperty] == nil { return nil }
-        }
-
         self.init()
         self.mapping(map: map)
     }
 
     public func mapping(map: Map) {
-        id <- map["id"]
         landTitle <- map["land_title"]
         imageUrl <- map["image_url"]
         tilesCount <- map["tiles_count"]

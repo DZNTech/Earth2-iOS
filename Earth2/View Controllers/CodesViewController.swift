@@ -1,8 +1,8 @@
 //
-//  HomeViewController.swift
+//  CodesViewController.swift
 //  Earth2
 //
-//  Created by Ignacio Romero Zurbuchen on 2021-01-10.
+//  Created by Ignacio Romero Zurbuchen on 2021-01-12.
 //  Copyright © 2021 DZN Technologies Inc. All rights reserved.
 //
 
@@ -10,22 +10,11 @@ import UIKit
 import SnapKit
 import E2API
 
-class HomeViewController: UIViewController {
+class CodesViewController: UITabBarController {
 
     // MARK: - Public Variables
 
     // MARK: - Private Variables
-
-    fileprivate lazy var backgroundView: GalaxyView = {
-        let view = GalaxyView(frame: self.view.bounds)
-        view.showStars = true
-        view.showGradient = true
-        view.topColor = Color.black
-        view.bottomColor = Color.darkBlue
-        return view
-    }()
-
-    fileprivate let propertyApi = PropertyApi()
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
@@ -55,15 +44,5 @@ class HomeViewController: UIViewController {
 
     fileprivate func setupLayout() {
 
-        self.view.addSubview(backgroundView)
-        backgroundView.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalToSuperview()
-        }
-    }
-
-    fileprivate func loadContent() {
-        propertyApi.getMyProperties { (properties, error) in
-            //
-        }
     }
 }

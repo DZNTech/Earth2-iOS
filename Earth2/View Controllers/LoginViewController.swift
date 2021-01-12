@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "Login with earth2.io"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.textColor = Color.white.withAlphaComponent(0.7)
+        label.textColor = Color.white.withAlphaComponent(0.5)
         return label
     }()
 
@@ -139,7 +139,7 @@ class LoginViewController: UIViewController {
 
         // Skip login if there's a persisted sessionId
         if APIServices.shared.isLoggedIn {
-            // present home vc
+            presentHome(animated: false)
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
                 self.emailField.becomeFirstResponder()
@@ -257,9 +257,9 @@ class LoginViewController: UIViewController {
     }
 
     fileprivate func presentHome(animated: Bool = true) {
-        let homeVC = HomeViewController()
-        homeVC.modalPresentationStyle = .fullScreen
-        present(homeVC, animated: animated, completion: nil)
+        let vc = HomeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: animated, completion: nil)
     }
 
     // MARK: - Actions
