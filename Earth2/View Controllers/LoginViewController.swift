@@ -27,7 +27,6 @@ class LoginViewController: UIViewController {
         view.addSubview(self.legendLabel)
         view.addSubview(self.emailField)
         view.addSubview(self.passwordField)
-        view.addSubview(self.passwordRecoveryButton)
         view.addSubview(self.createAccountButton)
         return view
     }()
@@ -87,15 +86,6 @@ class LoginViewController: UIViewController {
         button.setTitleColor(Color.lightBlue, for: .normal)
         button.setTitle("Create an account", for: .normal)
         button.addTarget(self, action:#selector(didPressCreateAccountButton), for: .touchUpInside)
-        return button
-    }()
-
-    fileprivate lazy var passwordRecoveryButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        button.setTitleColor(Color.lightBlue, for: .normal)
-        button.setTitle("Forgot your password?", for: .normal)
-        button.addTarget(self, action:#selector(didPressPasswordRecoveryButton), for: .touchUpInside)
         return button
     }()
     
@@ -219,13 +209,8 @@ class LoginViewController: UIViewController {
             $0.height.greaterThanOrEqualTo(40)
         }
 
-        passwordRecoveryButton.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
-            $0.leading.equalToSuperview().offset(Constants.padding)
-        }
-
         createAccountButton.snp.makeConstraints {
-            $0.top.equalTo(passwordRecoveryButton.snp.bottom).offset(Constants.padding/2)
+            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
             $0.leading.equalToSuperview().offset(Constants.padding)
             $0.bottom.equalToSuperview().offset(-Constants.padding)
         }
@@ -252,7 +237,6 @@ class LoginViewController: UIViewController {
         loginFormView.alpha = enable ? 1 : 0.75
         emailField.alpha = enable ? 1 : 0.5
         passwordField.alpha = enable ? 1 : 0.5
-        passwordRecoveryButton.alpha = enable ? 1 : 0.5
         createAccountButton.alpha = enable ? 1 : 0.5
     }
 
@@ -327,11 +311,7 @@ class LoginViewController: UIViewController {
     }
 
     @objc func didPressCreateAccountButton() {
-        //
-    }
-
-    @objc func didPressPasswordRecoveryButton() {
-        //
+        WebViewController.open(.login)
     }
 
     @objc func shakelogoImageView() {
@@ -351,12 +331,12 @@ class LoginViewController: UIViewController {
         let keyboardRect = keyboardFrame.cgRectValue
 
         if verticalOffset == 0 {
-            verticalOffset = keyboardRect.intersection(loginFormView.frame).height + Constants.padding
+            verticalOffset = keyboardRect.intersection(loginFormView.frame).height
         }
 
         let loginFormRect = loginFormView.frame
         let topHeight = loginFormRect.minY - verticalOffset
-        let logoExpectedHeight = topHeight/2
+        let logoExpectedHeight = topHeight/3
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
                        animations: {
@@ -364,7 +344,7 @@ class LoginViewController: UIViewController {
 
                         // only once
                         if let constraint = self.launchViewCenterYConstraint, constraint.constant == 0 {
-                            let centerY = loginFormRect.height + logoExpectedHeight/2
+                            let centerY = loginFormRect.height + logoExpectedHeight
                             self.launchViewCenterYConstraint?.constant = -centerY
                         }
 
