@@ -1,5 +1,5 @@
 //
-//  E2APITests.swift
+//  WebTests.swift
 //  E2APITests
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-11.

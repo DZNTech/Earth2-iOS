@@ -419,17 +419,6 @@ class LoginViewController: UIViewController {
 
         isKeyboardVisible = false
     }
-
-    fileprivate func moveGalaxy(_ position: CGFloat, duration: TimeInterval) {
-        let animation = CAKeyframeAnimation(keyPath: "galaxyView.imageView.frame.y")
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        animation.keyPath = "position.y"
-        animation.values = [0, position]
-        animation.keyTimes = [0, 1]
-        animation.duration = duration
-        animation.isRemovedOnCompletion = true
-        galaxyView.imageView.layer.add(animation, forKey: "move")
-    }
 }
 
 extension LoginViewController: UITextFieldDelegate {

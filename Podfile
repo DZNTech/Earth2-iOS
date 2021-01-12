@@ -31,6 +31,10 @@ target 'Earth2' do
   ios_app_pods
 end
 
+target 'Earth2Tests' do
+  ios_app_pods
+end
+
 target 'E2API' do
   api_pods
 end

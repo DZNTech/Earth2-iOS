@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-Earth2Tests/Pods-Earth2Tests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework
+${BUILT_PRODUCTS_DIR}/ShimmerSwift/ShimmerSwift.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/SwiftValidators/SwiftValidators.framework
