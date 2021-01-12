@@ -44,15 +44,16 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.delegate = self
         textField.keyboardType = .emailAddress
+        textField.keyboardAppearance = .dark
         textField.autocapitalizationType = .none
         textField.clearButtonMode = .whileEditing
         textField.returnKeyType = .next
         textField.textContentType = .emailAddress
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
+        textField.borderStyle = .roundedRect
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
-        textField.borderStyle = .roundedRect
         textField.text = APIServices.shared.credential.email
         textField.setPlaceholder("Email", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
@@ -63,6 +64,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.delegate = self
         textField.keyboardType = .`default`
+        textField.keyboardAppearance = .dark
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.clearButtonMode = .whileEditing
@@ -70,9 +72,9 @@ class LoginViewController: UIViewController {
         textField.textContentType = .password
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
+        textField.borderStyle = .roundedRect
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
-        textField.borderStyle = .roundedRect
         textField.text = APIServices.shared.credential.password
         textField.setPlaceholder("Password", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
@@ -113,17 +115,16 @@ class LoginViewController: UIViewController {
     }()
 
     // IB
-    @IBOutlet fileprivate var launchImageView: UIImageView!
+    @IBOutlet fileprivate var logoView: UIView!
+    @IBOutlet fileprivate var logoImageView: UIImageView!
     @IBOutlet fileprivate var galaxyView: GalaxyView!
     @IBOutlet fileprivate var titleLabel: UILabel!
     @IBOutlet fileprivate var subtitleLabel: UILabel!
-    @IBOutlet fileprivate var launchView: UIView!
     @IBOutlet fileprivate var launchViewCenterYConstraint: NSLayoutConstraint?
-    @IBOutlet fileprivate var launchImageViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet fileprivate var logoImageViewHeightConstraint: NSLayoutConstraint?
 
     fileprivate var loginFormViewCenterYConstraint: Constraint?
     fileprivate var verticalOffset: CGFloat = 0
-    fileprivate var launchViewViewHalfHeight: CGFloat = 0
 
     fileprivate var isKeyboardVisible: Bool = false
 
@@ -174,9 +175,9 @@ class LoginViewController: UIViewController {
         galaxyView.topColor = Color.blue
         galaxyView.bottomColor = Color.black
 
-        launchImageView.isUserInteractionEnabled = true
-        launchImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
-        view.bringSubviewToFront(launchImageView)
+        logoImageView.isUserInteractionEnabled = true
+        logoImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
+        view.bringSubviewToFront(logoImageView)
 
         titleLabel.addCharacterSpacing(kernValue: 13)
         titleLabel.addGlow(with: Color.blue, radius: 3)
@@ -217,7 +218,7 @@ class LoginViewController: UIViewController {
         }
 
         legendLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Constants.padding*2)
+            $0.top.equalToSuperview().offset(Constants.padding)
             $0.leading.equalToSuperview().offset(Constants.padding)
             $0.trailing.equalToSuperview().offset(-Constants.padding)
         }
@@ -237,17 +238,15 @@ class LoginViewController: UIViewController {
         }
 
         passwordRecoveryButton.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*3)
+            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
             $0.leading.equalToSuperview().offset(Constants.padding)
         }
 
         createAccountButton.snp.makeConstraints {
             $0.top.equalTo(passwordRecoveryButton.snp.bottom).offset(Constants.padding/2)
             $0.leading.equalToSuperview().offset(Constants.padding)
-            $0.bottom.equalToSuperview().offset(-Constants.padding*2)
+            $0.bottom.equalToSuperview().offset(-Constants.padding)
         }
-
-        launchViewViewHalfHeight = launchImageView.frame.height/2 // needs to be dynamic!
     }
 
     fileprivate func setupObservers() {
@@ -312,13 +311,13 @@ class LoginViewController: UIViewController {
     fileprivate func handleReturnKey(for textField: UITextField) {
 
         func validateEmail() -> Bool {
-            guard let email = emailField.text else { shakeLaunchImageView(); return false }
-            guard Validator.isEmail().apply(email) else { shakeLaunchImageView(); return false }
+            guard let email = emailField.text else { shakelogoImageView(); return false }
+            guard Validator.isEmail().apply(email) else { shakelogoImageView(); return false }
             return true
         }
 
         func validatePassword() -> Bool {
-            guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakeLaunchImageView(); return false }
+            guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakelogoImageView(); return false }
             return true
         }
 
@@ -366,12 +365,12 @@ class LoginViewController: UIViewController {
         //
     }
 
-    @objc func shakeLaunchImageView() {
+    @objc func shakelogoImageView() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.4
         animation.values = [-20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
-        launchImageView.layer.add(animation, forKey: "shake")
+        logoImageView.layer.add(animation, forKey: "shake")
     }
 
     // MARK: - Actions
@@ -381,26 +380,36 @@ class LoginViewController: UIViewController {
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
         let keyboardRect = keyboardFrame.cgRectValue
-        let verticalOffset = keyboardRect.intersection(loginFormView.frame).height + Constants.padding
+
+        if verticalOffset == 0 {
+            verticalOffset = keyboardRect.intersection(loginFormView.frame).height + Constants.padding
+        }
 
         let loginFormRect = loginFormView.frame
-        let launchViewViewCenterY = verticalOffset + loginFormRect.height + Constants.padding
+        let topHeight = loginFormRect.minY - verticalOffset
+        let logoExpectedHeight = topHeight/2
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
-                       delay: 0,
-                       options: []) {
-            self.launchViewCenterYConstraint?.constant = -launchViewViewCenterY
-            self.launchImageViewHeightConstraint?.constant = self.launchViewViewHalfHeight
-            self.loginFormViewCenterYConstraint?.update(offset: -verticalOffset)
+                       animations: {
+                        self.loginFormViewCenterYConstraint?.update(offset: -self.verticalOffset)
 
-            self.loginFormView.alpha = 1
-            self.titleLabel.alpha = 0
-            self.subtitleLabel.alpha = 0
+                        // only once
+                        if let constraint = self.launchViewCenterYConstraint, constraint.constant == 0 {
+                            let centerY = loginFormRect.height + logoExpectedHeight/2
+                            self.launchViewCenterYConstraint?.constant = -centerY
+                        }
 
-            self.view.layoutIfNeeded()
-        } completion: { (finished) in
+                        if self.emailField.isFirstResponder {
+                            self.logoImageViewHeightConstraint?.constant = logoExpectedHeight
+                        }
 
-        }
+                        self.loginFormView.alpha = 1
+                        self.titleLabel.alpha = 0
+                        self.subtitleLabel.alpha = 0
+
+                        self.view.layoutIfNeeded()
+        },
+                       completion: nil)
 
         isKeyboardVisible = true
     }
@@ -410,9 +419,7 @@ class LoginViewController: UIViewController {
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
                        animations: {
-                        self.launchViewCenterYConstraint?.constant += self.verticalOffset
                         self.loginFormViewCenterYConstraint?.update(offset: 0)
-
                         self.view.layoutIfNeeded()
         },
                        completion: nil)
@@ -437,6 +444,10 @@ extension LoginViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handleReturnKey(for: textField)
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
 }

@@ -122,10 +122,9 @@
                     </view>
                     <connections>
                         <outlet property="galaxyView" destination="HI4-FX-Cme" id="bGc-nK-7dh"/>
-                        <outlet property="launchImageView" destination="0zb-7Y-fSe" id="v0T-cm-jsF"/>
-                        <outlet property="launchImageViewHeightConstraint" destination="lst-cu-B9g" id="mlv-Fq-oDP"/>
-                        <outlet property="launchView" destination="tjQ-iL-xaT" id="y19-Kt-lqj"/>
                         <outlet property="launchViewCenterYConstraint" destination="Rbc-55-T17" id="aWq-1H-t3a"/>
+                        <outlet property="logoImageView" destination="0zb-7Y-fSe" id="aTe-ho-I0k"/>
+                        <outlet property="logoImageViewHeightConstraint" destination="lst-cu-B9g" id="dyc-iI-E5D"/>
                         <outlet property="subtitleLabel" destination="gcU-qs-0Fu" id="H98-SS-J0V"/>
                         <outlet property="titleLabel" destination="z9m-T6-6zm" id="sDS-Pj-DS0"/>
                     </connections>
