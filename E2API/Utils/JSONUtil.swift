@@ -31,7 +31,9 @@ class JSONUtil {
 }
 
 fileprivate extension String {
+
     func fileName() -> String {
-        return self.replacingOccurrences(of: "/", with: ".")
+        let name = String(self.dropLast())
+        return name.replacingOccurrences(of: "/", with: ".")
     }
 }

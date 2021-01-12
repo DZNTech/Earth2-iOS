@@ -183,8 +183,6 @@ class LoginViewController: UIViewController {
 
         layoutLoginForm()
         setupObservers()
-
-        loadingBanner.setLoading(true)
     }
 
     fileprivate func layoutLoginForm() {
@@ -258,10 +256,10 @@ class LoginViewController: UIViewController {
         createAccountButton.alpha = enable ? 1 : 0.5
     }
 
-    fileprivate func presentHome() {
+    fileprivate func presentHome(animated: Bool = true) {
         let homeVC = HomeViewController()
         homeVC.modalPresentationStyle = .fullScreen
-        present(homeVC, animated: true, completion: nil)
+        present(homeVC, animated: animated, completion: nil)
     }
 
     // MARK: - Actions

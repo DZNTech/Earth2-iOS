@@ -31,8 +31,8 @@
 		4FC3F1D025A90DA80039B94C /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1CF25A90DA80039B94C /* ApiError.swift */; };
 		4FC3F1D325A90E830039B94C /* ObjectMapper+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */; };
 		4FC3F1D625A90ED70039B94C /* PropertyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1D525A90ED70039B94C /* PropertyApi.swift */; };
-		4FC3F1DC25A9464E0039B94C /* user.login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1DB25A9464D0039B94C /* user.login.json */; };
-		4FC3F1E125A94FE80039B94C /* user.properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E025A94FE80039B94C /* user.properties.json */; };
+		4FC3F1DC25A9464E0039B94C /* users.login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1DB25A9464D0039B94C /* users.login.json */; };
+		4FC3F1E125A94FE80039B94C /* users.properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E025A94FE80039B94C /* users.properties.json */; };
 		4FC3F1E525A95A0E0039B94C /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E425A95A0E0039B94C /* APIServices.swift */; };
 		4FC3F1E825A95A7A0039B94C /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1E725A95A7A0039B94C /* APISessionManager.swift */; };
 		4FC3F1ED25A95DC20039B94C /* Descriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F1EC25A95DC20039B94C /* Descriptable.swift */; };
@@ -128,8 +128,8 @@
 		4FC3F1CF25A90DA80039B94C /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		4FC3F1D225A90E830039B94C /* ObjectMapper+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+Extensions.swift"; sourceTree = "<group>"; };
 		4FC3F1D525A90ED70039B94C /* PropertyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyApi.swift; sourceTree = "<group>"; };
-		4FC3F1DB25A9464D0039B94C /* user.login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.login.json; sourceTree = "<group>"; };
-		4FC3F1E025A94FE80039B94C /* user.properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user.properties.json; sourceTree = "<group>"; };
+		4FC3F1DB25A9464D0039B94C /* users.login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.login.json; sourceTree = "<group>"; };
+		4FC3F1E025A94FE80039B94C /* users.properties.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.properties.json; sourceTree = "<group>"; };
 		4FC3F1E425A95A0E0039B94C /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		4FC3F1E725A95A7A0039B94C /* APISessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
 		4FC3F1EC25A95DC20039B94C /* Descriptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptable.swift; sourceTree = "<group>"; };
@@ -315,8 +315,8 @@
 		4FC3F1DF25A946560039B94C /* Payload */ = {
 			isa = PBXGroup;
 			children = (
-				4FC3F1DB25A9464D0039B94C /* user.login.json */,
-				4FC3F1E025A94FE80039B94C /* user.properties.json */,
+				4FC3F1DB25A9464D0039B94C /* users.login.json */,
+				4FC3F1E025A94FE80039B94C /* users.properties.json */,
 			);
 			path = Payload;
 			sourceTree = "<group>";
@@ -548,8 +548,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FC3F2B625AC00010039B94C /* Credentials.plist in Resources */,
-				4FC3F1E125A94FE80039B94C /* user.properties.json in Resources */,
-				4FC3F1DC25A9464E0039B94C /* user.login.json in Resources */,
+				4FC3F1E125A94FE80039B94C /* users.properties.json in Resources */,
+				4FC3F1DC25A9464E0039B94C /* users.login.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
