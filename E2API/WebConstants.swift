@@ -15,17 +15,17 @@ public enum WebConstants: String {
     case signup = "https://earth2.eu.auth0.com/u/signup?state=g6Fo2SBlZmVnUHFuOWZHOFJueE9WY3JlcFlMVTQxN0Z1RVJZa6N0aWTZIGVOMmNhbTRYckFfWFJldWVXZlZ2cWtyaGxuSkEtUnk0o2NpZNkgVEJaN012RVNPdEZWZEo5dlkxNlFPUXhKdHhFUWwwRmI"
 }
 
-public class E2Web {
+public class Web {
 
     // Converts an existing MapBox URL for custom sizing and custom API key
-    public static func convertMapBoxURL(from url: String, with size: CGSize) -> URL? {
+    public static func convertMapBoxUrl(from url: String, with size: CGSize) -> String? {
         guard let range = url.range(of: "/", options: .backwards) else { return nil }
         var newUrl = String(url[...range.lowerBound])
 
-        newUrl += "\(size.width)x\(size.height)"
+        newUrl += "\(Int(size.width))x\(Int(size.height))"
         newUrl += "?access_token=\(APIServices.shared.credential.mapboxAPIKey)"
 
-        return URL(string: newUrl)
+        return newUrl
     }
 
 

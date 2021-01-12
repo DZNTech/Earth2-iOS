@@ -46,12 +46,22 @@
 		4FC3F2B625AC00010039B94C /* Credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FC3F2B525AC00000039B94C /* Credentials.plist */; };
 		4FC3F2B925AC00210039B94C /* APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3F2B825AC00210039B94C /* APICredentials.swift */; };
 		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
+		4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF9925AD1A5500E83E26 /* WebTests.swift */; };
+		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
+		5A3506BC141CE88F5F9D4822 /* Pods_E2APITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF07E564623EEE20A3FADED /* Pods_E2APITests.framework */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		C8894969E61DF5CE1B032325 /* Pods_E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42262C04171D7B9A576961E6 /* Pods_E2API.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4FC3F18A25A870310039B94C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F963EEB259DDA1B001E9829 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FC3F18425A870310039B94C;
+			remoteInfo = E2API;
+		};
+		4FD5DF9D25AD1A5500E83E26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F963EEB259DDA1B001E9829 /* Project object */;
 			proxyType = 1;
@@ -75,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1864B58AF20E51B9D3F72D1C /* Pods-E2APITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2APITests.release.xcconfig"; path = "Target Support Files/Pods-E2APITests/Pods-E2APITests.release.xcconfig"; sourceTree = "<group>"; };
 		42262C04171D7B9A576961E6 /* Pods_E2API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E2API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F963EF3259DDA1B001E9829 /* Earth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F963EF6259DDA1B001E9829 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,10 +128,15 @@
 		4FC3F2B525AC00000039B94C /* Credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Credentials.plist; path = ../../Credentials.plist; sourceTree = "<group>"; };
 		4FC3F2B825AC00210039B94C /* APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICredentials.swift; sourceTree = "<group>"; };
 		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
+		4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E2APITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD5DF9925AD1A5500E83E26 /* WebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTests.swift; sourceTree = "<group>"; };
+		4FD5DF9B25AD1A5500E83E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
 		6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Earth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D73D74EE5FB3B8E50306575 /* Pods-Earth2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earth2.debug.xcconfig"; path = "Target Support Files/Pods-Earth2/Pods-Earth2.debug.xcconfig"; sourceTree = "<group>"; };
+		AFF07E564623EEE20A3FADED /* Pods_E2APITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E2APITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A7BF018AB7FFA68D243C46 /* Pods-E2APITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2APITests.debug.xcconfig"; path = "Target Support Files/Pods-E2APITests/Pods-E2APITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7A61594B3A388E535AE933B /* Pods-Earth2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earth2.release.xcconfig"; path = "Target Support Files/Pods-Earth2/Pods-Earth2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +158,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FD5DF9425AD1A5500E83E26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */,
+				5A3506BC141CE88F5F9D4822 /* Pods_E2APITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -150,6 +175,7 @@
 			children = (
 				42262C04171D7B9A576961E6 /* Pods_E2API.framework */,
 				6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */,
+				AFF07E564623EEE20A3FADED /* Pods_E2APITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +185,7 @@
 			children = (
 				4F963EF5259DDA1B001E9829 /* Earth2 */,
 				4FC3F18625A870310039B94C /* E2API */,
+				4FD5DF9825AD1A5500E83E26 /* E2APITests */,
 				4F963EF4259DDA1B001E9829 /* Products */,
 				E46E8FA12C00077565EE3B68 /* Pods */,
 				1A432C44A324B4E2CC245B20 /* Frameworks */,
@@ -170,6 +197,7 @@
 			children = (
 				4F963EF3259DDA1B001E9829 /* Earth2.app */,
 				4FC3F18525A870310039B94C /* E2API.framework */,
+				4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +319,15 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		4FD5DF9825AD1A5500E83E26 /* E2APITests */ = {
+			isa = PBXGroup;
+			children = (
+				4FD5DF9925AD1A5500E83E26 /* WebTests.swift */,
+				4FD5DF9B25AD1A5500E83E26 /* Info.plist */,
+			);
+			path = E2APITests;
+			sourceTree = "<group>";
+		};
 		E46E8FA12C00077565EE3B68 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +335,8 @@
 				6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */,
 				9D73D74EE5FB3B8E50306575 /* Pods-Earth2.debug.xcconfig */,
 				F7A61594B3A388E535AE933B /* Pods-Earth2.release.xcconfig */,
+				C4A7BF018AB7FFA68D243C46 /* Pods-E2APITests.debug.xcconfig */,
+				1864B58AF20E51B9D3F72D1C /* Pods-E2APITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -356,6 +395,26 @@
 			productReference = 4FC3F18525A870310039B94C /* E2API.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		4FD5DF9625AD1A5500E83E26 /* E2APITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD5DF9F25AD1A5500E83E26 /* Build configuration list for PBXNativeTarget "E2APITests" */;
+			buildPhases = (
+				97CCCD4F8A3344E3DEA46B2B /* [CP] Check Pods Manifest.lock */,
+				4FD5DF9325AD1A5500E83E26 /* Sources */,
+				4FD5DF9425AD1A5500E83E26 /* Frameworks */,
+				4FD5DF9525AD1A5500E83E26 /* Resources */,
+				2238DAC6D34B16F93D94F7DA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FD5DF9E25AD1A5500E83E26 /* PBXTargetDependency */,
+			);
+			name = E2APITests;
+			productName = E2APITests;
+			productReference = 4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -372,6 +431,9 @@
 					4FC3F18425A870310039B94C = {
 						CreatedOnToolsVersion = 12.3;
 						LastSwiftMigration = 1230;
+					};
+					4FD5DF9625AD1A5500E83E26 = {
+						CreatedOnToolsVersion = 12.3;
 					};
 				};
 			};
@@ -390,6 +452,7 @@
 			targets = (
 				4F963EF2259DDA1B001E9829 /* Earth2 */,
 				4FC3F18425A870310039B94C /* E2API */,
+				4FD5DF9625AD1A5500E83E26 /* E2APITests */,
 			);
 		};
 /* End PBXProject section */
@@ -415,6 +478,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FD5DF9525AD1A5500E83E26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -434,6 +504,45 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Earth2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2238DAC6D34B16F93D94F7DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-E2APITests/Pods-E2APITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-E2APITests/Pods-E2APITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-E2APITests/Pods-E2APITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97CCCD4F8A3344E3DEA46B2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-E2APITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -526,6 +635,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FD5DF9325AD1A5500E83E26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -533,6 +650,12 @@
 			isa = PBXTargetDependency;
 			target = 4FC3F18425A870310039B94C /* E2API */;
 			targetProxy = 4FC3F18A25A870310039B94C /* PBXContainerItemProxy */;
+		};
+		4FD5DF9E25AD1A5500E83E26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 4FC3F18425A870310039B94C /* E2API */;
+			targetProxy = 4FD5DF9D25AD1A5500E83E26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -779,6 +902,46 @@
 			};
 			name = Release;
 		};
+		4FD5DFA025AD1A5500E83E26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4A7BF018AB7FFA68D243C46 /* Pods-E2APITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B29AGZ557Z;
+				INFOPLIST_FILE = E2APITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzn.E2APITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4FD5DFA125AD1A5500E83E26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1864B58AF20E51B9D3F72D1C /* Pods-E2APITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B29AGZ557Z;
+				INFOPLIST_FILE = E2APITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzn.E2APITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -805,6 +968,15 @@
 			buildConfigurations = (
 				4FC3F18F25A870310039B94C /* Debug */,
 				4FC3F19025A870310039B94C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FD5DF9F25AD1A5500E83E26 /* Build configuration list for PBXNativeTarget "E2APITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FD5DFA025AD1A5500E83E26 /* Debug */,
+				4FD5DFA125AD1A5500E83E26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
