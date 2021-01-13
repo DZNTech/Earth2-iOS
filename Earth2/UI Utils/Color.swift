@@ -14,6 +14,9 @@ public struct Color {
     public static let lightBlue: UIColor =      #colorLiteral(red: 0.1882352941, green: 0.4823529412, blue: 0.968627451, alpha: 1) // #307bf7
     public static let blue: UIColor =           #colorLiteral(red: 0.1333333333, green: 0.09019607843, blue: 0.368627451, alpha: 1) // #22175e
     public static let darkBlue: UIColor =       #colorLiteral(red: 0.04705882353, green: 0.03921568627, blue: 0.1607843137, alpha: 1) // #0c0a29
+    public static let darkerBlue: UIColor =     #colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.07058823529, alpha: 1) // #0f0f12
+
+
 
     public static let yellow: UIColor =         #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1) // #F3AF22
 

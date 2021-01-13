@@ -11,5 +11,22 @@ import SnapKit
 
 class PropertyTableViewCell: UITableViewCell {
 
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        selectedBackgroundView = UIView()
+        selectedBackgroundView?.backgroundColor = Color.black
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var isOdd: Bool = false {
+        didSet {
+            let color: UIColor = isOdd ? .black : .white
+            backgroundColor = color.withAlphaComponent(0.025)
+        }
+    }
 
 }

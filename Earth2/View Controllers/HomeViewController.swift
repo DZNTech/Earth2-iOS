@@ -46,10 +46,10 @@ class HomeViewController: UIViewController {
 
     fileprivate lazy var backgroundView: GalaxyView = {
         let view = GalaxyView(frame: self.view.bounds)
-        view.showStars = true
+        view.showStars = false
         view.showGradient = true
-        view.topColor = Color.black
-        view.bottomColor = Color.darkBlue
+        view.topColor = Color.darkBlue
+        view.bottomColor = Color.darkerBlue
         return view
     }()
 
@@ -147,7 +147,7 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 100
     }
 }
 

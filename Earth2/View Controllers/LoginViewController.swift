@@ -128,7 +128,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if APIServices.shared.isLoggedIn {
+        if true /* APIServices.shared.isLoggedIn */ {
             presentHome(animated: false)
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
@@ -153,7 +153,7 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(viewTapGesture)
 
         galaxyView.topColor = Color.blue
-        galaxyView.bottomColor = Color.black
+        galaxyView.bottomColor = Color.darkBlue
 
         logoImageView.isUserInteractionEnabled = true
         logoImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
