@@ -31,6 +31,10 @@ class PropertyTests: XCTestCase {
         XCTAssertEqual(property?.location, "Tefé, Amazonas, Brazil")
         XCTAssertEqual(property?.country, "Brazil")
         XCTAssertEqual(property?.countryCode, "BR")
+
+        XCTAssertEqual(property?.tilesCount, 3)
+        XCTAssertEqual(property?.purchaseValue, 1.70)
+        XCTAssertEqual(property?.marketValue, 5.09)
+        XCTAssertEqual(property?.profitValue, 3.39)
     }
-    
 }

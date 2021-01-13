@@ -14,8 +14,11 @@ public class Property: Mappable, Descriptable {
     public var landTitle: String = ""
     public var imageUrl: String = ""
     public var tilesCount: Int = 0
+
     public var purchaseValue: Float = 0
     public var marketValue: Float = 0
+    public var profitValue: Float = 0
+
     public var location: String = ""
     public var country: String = ""
     public var countryCode: String = ""
@@ -32,15 +35,17 @@ public class Property: Mappable, Descriptable {
     public func mapping(map: Map) {
         landTitle <- map["land_title"]
         imageUrl <- map["image_url"]
-        tilesCount <- map["tiles_count"]
-        purchaseValue <- map["purchase_value"]
-        marketValue <- map["market_value"]
+        tilesCount = tileCount(from: map.JSON["tiles_count"])
+
         location <- map["location"]
+        country = countryName(from: location)
+        countryCode = countryCode(from: location)
         latitude <- map["latitude"]
         longitude <- map["longitude"]
 
-        country = countryName(from: location)
-        countryCode = countryCode(from: location)
+        purchaseValue = float(from: map.JSON["purchase_value"])
+        marketValue = float(from: map.JSON["market_value"])
+        profitValue = marketValue - purchaseValue
     }
 
     public static func properties(for JSONObject: [[String : Any]]) -> [Property] {
@@ -54,6 +59,15 @@ public class Property: Mappable, Descriptable {
         return objects
     }
 }
+
+//"latitude": "-64.72312",
+//"longitude": "-4.179247",
+//"location": "Tefé, Amazonas, Brazil",
+//"image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-64.72312, -4.179247}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
+//"tiles_count": "3 tiles",
+//"land_title": "Tefé",
+//"purchase_value": "1.70",
+//"market_value": "5.09"
 
 fileprivate extension Property {
 
@@ -77,5 +91,25 @@ fileprivate extension Property {
             }
         }
         return ""
+    }
+
+    func tileCount(from object: Any?) -> Int {
+        guard let string = object as? String, !string.isEmpty else { return 0 }
+
+        let components = string.components(separatedBy: " ")
+
+        if let number = components.first, let value = Int(number)  {
+            return value
+        }
+        return 0
+    }
+
+    func float(from object: Any?) -> Float {
+        guard let string = object as? String, !string.isEmpty else { return 0.0 }
+
+        if let value = Float(string)  {
+            return value
+        }
+        return 0.0
     }
 }
