@@ -18,6 +18,7 @@ public class Property: Mappable, Descriptable {
     public var purchaseValue: Float = 0
     public var marketValue: Float = 0
     public var profitValue: Float = 0
+    public var profitPct: Float = 0
 
     public var location: String = ""
     public var country: String = ""
@@ -46,6 +47,7 @@ public class Property: Mappable, Descriptable {
         purchaseValue = float(from: map.JSON["purchase_value"])
         marketValue = float(from: map.JSON["market_value"])
         profitValue = marketValue - purchaseValue
+        profitPct = marketValue*100/purchaseValue
     }
 
     public static func properties(for JSONObject: [[String : Any]]) -> [Property] {

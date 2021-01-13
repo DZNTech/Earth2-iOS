@@ -28,10 +28,10 @@ class HomeViewController: UIViewController {
 
     fileprivate lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
-//        toolbar.barTintColor = Color.darkBlue
-        toolbar.tintColor = Color.darkBlue
-        toolbar.isTranslucent = true
-        toolbar.barStyle = .black
+        toolbar.barTintColor = Color.darkBlue
+        toolbar.tintColor = Color.white
+//        toolbar.isTranslucent = true
+//        toolbar.barStyle = .black
         return toolbar
     }()
 
@@ -132,18 +132,26 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let property = properties[indexPath.row]
-
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as PropertyTableViewCell
-        cell.textLabel?.text = property.landTitle
-        cell.textLabel?.textColor = Color.white
-        cell.detailTextLabel?.text = property.location
-        cell.detailTextLabel?.textColor = Color.white.withAlphaComponent(0.75)
-        cell.backgroundColor = (indexPath.row%2 == 0) ? Color.clear : Color.white.withAlphaComponent(0.025)
-        cell.separatorInset = UIEdgeInsets(top: 0, left: -view.bounds.width, bottom: 0, right: 0)
-        cell.accessoryType = .disclosureIndicator
-        
+        configureCell(cell, at: indexPath)
         return cell
+    }
+
+    func configureCell(_ cell: PropertyTableViewCell, at indexPath: IndexPath) {
+        let property = properties[indexPath.row]
+        let viewModel = PropertyViewModel(with: property)
+
+        cell.titleLabel.text = "\(FlagEmojiGenerator.flag(country: property.countryCode)) \(property.landTitle)"
+        cell.subtitleLabel.text = "\(property.tilesCount) tiles"
+
+        cell.profitLabel.text = viewModel.marketValueLabel
+        cell.percentLabel.text = viewModel.profitPctLabel
+        cell.percentLabel.textColor = viewModel.profitColor
+
+        let imageUrl = Web.convertMapBoxUrl(from: property.imageUrl, with: CGSize.init(square: 200))
+        cell.thumbImageView.setImageUrl(imageUrl, placeholderImage: nil)
+
+        cell.isOdd = (indexPath.row%2 == 0)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

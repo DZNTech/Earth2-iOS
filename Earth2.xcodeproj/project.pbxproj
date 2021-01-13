@@ -10,6 +10,11 @@
 		4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */; };
 		4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */; };
 		4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */; };
+		4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */; };
+		4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */; };
+		4F54FE1525AEC175000C6D3B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1425AEC175000C6D3B /* Font.swift */; };
+		4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1925AEC216000C6D3B /* FlagEmojiGenerator.swift */; };
+		4F54FE2025AEC544000C6D3B /* PropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1F25AEC544000C6D3B /* PropertyViewModel.swift */; };
 		4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF6259DDA1B001E9829 /* AppDelegate.swift */; };
 		4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */; };
 		4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F963EFA259DDA1B001E9829 /* LoginViewController.swift */; };
@@ -113,6 +118,11 @@
 		4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyComposerTests.swift; sourceTree = "<group>"; };
 		4F2117FC25AD570C007CB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBanner.swift; sourceTree = "<group>"; };
+		4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
+		4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extensions.swift"; sourceTree = "<group>"; };
+		4F54FE1425AEC175000C6D3B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4F54FE1925AEC216000C6D3B /* FlagEmojiGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagEmojiGenerator.swift; sourceTree = "<group>"; };
+		4F54FE1F25AEC544000C6D3B /* PropertyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyViewModel.swift; sourceTree = "<group>"; };
 		4F963EF3259DDA1B001E9829 /* Earth2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earth2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F963EF6259DDA1B001E9829 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +243,14 @@
 			path = Earth2Tests;
 			sourceTree = "<group>";
 		};
+		4F54FE1E25AEC52D000C6D3B /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F54FE1F25AEC544000C6D3B /* PropertyViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		4F963EEA259DDA1B001E9829 = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +281,7 @@
 				4F963EF6259DDA1B001E9829 /* AppDelegate.swift */,
 				4F963EF8259DDA1B001E9829 /* SceneDelegate.swift */,
 				4FED890325ADB7790045969A /* View Controllers */,
+				4F54FE1E25AEC52D000C6D3B /* View Model */,
 				4FED88FD25ADB6BE0045969A /* UI Cells */,
 				4FC3F1FA25AA674D0039B94C /* UI Components */,
 				4FC3F1F225A9714E0039B94C /* UI Utils */,
@@ -342,6 +361,9 @@
 			children = (
 				4FC3F1F325A971590039B94C /* Appearance.swift */,
 				4FC3F1F725A971670039B94C /* Color.swift */,
+				4F54FE1425AEC175000C6D3B /* Font.swift */,
+				4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */,
+				4F54FE1925AEC216000C6D3B /* FlagEmojiGenerator.swift */,
 			);
 			path = "UI Utils";
 			sourceTree = "<group>";
@@ -366,6 +388,7 @@
 				4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */,
 				4FED88F525ADB2E20045969A /* UITableViewCell+Reuse.swift */,
 				4FED892425ADBE4A0045969A /* UIViewController+Lookup.swift */,
+				4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */,
 			);
 			path = "UI Extensions";
 			sourceTree = "<group>";
@@ -760,13 +783,17 @@
 				4FC3F27725AB08550039B94C /* UITextField+Extensions.swift in Sources */,
 				4FC3F1FC25AA676E0039B94C /* GalaxyView.swift in Sources */,
 				4FED88FF25ADB6D60045969A /* PropertyTableViewCell.swift in Sources */,
+				4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */,
 				4FED892025ADBE100045969A /* WebViewController.swift in Sources */,
 				4FC3F27325AB06000039B94C /* UniversalConstants.swift in Sources */,
 				4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */,
+				4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */,
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
+				4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */,
 				4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
 				4FED88F625ADB2E20045969A /* UITableViewCell+Reuse.swift in Sources */,
+				4F54FE2025AEC544000C6D3B /* PropertyViewModel.swift in Sources */,
 				4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */,
 				4FC3F1F825A971670039B94C /* Color.swift in Sources */,
 				4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */,
@@ -775,6 +802,7 @@
 				4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */,
 				4FED890D25ADB7DD0045969A /* CodesViewController.swift in Sources */,
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
+				4F54FE1525AEC175000C6D3B /* Font.swift in Sources */,
 				4FC3F26825AAD7D40039B94C /* UILabel+Extensions.swift in Sources */,
 				4FED891225ADB8070045969A /* AboutViewController.swift in Sources */,
 				4FC3F28A25AB995B0039B94C /* HomeViewController.swift in Sources */,
