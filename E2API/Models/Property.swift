@@ -13,12 +13,10 @@ public class Property: Mappable, Descriptable {
 
     public var landTitle: String = ""
     public var imageUrl: String = ""
-    public var tilesCount: Int = 0
 
-    public var purchaseValue: Float = 0
+    public var tilesCount: Int = 0
+    public var tileValue: Float = 0
     public var marketValue: Float = 0
-    public var profitValue: Float = 0
-    public var profitPct: Float = 0
 
     public var location: String = ""
     public var country: String = ""
@@ -44,10 +42,8 @@ public class Property: Mappable, Descriptable {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
 
-        purchaseValue = float(from: map.JSON["purchase_value"])
+        tileValue = float(from: map.JSON["purchase_value"])
         marketValue = float(from: map.JSON["market_value"])
-        profitValue = marketValue - purchaseValue
-        profitPct = marketValue*100/purchaseValue
     }
 
     public static func properties(for JSONObject: [[String : Any]]) -> [Property] {
@@ -61,15 +57,6 @@ public class Property: Mappable, Descriptable {
         return objects
     }
 }
-
-//"latitude": "-64.72312",
-//"longitude": "-4.179247",
-//"location": "Tefé, Amazonas, Brazil",
-//"image_url": "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-64.72312, -4.179247}, 16.0, 0.0, 0.0/520x400?access_token=pk.eyJ1IjoiZXYyIiwiYSI6ImNraHB6cXVtcjA0emkycm84cTBxdnBscGkifQ.VX6qEmMYgvhYBCZJKzJ2cA",
-//"tiles_count": "3 tiles",
-//"land_title": "Tefé",
-//"purchase_value": "1.70",
-//"market_value": "5.09"
 
 fileprivate extension Property {
 
@@ -108,6 +95,7 @@ fileprivate extension Property {
 
     func float(from object: Any?) -> Float {
         guard let string = object as? String, !string.isEmpty else { return 0.0 }
+        print("\(string)")
 
         if let value = Float(string)  {
             return value

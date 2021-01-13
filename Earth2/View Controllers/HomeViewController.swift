@@ -141,16 +141,13 @@ extension HomeViewController: UITableViewDataSource {
         let property = properties[indexPath.row]
         let viewModel = PropertyViewModel(with: property)
 
-        cell.titleLabel.text = "\(FlagEmojiGenerator.flag(country: property.countryCode)) \(property.landTitle)"
-        cell.subtitleLabel.text = "\(property.tilesCount) tiles"
-
+        cell.titleLabel.text = viewModel.landLabel
+        cell.subtitleLabel.text = viewModel.tilesLabel
+        cell.tileLabel.text = viewModel.tileValueLabel
         cell.profitLabel.text = viewModel.marketValueLabel
-        cell.percentLabel.text = viewModel.profitPctLabel
-        cell.percentLabel.textColor = viewModel.profitColor
+        cell.profitLabel.textColor = Color.green
 
-        let imageUrl = Web.convertMapBoxUrl(from: property.imageUrl, with: CGSize.init(square: 200))
-        cell.thumbImageView.setImageUrl(imageUrl, placeholderImage: nil)
-
+        cell.thumbImageView.setImageUrl(viewModel.imageUrl, placeholderImage: nil)
         cell.isOdd = (indexPath.row%2 == 0)
     }
 

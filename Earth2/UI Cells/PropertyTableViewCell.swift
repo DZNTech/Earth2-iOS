@@ -49,7 +49,7 @@ class PropertyTableViewCell: UITableViewCell {
         return label
     }()
 
-    lazy var percentLabel: UILabel = {
+    lazy var tileLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textColor = Color.white
@@ -69,7 +69,7 @@ class PropertyTableViewCell: UITableViewCell {
     }()
 
     fileprivate lazy var profitStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [profitLabel, percentLabel])
+        let stackView = UIStackView(arrangedSubviews: [profitLabel, tileLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .trailing

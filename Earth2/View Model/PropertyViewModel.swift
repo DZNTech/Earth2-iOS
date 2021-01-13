@@ -13,58 +13,73 @@ public class PropertyViewModel: Descriptable {
 
     let property: Property
 
+    let landLabel: String
     let tilesLabel: String
+    let tileValueLabel: String
     let marketValueLabel: String
-    let profitPctLabel: String
-    let profitColor: UIColor
+
+    let imageUrl: String?
 
     // MARK: - Initializatiom
 
     init(with property: Property) {
         self.property = property
 
+        self.landLabel = PropertyViewModel.landLabelString(for: property)
         self.tilesLabel = PropertyViewModel.tilesLabelString(for: property)
+        self.tileValueLabel = PropertyViewModel.tileValueLabelString(for: property)
         self.marketValueLabel = PropertyViewModel.marketValueLabelString(for: property)
-        self.profitPctLabel = PropertyViewModel.profitPctLabelString(for: property)
-        self.profitColor = PropertyViewModel.profitColor(for: property)
+
+        self.imageUrl = Web.convertMapBoxUrl(from: property.imageUrl, with: CGSize.init(square: 200))
     }
 }
 
 fileprivate extension PropertyViewModel {
 
+    static func landLabelString(for property: Property) -> String {
+        return "\(FlagEmojiGenerator.flag(country: property.countryCode)) \(property.landTitle)"
+    }
+
     static func tilesLabelString(for property: Property) -> String {
-        return "\(property.tilesCount) tiles ($\(property.val))"
+        if property.tilesCount > 1 {
+            return "\(property.tilesCount) tiles"
+        }
+        return "\(property.tilesCount) tile"
+    }
+
+    static func tileValueLabelString(for property: Property) -> String {
+        return "$\(property.tileValue) / tile"
     }
 
     static func marketValueLabelString(for property: Property) -> String {
         return "$\(property.marketValue)"
     }
 
-    static func profitPctLabelString(for property: Property) -> String {
+    static func profitPctLabelString(for percentage: Float) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = property.profitPct < 1000 ? 2 : 0
+        formatter.maximumFractionDigits = percentage < 1000 ? 2 : 0
 
         var string = String()
 
-        if property.profitPct > 100 {
+        if percentage > 100 {
             string += "+"
-        } else if property.profitPct < 100 {
+        } else if percentage < 100 {
             string += "-"
         }
 
-        if let formattedString = formatter.string(from: property.profitPct as NSNumber) {
+        if let formattedString = formatter.string(from: percentage as NSNumber) {
             string += formattedString
         }
 
         return "\(string)%"
     }
 
-    static func profitColor(for property: Property) -> UIColor {
-        if property.profitPct > 100 {
+    static func profitColor(for percentage: Float) -> UIColor {
+        if percentage > 100 {
             return Color.green
-        } else if property.profitPct < 100 {
+        } else if percentage < 100 {
             return Color.green
         } else {
             return Color.white
