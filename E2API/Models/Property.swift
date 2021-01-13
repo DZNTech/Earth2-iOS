@@ -17,6 +17,8 @@ public class Property: Mappable, Descriptable {
     public var purchaseValue: Float = 0
     public var marketValue: Float = 0
     public var location: String = ""
+    public var country: String = ""
+    public var countryCode: String = ""
     public var latitude: Float = 0
     public var longitude: Float = 0
 
@@ -36,6 +38,9 @@ public class Property: Mappable, Descriptable {
         location <- map["location"]
         latitude <- map["latitude"]
         longitude <- map["longitude"]
+
+        country = countryName(from: location)
+        countryCode = countryCode(from: location)
     }
 
     public static func properties(for JSONObject: [[String : Any]]) -> [Property] {
@@ -47,5 +52,30 @@ public class Property: Mappable, Descriptable {
             }
         }
         return objects
+    }
+}
+
+fileprivate extension Property {
+
+    func countryName(from location: String) -> String {
+        guard !location.isEmpty else { return "" }
+
+        let components = location.components(separatedBy: ",")
+        return components.last?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+    }
+
+    func countryCode(from location: String) -> String {
+        let country = countryName(from: location)
+
+        guard !country.isEmpty else { return "" }
+        let codes = Locale.isoRegionCodes
+
+        for code in codes {
+            let description = Locale.current.localizedString(forRegionCode: code)
+            if country == description {
+                return code
+            }
+        }
+        return ""
     }
 }

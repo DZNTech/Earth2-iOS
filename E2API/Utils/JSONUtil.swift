@@ -9,9 +9,9 @@
 import Foundation
 import SwiftyJSON
 
-class JSONUtil {
+public class JSONUtil {
 
-    static func getLocalJSONObject(for endpoint: String) -> [String : Any]? {
+    public static func getLocalJSONObject(for endpoint: String) -> [String : Any]? {
         let bundle = Bundle(for: JSONUtil.self)
         guard let path = bundle.path(forResource: endpoint.fileName(), ofType: "json") else { return nil }
         guard let jsonString = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) else { return nil }
@@ -20,7 +20,7 @@ class JSONUtil {
         return json.dictionaryObject?[ParameterKey.data] as? [String : Any]
     }
 
-    static func getLocalJSONObjects(for endpoint: String) -> [[String : Any]]? {
+    public static func getLocalJSONObjects(for endpoint: String) -> [[String : Any]]? {
         let bundle = Bundle(for: JSONUtil.self)
         guard let path = bundle.path(forResource: endpoint.fileName(), ofType: "json") else { return nil }
         guard let jsonString = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) else { return nil }

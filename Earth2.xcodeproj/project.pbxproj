@@ -57,6 +57,8 @@
 		4FED891225ADB8070045969A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED891125ADB8070045969A /* AboutViewController.swift */; };
 		4FED892025ADBE100045969A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED891F25ADBE100045969A /* WebViewController.swift */; };
 		4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED892425ADBE4A0045969A /* UIViewController+Lookup.swift */; };
+		4FED892A25AE6A640045969A /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED892925AE6A640045969A /* PropertyTests.swift */; };
+		4FED892F25AE6A880045969A /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED892E25AE6A880045969A /* UserTests.swift */; };
 		5A3506BC141CE88F5F9D4822 /* Pods_E2APITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF07E564623EEE20A3FADED /* Pods_E2APITests.framework */; };
 		77EC602CA8DCA2F089ED4996 /* Pods_Earth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE5D4D2CAD2C5C73CD34CE0 /* Pods_Earth2.framework */; };
 		8964E8BEB52A8F1A71F9F3F0 /* Pods_Earth2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DCB6AD5381C2BB1295770 /* Pods_Earth2Tests.framework */; };
@@ -161,6 +163,8 @@
 		4FED891125ADB8070045969A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4FED891F25ADBE100045969A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4FED892425ADBE4A0045969A /* UIViewController+Lookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Lookup.swift"; sourceTree = "<group>"; };
+		4FED892925AE6A640045969A /* PropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
+		4FED892E25AE6A880045969A /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		5B948DE50AFF8B3577F3F179 /* Pods-Earth2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Earth2Tests.release.xcconfig"; path = "Target Support Files/Pods-Earth2Tests/Pods-Earth2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		687A805127382BA35998EB32 /* Pods-E2API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.debug.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.debug.xcconfig"; sourceTree = "<group>"; };
 		6A268452A62740B3B1939C87 /* Pods-E2API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E2API.release.xcconfig"; path = "Target Support Files/Pods-E2API/Pods-E2API.release.xcconfig"; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				4FD5DF9925AD1A5500E83E26 /* WebTests.swift */,
+				4FED892E25AE6A880045969A /* UserTests.swift */,
+				4FED892925AE6A640045969A /* PropertyTests.swift */,
 				4FD5DF9B25AD1A5500E83E26 /* Info.plist */,
 			);
 			path = E2APITests;
@@ -803,6 +809,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FED892F25AE6A880045969A /* UserTests.swift in Sources */,
+				4FED892A25AE6A640045969A /* PropertyTests.swift in Sources */,
 				4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
