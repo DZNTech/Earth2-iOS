@@ -23,8 +23,15 @@ class LoadingBanner: UIView {
         activityIndicatorView.animate(loading)
     }
 
+    func setMessage(_ message: String?) {
+        messageLabel.text = message
+        messageLabel.isHidden = message == nil
+        messageLabel.textColor = tintColor
+    }
+
     func setError(_ error: Error) {
         setMessage(error.localizedDescription)
+        messageLabel.textColor = Color.yellow
         activityIndicatorView.animate(false)
     }
 
@@ -81,11 +88,6 @@ class LoadingBanner: UIView {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(activityIndicatorView.snp.bottom).offset(Constants.padding*3/4)
         }
-    }
-
-    fileprivate func setMessage(_ message: String?, stop: Bool = true) {
-        messageLabel.text = message
-        messageLabel.isHidden = message == nil
     }
 }
 

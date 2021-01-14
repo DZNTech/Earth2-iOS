@@ -14,6 +14,8 @@ public enum WebConstant: String {
     case login = "https://app.earth2.io/login/auth0"
 
     case map = "https://app.earth2.io/#thegrid/"
+    case about = "https://earth2.io/about"
+    case faq = "https://earth2.io/faq"
 }
 
 public class Web {

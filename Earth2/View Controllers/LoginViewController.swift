@@ -23,11 +23,6 @@ class LoginViewController: UIViewController {
         view.alpha = 1
         view.backgroundColor = Color.white.withAlphaComponent(0.025)
         view.layer.cornerRadius = 8
-
-        view.addSubview(self.legendLabel)
-        view.addSubview(self.emailField)
-        view.addSubview(self.passwordField)
-        view.addSubview(self.createAccountButton)
         return view
     }()
 
@@ -80,9 +75,18 @@ class LoginViewController: UIViewController {
         return textField
     }()
 
-    fileprivate lazy var createAccountButton: UIButton = {
+    fileprivate lazy var whatIsButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        button.setTitleColor(Color.lightBlue, for: .normal)
+        button.setTitle("What is Earth 2?", for: .normal)
+        button.addTarget(self, action:#selector(didPressWhatIsButton), for: .touchUpInside)
+        return button
+    }()
+
+    fileprivate lazy var createAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         button.setTitleColor(Color.lightBlue, for: .normal)
         button.setTitle("Create an account", for: .normal)
         button.addTarget(self, action:#selector(didPressCreateAccountButton), for: .touchUpInside)
@@ -91,7 +95,7 @@ class LoginViewController: UIViewController {
     
     fileprivate lazy var loadingBanner: LoadingBanner = {
         let view = LoadingBanner()
-        view.tintColor = Color.white
+        view.tintColor = Color.white.withAlphaComponent(0.75)
         return view
     }()
 
@@ -108,6 +112,7 @@ class LoginViewController: UIViewController {
     fileprivate var verticalOffset: CGFloat = 0
 
     fileprivate var isKeyboardVisible: Bool = false
+    fileprivate var firstTimeLoading: Bool = true
 
     // API
     fileprivate let authApi = AuthApi()
@@ -130,9 +135,10 @@ class LoginViewController: UIViewController {
         // Skip login if there's a persisted sessionId
         if true /* APIServices.shared.isLoggedIn */ {
             presentHome(animated: false)
-        } else {
+        } else if firstTimeLoading {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
                 self.emailField.becomeFirstResponder()
+                self.firstTimeLoading = false
             }
         }
     }
@@ -165,6 +171,8 @@ class LoginViewController: UIViewController {
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
 
+        loadingBanner.setMessage(StringConstants.nonaffiliate)
+
         view.addSubview(loadingBanner)
         loadingBanner.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -189,12 +197,14 @@ class LoginViewController: UIViewController {
             loginFormViewCenterYConstraint?.activate()
         }
 
+        loginFormView.addSubview(legendLabel)
         legendLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(Constants.padding)
             $0.leading.equalToSuperview().offset(Constants.padding)
             $0.trailing.equalToSuperview().offset(-Constants.padding)
         }
 
+        loginFormView.addSubview(emailField)
         emailField.snp.makeConstraints {
             $0.top.equalTo(legendLabel.snp.bottom).offset(Constants.padding*1.5)
             $0.leading.equalToSuperview().offset(Constants.padding)
@@ -202,6 +212,7 @@ class LoginViewController: UIViewController {
             $0.height.greaterThanOrEqualTo(40)
         }
 
+        loginFormView.addSubview(passwordField)
         passwordField.snp.makeConstraints {
             $0.top.equalTo(emailField.snp.bottom).offset(Constants.padding*1)
             $0.leading.equalToSuperview().offset(Constants.padding)
@@ -209,6 +220,14 @@ class LoginViewController: UIViewController {
             $0.height.greaterThanOrEqualTo(40)
         }
 
+        loginFormView.addSubview(whatIsButton)
+        whatIsButton.snp.makeConstraints {
+            $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
+            $0.trailing.equalToSuperview().offset(-Constants.padding)
+            $0.bottom.equalToSuperview().offset(-Constants.padding)
+        }
+
+        loginFormView.addSubview(createAccountButton)
         createAccountButton.snp.makeConstraints {
             $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
             $0.leading.equalToSuperview().offset(Constants.padding)
@@ -238,6 +257,11 @@ class LoginViewController: UIViewController {
         emailField.alpha = enable ? 1 : 0.5
         passwordField.alpha = enable ? 1 : 0.5
         createAccountButton.alpha = enable ? 1 : 0.5
+    }
+
+    fileprivate func cleanLoginForm() {
+        emailField.text = ""
+        passwordField.text = ""
     }
 
     fileprivate func presentHome(animated: Bool = true) {
@@ -282,6 +306,7 @@ class LoginViewController: UIViewController {
                 if let user = user {
                     self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
                     //self?.presentHome()
+                    //self?.cleanLoginForm()
                 } else {
                     self?.enableLoginForm(true)
 
@@ -308,6 +333,10 @@ class LoginViewController: UIViewController {
                 emailField.returnKeyType = .`continue`
             }
         }
+    }
+
+    @objc func didPressWhatIsButton() {
+        WebViewController.open(.about)
     }
 
     @objc func didPressCreateAccountButton() {
