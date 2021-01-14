@@ -109,7 +109,7 @@ class HomeViewController: UIViewController {
     }
 
     fileprivate func loadContent() {
-        propertyApi.getMyProperties { [weak self] (objects, error) in
+        propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
                 self?.properties += objects
                 self?.tableView.reloadData()

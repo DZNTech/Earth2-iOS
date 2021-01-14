@@ -7,20 +7,17 @@
 //
 
 import Foundation
-import Alamofire
-import AlamofireObjectMapper
-import SwiftyJSON
 
 // MARK: - Interface
 public protocol PropertyApiInterface {
 
     /**
      */
-    func getMyProperties(currentPage: Int, pageSize: Int, _ completion: @escaping ObjectCompletionBlock<[Property]>)
+    func listMyProperties(currentPage: Int, pageSize: Int, _ completion: @escaping ObjectCompletionBlock<[Property]>)
 
     /**
      */
-    func getProperties(forUser userId: ObjectId, currentPage: Int, pageSize: Int, _ completion: @escaping ObjectCompletionBlock<[Property]>)
+    func listProperties(forUser userId: ObjectId, currentPage: Int, pageSize: Int, _ completion: @escaping ObjectCompletionBlock<[Property]>)
 }
 
 public class PropertyApi: PropertyApiInterface {
@@ -28,11 +25,11 @@ public class PropertyApi: PropertyApiInterface {
     public init() {}
     fileprivate let repositoryAdapter = RepositoryAdapter()
 
-    public func getMyProperties(currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
-        getProperties(forUser: "", completion)
+    public func listMyProperties(currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
+        listProperties(forUser: "", completion)
     }
 
-    public func getProperties(forUser userId: ObjectId, currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
+    public func listProperties(forUser userId: ObjectId, currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
 
         let endpoint = EndPoint.propertyList
 

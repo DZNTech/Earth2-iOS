@@ -13,12 +13,12 @@ public typealias ObjectId = String
 public let APIBaseUrl: String = "https://earth2api.herokuapp.com/"
 public let StandardPageSize: Int = 50
 
-enum EndPoint {
+public enum EndPoint {
     static let userLogin = "users/login/"
     static let propertyList = "users/properties/"
 }
 
-enum ParameterKey {
+public enum ParameterKey {
     static let apiKey = "Api-Key"
     static let contentType = "Content-type"
     static let authorization = "Authorization"

@@ -12,6 +12,8 @@ import CoreGraphics
 public enum WebConstant: String {
     case home = "https://earth2.io/"
     case login = "https://app.earth2.io/login/auth0"
+
+    case map = "https://app.earth2.io/#thegrid/"
 }
 
 public class Web {
