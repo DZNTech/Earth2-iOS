@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 // MARK: - Interface
 public protocol PropertyApiInterface {
@@ -26,7 +27,9 @@ public class PropertyApi: PropertyApiInterface {
     fileprivate let repositoryAdapter = RepositoryAdapter()
 
     public func listMyProperties(currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
-        listProperties(forUser: "", completion)
+        guard let user = APIServices.shared.myUser else { return }
+
+        listProperties(forUser: user.id, completion)
     }
 
     public func listProperties(forUser userId: ObjectId, currentPage: Int = 1, pageSize: Int = StandardPageSize, _ completion: @escaping ObjectCompletionBlock<[Property]>) {
@@ -39,9 +42,13 @@ public class PropertyApi: PropertyApiInterface {
             return
         }
 
-        let parameters = [ParameterKey.userId: userId]
+        let parameters: Parameters = [
+            ParameterKey.userId: userId,
+            ParameterKey.currentPage: currentPage,
+            ParameterKey.pageSize: pageSize
+        ]
 
-        repositoryAdapter.getObjects(endpoint, parameters: parameters, currentPage: currentPage, pageSize: pageSize, type: Property.self) { (properties, error) in
+        repositoryAdapter.getObjects(endpoint, parameters: parameters, type: Property.self) { (properties, error) in
             completion(properties, error)
         }
     }

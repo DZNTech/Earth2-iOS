@@ -42,16 +42,9 @@ class RepositoryAdapter {
         }
     }
 
-    func getObjects<Element: Mappable>(_ endPoint: String, parameters: Parameters? = nil, currentPage: Int = 0, pageSize: Int = StandardPageSize, skipPagination: Bool = false, type: Element.Type, keyPath: String = ParameterKey.data, _ completion: @escaping ObjectCompletionBlock<[Element]>) {
+    func getObjects<Element: Mappable>(_ endPoint: String, parameters: Parameters? = nil, type: Element.Type, keyPath: String = ParameterKey.data, _ completion: @escaping ObjectCompletionBlock<[Element]>) {
 
-        var finalEndpoint = endPoint
-
-        // only include pagination if required
-        if !skipPagination {
-            finalEndpoint = "\(endPoint)?\(ParameterKey.currentPage)=\(currentPage)&\(ParameterKey.pageSize)=\(pageSize)"
-        }
-
-        networkAdapter.httpRequest(finalEndpoint, method: .post, parameters: parameters) { (request) in
+        networkAdapter.httpRequest(endPoint, method: .post, parameters: parameters) { (request) in
             print("Starting request \(String(describing: request.request?.url)) with parameters \(String(describing: parameters))")
             request.responseArray(keyPath: keyPath, completionHandler: { (response: DataResponse<[Element]>) in
                 var log: String = "+ Ended request with code \(String(describing: response.response?.statusCode)) "
