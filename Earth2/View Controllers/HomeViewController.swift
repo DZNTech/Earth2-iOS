@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.register(cellType: PropertyTableViewCell.self)
         tableView.backgroundColor = Color.clear
+        tableView.clipsToBounds = true
         return tableView
     }()
 
@@ -57,8 +58,14 @@ class HomeViewController: UIViewController {
         loadContent()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        headerView.backgroundImageView.image = backgroundView.getSnapshot()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

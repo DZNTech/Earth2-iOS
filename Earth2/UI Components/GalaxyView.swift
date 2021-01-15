@@ -45,6 +45,13 @@ class GalaxyView: UIView {
         updateStarsComposition()
     }
 
+    func getSnapshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+
     // MARK: - Private Variables
 
     fileprivate var galaxyLayer: CALayer?

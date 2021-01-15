@@ -16,6 +16,13 @@ class ProfileHeaderView: UIView {
         return CGSize(width: UIView.noIntrinsicMetric, height: Constants.height)
     }
 
+    lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .top
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+
     lazy var favoriteButton: CustomButton = {
         let button = CustomButton(type: .system)
         button.setImage(UIImage(named: "icn_favorites"), for: .normal)
@@ -116,9 +123,15 @@ class ProfileHeaderView: UIView {
         return stackView
     }()
 
+    fileprivate lazy var separatorLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = Color.blue
+        return view
+    }()
+
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
-        static let height: CGFloat = 360
+        static let height: CGFloat = 380
     }
 
     // MARK: - Initialization
@@ -138,6 +151,12 @@ class ProfileHeaderView: UIView {
 
         let padding = Constants.padding
         backgroundColor = Color.clear
+
+        addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(-padding*3)
+        }
 
         addSubview(leftButtonsStackView)
         leftButtonsStackView.snp.makeConstraints {
@@ -185,6 +204,12 @@ class ProfileHeaderView: UIView {
         statusLabel.snp.makeConstraints {
             $0.top.equalTo(amountLabel2.snp.bottom).offset(padding/2)
             $0.centerX.equalToSuperview()
+        }
+
+        addSubview(separatorLine)
+        separatorLine.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalToSuperview()
+            $0.height.equalTo(1)
         }
 
         referralButton.setTitle("5KVO65G0HS", for: .normal)

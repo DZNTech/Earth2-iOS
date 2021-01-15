@@ -1,5 +1,5 @@
 //
-//  AboutViewController.swift
+//  SettingsViewController.swift
 //  Earth2
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-12.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import E2API
 
-class AboutViewController: UITabBarController {
+class SettingsViewController: UITabBarController {
 
     // MARK: - Public Variables
 
