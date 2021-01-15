@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UICountingLabel
 
 class ProfileHeaderView: UIView {
 
@@ -27,7 +28,7 @@ class ProfileHeaderView: UIView {
         let button = CustomButton(type: .system)
         button.setImage(UIImage(named: "icn_favorites"), for: .normal)
         button.tintColor = Color.red
-        button.hitTestEdgeInsets = UIEdgeInsets(square: -20)
+        button.hitTestEdgeInsets = UIEdgeInsets(-20, -20, -20, -10)
         return button
     }()
 
@@ -35,7 +36,7 @@ class ProfileHeaderView: UIView {
         let button = CustomButton(type: .system)
         button.titleLabel?.font = Font.font(ofSize: 17, weight: .medium)
         button.tintColor = Color.white
-        button.hitTestEdgeInsets = UIEdgeInsets(square: -20)
+        button.hitTestEdgeInsets = UIEdgeInsets(-20, -10, -20, -20)
         return button
     }()
 
@@ -55,24 +56,24 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-    lazy var amountLabel1: UILabel = {
-        let label = UILabel()
+    lazy var amountLabel1: UICountingLabel = {
+        let label = UICountingLabel()
         label.font = Font.font(ofSize: 70, weight: .ultraLight)
         label.textColor = Color.white
         label.textAlignment = .center
         return label
     }()
 
-    lazy var statsLabel1: UILabel = {
-        let label = UILabel()
+    lazy var statsLabel1: UICountingLabel = {
+        let label = UICountingLabel()
         label.font = Font.font(ofSize: 19, weight: .regular)
         label.textColor = Color.green
         label.textAlignment = .right
         return label
     }()
 
-    lazy var statsLabel2: UILabel = {
-        let label = UILabel()
+    lazy var statsLabel2: UICountingLabel = {
+        let label = UICountingLabel()
         label.font = Font.font(ofSize: 19, weight: .regular)
         label.textColor = Color.green
         label.textAlignment = .left
@@ -87,8 +88,8 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-    lazy var amountLabel2: UILabel = {
-        let label = UILabel()
+    lazy var amountLabel2: UICountingLabel = {
+        let label = UICountingLabel()
         label.font = Font.font(ofSize: 70, weight: .ultraLight)
         label.textColor = Color.white
         label.textAlignment = .center
@@ -105,12 +106,13 @@ class ProfileHeaderView: UIView {
 
     // MARK: - Private Variables
 
-    fileprivate lazy var leftButtonsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [favoriteButton, referralButton])
+    fileprivate lazy var leftButtonsStackView: CustomStackView = {
+        let stackView = CustomStackView(arrangedSubviews: [favoriteButton, referralButton])
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
         stackView.spacing = Constants.padding
+        stackView.hitTestEdgeInsets = UIEdgeInsets(square: -20)
         return stackView
     }()
 
@@ -128,6 +130,27 @@ class ProfileHeaderView: UIView {
         view.backgroundColor = Color.blue
         return view
     }()
+
+    fileprivate lazy var amountFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+
+    fileprivate func animateCounting(for label: UICountingLabel, with amount: CGFloat, format: String = "%@") {
+        label.method = .easeIn
+        label.animationDuration = 1.5 // use amount to calculate speed
+        label.formatBlock = { (value) -> String? in
+            if let string = self.amountFormatter.string(from: value as NSNumber) {
+                return NSString(format: (format as NSString), string) as String
+            }
+            return ""
+        }
+
+        label.countFromZero(to: amount)
+    }
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
@@ -150,12 +173,13 @@ class ProfileHeaderView: UIView {
     fileprivate func setupLayout() {
 
         let padding = Constants.padding
+
         backgroundColor = Color.clear
 
         addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalToSuperview().offset(-padding*3)
+            $0.top.equalToSuperview().offset(-UIApplication.shared.statusBarFrame.height)
         }
 
         addSubview(leftButtonsStackView)
@@ -216,11 +240,12 @@ class ProfileHeaderView: UIView {
         statusLabel.text = "Last Update 02-01-2021"
 
         legendLabel1.text = "NET WORTH (US$)"
-        amountLabel1.text = "1,564.54"
-        statsLabel1.text = "+1,013.52"
-        statsLabel2.text = "+183.9%"
-
         legendLabel2.text = "BALANCE (US$)"
-        amountLabel2.text = "53.12"
+
+        // calculate the animation duration based on the amounts
+        animateCounting(for: amountLabel1, with: 1564.54)
+        animateCounting(for: amountLabel2, with: 53.12)
+        animateCounting(for: statsLabel1, with: 1013.52, format: "+%@")
+        animateCounting(for: statsLabel2, with: 183.9, format: "+%@%")
     }
 }

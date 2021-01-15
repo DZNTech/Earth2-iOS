@@ -22,3 +22,19 @@ class CustomButton: UIButton {
         }
     }
 }
+
+class CustomStackView: UIStackView {
+
+    var hitTestEdgeInsets: UIEdgeInsets = .zero
+
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+
+        if hitTestEdgeInsets == .zero {
+            return super.point(inside: point, with: event)
+        } else {
+            let hitFrame = bounds.inset(by: hitTestEdgeInsets)
+            return hitFrame.contains(point)
+        }
+    }
+}
+

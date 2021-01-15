@@ -8,6 +8,7 @@ def ios_app_pods
   # UI
   pod 'SnapKit'
   pod 'SwiftValidators', :inhibit_warnings => true
+  pod 'UICountingLabel'
   pod 'ShimmerSwift'
   pod 'EmptyDataSet-Swift'
 end
