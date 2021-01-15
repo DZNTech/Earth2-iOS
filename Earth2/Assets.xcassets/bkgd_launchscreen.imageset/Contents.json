@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "bkgd_launchscreen.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

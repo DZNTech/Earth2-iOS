@@ -95,7 +95,6 @@ fileprivate extension Property {
 
     func float(from object: Any?) -> Float {
         guard let string = object as? String, !string.isEmpty else { return 0.0 }
-        print("\(string)")
 
         if let value = Float(string)  {
             return value

@@ -15,35 +15,38 @@ class PropertyTableViewCell: UITableViewCell {
 
     var isOdd: Bool = false {
         didSet {
-            let color: UIColor = isOdd ? .black : .white
-            backgroundColor = color.withAlphaComponent(0.025)
+            if isOdd {
+                backgroundColor = .clear
+            } else {
+                backgroundColor = Color.white.withAlphaComponent(0.025)
+            }
         }
     }
 
     lazy var thumbImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = Color.blue
+        imageView.backgroundColor = Color.white
         imageView.clipsToBounds = true
         return imageView
     }()
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.font = Font.font(ofSize: 17, weight: .medium)
         label.textColor = Color.white
         return label
     }()
 
     lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = Font.font(ofSize: 15, weight: .regular)
         label.textColor = Color.gray20
         return label
     }()
 
     lazy var profitLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = Font.font(ofSize: 15, weight: .regular)
         label.textColor = Color.white
         label.textAlignment = .right
         return label
@@ -51,7 +54,7 @@ class PropertyTableViewCell: UITableViewCell {
 
     lazy var tileLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = Font.font(ofSize: 15, weight: .regular)
         label.textColor = Color.white
         label.textAlignment = .right
         return label
@@ -98,7 +101,7 @@ class PropertyTableViewCell: UITableViewCell {
     fileprivate func setupLayout() {
 
         let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = Color.black
+        selectedBackgroundView.backgroundColor = Color.darkerBlue.withAlphaComponent(0.5)
         self.selectedBackgroundView = selectedBackgroundView
 
         accessoryType = .disclosureIndicator

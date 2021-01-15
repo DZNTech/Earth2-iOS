@@ -11,6 +11,8 @@ import E2API
 
 public class PropertyViewModel: Descriptable {
 
+    // MARK: - Public Variables
+
     let property: Property
 
     let landLabel: String

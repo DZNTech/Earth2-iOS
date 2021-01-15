@@ -28,7 +28,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjQ-iL-xaT">
                                 <rect key="frame" x="0.0" y="294.66666666666669" width="428" height="347.00000000000006"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="e2_launch" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-7Y-fSe">
+                                    <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_login" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-7Y-fSe">
                                         <rect key="frame" x="50" y="147" width="328" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="lst-cu-B9g"/>
@@ -135,7 +135,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="e2_launch" width="424" height="251"/>
+        <image name="logo_login" width="424" height="251"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

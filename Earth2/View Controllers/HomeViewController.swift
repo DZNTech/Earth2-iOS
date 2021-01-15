@@ -20,36 +20,23 @@ class HomeViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
         tableView.register(cellType: PropertyTableViewCell.self)
         tableView.backgroundColor = Color.clear
         return tableView
     }()
 
-    fileprivate lazy var toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.barTintColor = Color.darkBlue
-        toolbar.tintColor = Color.white
-//        toolbar.isTranslucent = true
-//        toolbar.barStyle = .black
-        return toolbar
-    }()
-
-    fileprivate lazy var statusLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.textColor = Color.white
-        label.textAlignment = .center
-        label.text = "Last Update 02-01-2021"
-        return label
+    fileprivate lazy var headerView: ProfileHeaderView = {
+        let view = ProfileHeaderView()
+        return view
     }()
 
     fileprivate lazy var backgroundView: GalaxyView = {
         let view = GalaxyView(frame: self.view.bounds)
         view.showStars = false
         view.showGradient = true
-        view.topColor = Color.darkBlue
-        view.bottomColor = Color.darkerBlue
+        view.topColor = Color.blue
+        view.bottomColor = Color.darkBlue
         return view
     }()
 
@@ -58,6 +45,7 @@ class HomeViewController: UIViewController {
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
+        static let cellHeight: CGFloat = 100
     }
 
     // MARK: - View Cycle
@@ -90,21 +78,10 @@ class HomeViewController: UIViewController {
             $0.leading.trailing.top.bottom.equalToSuperview()
         }
 
-        view.addSubview(toolbar)
-        toolbar.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
-
-        toolbar.addSubview(statusLabel)
-        statusLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-        }
-
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()
-            $0.bottom.equalTo(toolbar.snp.top)
+            $0.bottom.equalToSuperview()
         }
     }
 
@@ -152,7 +129,15 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return Constants.cellHeight
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerView.intrinsicContentSize.height
     }
 }
 
