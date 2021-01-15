@@ -133,7 +133,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if true /* APIServices.shared.isLoggedIn */ {
+        if APIServices.shared.isLoggedIn {
             presentHome(animated: false)
         } else if firstTimeLoading {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
@@ -267,6 +267,7 @@ class LoginViewController: UIViewController {
     fileprivate func presentHome(animated: Bool = true) {
         let vc = HomeViewController()
         vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
         present(vc, animated: animated, completion: nil)
     }
 
@@ -305,8 +306,8 @@ class LoginViewController: UIViewController {
             authApi.login(email, password: password) { [weak self] (user, error) in
                 if let user = user {
                     self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
-                    //self?.presentHome()
-                    //self?.cleanLoginForm()
+                    self?.presentHome()
+                    self?.cleanLoginForm()
                 } else {
                     self?.enableLoginForm(true)
 

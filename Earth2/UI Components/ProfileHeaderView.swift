@@ -131,27 +131,6 @@ class ProfileHeaderView: UIView {
         return view
     }()
 
-    fileprivate lazy var amountFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-
-    fileprivate func animateCounting(for label: UICountingLabel, with amount: CGFloat, format: String = "%@") {
-        label.method = .easeIn
-        label.animationDuration = 1.5 // use amount to calculate speed
-        label.formatBlock = { (value) -> String? in
-            if let string = self.amountFormatter.string(from: value as NSNumber) {
-                return NSString(format: (format as NSString), string) as String
-            }
-            return ""
-        }
-
-        label.countFromZero(to: amount)
-    }
-
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
         static let height: CGFloat = 380
@@ -236,16 +215,33 @@ class ProfileHeaderView: UIView {
             $0.height.equalTo(1)
         }
 
-        referralButton.setTitle("5KVO65G0HS", for: .normal)
         statusLabel.text = "Last Update 02-01-2021"
 
         legendLabel1.text = "NET WORTH (US$)"
         legendLabel2.text = "BALANCE (US$)"
-
-        // calculate the animation duration based on the amounts
-        animateCounting(for: amountLabel1, with: 1564.54)
-        animateCounting(for: amountLabel2, with: 53.12)
-        animateCounting(for: statsLabel1, with: 1013.52, format: "+%@")
-        animateCounting(for: statsLabel2, with: 183.9, format: "+%@%")
     }
+}
+
+extension UICountingLabel {
+
+    func setCount(_ count: Float, format: String = "%@", animated: Bool = true) {
+        method = .easeIn
+        formatBlock = { (value) -> String? in
+            if let string = UICountingLabel.amountFormatter.string(from: value as NSNumber) {
+                return NSString(format: (format as NSString), string) as String
+            }
+            return ""
+        }
+
+        let duration: TimeInterval = animated ? 1.5 : 0
+        countFromZero(to: CGFloat(count), withDuration: duration)
+    }
+
+    fileprivate static var amountFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
 }

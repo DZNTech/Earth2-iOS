@@ -29,7 +29,7 @@ public enum ParameterKey {
     static let data = "data"
     static let sessionId = "sessionId"
 
-    static let currentPage = "currentPage"
+    static let currentPage = "current_page"
     static let pageSize = "pageSize"
     static let statusDescription = "statusDescription"
 

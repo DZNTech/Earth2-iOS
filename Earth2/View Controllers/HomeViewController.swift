@@ -93,6 +93,14 @@ class HomeViewController: UIViewController {
     }
 
     fileprivate func loadContent() {
+        guard let user = APIServices.shared.myUser else { return }
+
+        headerView.referralButton.setTitle(user.referralCode, for: .normal)
+        headerView.amountLabel1.setCount(user.netWorth)
+        headerView.amountLabel2.setCount(user.balance)
+        headerView.statsLabel1.setCount(user.profitIncreaseNet, format: "+%@")
+        headerView.statsLabel2.setCount(user.profitIncreasePct, format: "+%@%%")
+
         propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
                 self?.properties += objects
