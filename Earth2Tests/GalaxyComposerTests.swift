@@ -23,7 +23,7 @@ class GalaxyComposerTests: XCTestCase {
         let bounds = UIScreen.main.bounds
 
         measure {
-            let _ = GalaxyComposer.generateStars(in: bounds)
+            let _ = GalaxyComposer.galaxyAsImage(in: bounds)
         }
     }
 
@@ -31,7 +31,7 @@ class GalaxyComposerTests: XCTestCase {
         let bounds = UIScreen.main.bounds
 
         measure { //0.004s vs 0.014 s
-            let _ = GalaxyComposer.generateStarsLayer(in: bounds)
+            let _ = GalaxyComposer.galaxyAsLayer(in: bounds)
         }
     }
 

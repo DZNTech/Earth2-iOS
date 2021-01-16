@@ -21,17 +21,18 @@ public class APIServices {
     }
 
     public var myUser: User? {
-//        get {
-//            guard !APIServices.shared.isLocal else {
-//                guard let dict = JSONUtil.getLocalJSONObject(for: EndPoint.userLogin) else { return nil }
-//                return User.init(JSON: dict)
-//            }
-//            return nil
-//        }
-//        set { }
-        didSet {
-            //
+        get {
+            guard !APIServices.shared.isLocal else {
+                guard let dict = JSONUtil.getLocalJSONObject(for: EndPoint.userLogin) else { return nil }
+                return User.init(JSON: dict)
+            }
+            return nil
         }
+        set { }
+
+//        didSet {
+//            //
+//        }
     }
 
     // MARK: - Initialization

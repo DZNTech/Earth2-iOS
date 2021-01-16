@@ -57,6 +57,12 @@
 		4FCA94AC25B0D0D0000A2AF3 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94AB25B0D0D0000A2AF3 /* ProfileHeaderView.swift */; };
 		4FCA94B125B18D44000A2AF3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94B025B18D44000A2AF3 /* CustomButton.swift */; };
 		4FCA94B625B1943A000A2AF3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94B525B1943A000A2AF3 /* UserViewModel.swift */; };
+		4FCA94D925B24F4A000A2AF3 /* CIColor+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94D525B24F49000A2AF3 /* CIColor+QRCode.swift */; };
+		4FCA94DA25B24F4A000A2AF3 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94D625B24F49000A2AF3 /* QRCode.swift */; };
+		4FCA94DB25B24F4A000A2AF3 /* UIImageView+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94D725B24F49000A2AF3 /* UIImageView+QRCode.swift */; };
+		4FCA94DC25B24F4A000A2AF3 /* CIImage+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94D825B24F49000A2AF3 /* CIImage+QRCode.swift */; };
+		4FCA94F825B25DCC000A2AF3 /* QRCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94F725B25DCC000A2AF3 /* QRCodeTests.swift */; };
+		4FCA950625B267C4000A2AF3 /* AVMetadataObject+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA950525B267C4000A2AF3 /* AVMetadataObject+QRCode.swift */; };
 		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
 		4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF9925AD1A5500E83E26 /* WebTests.swift */; };
 		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
@@ -171,6 +177,12 @@
 		4FCA94AB25B0D0D0000A2AF3 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		4FCA94B025B18D44000A2AF3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4FCA94B525B1943A000A2AF3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		4FCA94D525B24F49000A2AF3 /* CIColor+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIColor+QRCode.swift"; sourceTree = "<group>"; };
+		4FCA94D625B24F49000A2AF3 /* QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		4FCA94D725B24F49000A2AF3 /* UIImageView+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+QRCode.swift"; sourceTree = "<group>"; };
+		4FCA94D825B24F49000A2AF3 /* CIImage+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+QRCode.swift"; sourceTree = "<group>"; };
+		4FCA94F725B25DCC000A2AF3 /* QRCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeTests.swift; sourceTree = "<group>"; };
+		4FCA950525B267C4000A2AF3 /* AVMetadataObject+QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMetadataObject+QRCode.swift"; sourceTree = "<group>"; };
 		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
 		4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E2APITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD5DF9925AD1A5500E83E26 /* WebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTests.swift; sourceTree = "<group>"; };
@@ -246,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */,
+				4FCA94F725B25DCC000A2AF3 /* QRCodeTests.swift */,
 				4F2117FC25AD570C007CB0BD /* Info.plist */,
 			);
 			path = Earth2Tests;
@@ -368,6 +381,7 @@
 		4FC3F1F225A9714E0039B94C /* UI Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4FCA94D425B23637000A2AF3 /* QR IO */,
 				4FC3F1F325A971590039B94C /* Appearance.swift */,
 				4FC3F1F725A971670039B94C /* Color.swift */,
 				4F54FE1425AEC175000C6D3B /* Font.swift */,
@@ -411,6 +425,18 @@
 				4FCA94A625B0CA9F000A2AF3 /* StringConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		4FCA94D425B23637000A2AF3 /* QR IO */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA94D625B24F49000A2AF3 /* QRCode.swift */,
+				4FCA94D525B24F49000A2AF3 /* CIColor+QRCode.swift */,
+				4FCA94D825B24F49000A2AF3 /* CIImage+QRCode.swift */,
+				4FCA94D725B24F49000A2AF3 /* UIImageView+QRCode.swift */,
+				4FCA950525B267C4000A2AF3 /* AVMetadataObject+QRCode.swift */,
+			);
+			path = "QR IO";
 			sourceTree = "<group>";
 		};
 		4FD5DF9825AD1A5500E83E26 /* E2APITests */ = {
@@ -785,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */,
+				4FCA94F825B25DCC000A2AF3 /* QRCodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,10 +820,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FC3F27725AB08550039B94C /* UITextField+Extensions.swift in Sources */,
+				4FCA950625B267C4000A2AF3 /* AVMetadataObject+QRCode.swift in Sources */,
 				4FC3F1FC25AA676E0039B94C /* GalaxyView.swift in Sources */,
 				4FCA94A725B0CA9F000A2AF3 /* StringConstants.swift in Sources */,
 				4FED88FF25ADB6D60045969A /* PropertyTableViewCell.swift in Sources */,
 				4FCA94B125B18D44000A2AF3 /* CustomButton.swift in Sources */,
+				4FCA94DA25B24F4A000A2AF3 /* QRCode.swift in Sources */,
 				4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */,
 				4FED892025ADBE100045969A /* WebViewController.swift in Sources */,
 				4FC3F27325AB06000039B94C /* UniversalConstants.swift in Sources */,
@@ -808,6 +837,7 @@
 				4FCA94B625B1943A000A2AF3 /* UserViewModel.swift in Sources */,
 				4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
+				4FCA94DB25B24F4A000A2AF3 /* UIImageView+QRCode.swift in Sources */,
 				4FED88F625ADB2E20045969A /* UITableViewCell+Reuse.swift in Sources */,
 				4F54FE2025AEC544000C6D3B /* PropertyViewModel.swift in Sources */,
 				4F963EF9259DDA1B001E9829 /* SceneDelegate.swift in Sources */,
@@ -815,9 +845,11 @@
 				4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */,
 				4FC3F1F425A9715A0039B94C /* Appearance.swift in Sources */,
 				4FC3F26C25AAE8B20039B94C /* UIView+Extensions.swift in Sources */,
+				4FCA94DC25B24F4A000A2AF3 /* CIImage+QRCode.swift in Sources */,
 				4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */,
 				4FED890D25ADB7DD0045969A /* CodesViewController.swift in Sources */,
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
+				4FCA94D925B24F4A000A2AF3 /* CIColor+QRCode.swift in Sources */,
 				4F54FE1525AEC175000C6D3B /* Font.swift in Sources */,
 				4FC3F26825AAD7D40039B94C /* UILabel+Extensions.swift in Sources */,
 				4FED891225ADB8070045969A /* SettingsViewController.swift in Sources */,
