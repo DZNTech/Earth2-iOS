@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import E2API
+import LinkPresentation
 
 class HomeViewController: UIViewController {
 
@@ -43,6 +44,8 @@ class HomeViewController: UIViewController {
 
     fileprivate let propertyApi = PropertyApi()
     fileprivate var properties = [Property]()
+
+    fileprivate var qrImageURL: URL?
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
@@ -79,7 +82,7 @@ class HomeViewController: UIViewController {
     // MARK: - Layout
 
     fileprivate func setupLayout() {
-
+        
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
@@ -101,12 +104,50 @@ class HomeViewController: UIViewController {
         headerView.statsLabel1.setCount(user.profitIncreaseNet, format: "+%@")
         headerView.statsLabel2.setCount(user.profitIncreasePct, format: "+%@%%")
 
+        headerView.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
+        headerView.referralButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
+        headerView.settingsButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
+
         propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
                 self?.properties += objects
                 self?.tableView.reloadData()
             }
         }
+    }
+
+    @objc fileprivate func didPressFavoriteButton() {
+        print("didPressFavoriteButton!")
+    }
+
+//    @objc fileprivate func didPressReferralButton() {
+//        guard let user = APIServices.shared.myUser else { return }
+//        guard let topMostVC = UIViewController.topMostViewController() else { return }
+//
+//        let vc = QRViewController(with: "2COCQKIKN2")
+//        topMostVC.presentPanModal(vc)
+//    }
+
+    @objc fileprivate func didPressReferralButton() {
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
+
+        DispatchQueue.main.async {
+            guard let user = APIServices.shared.myUser, let qrImage = user.qrImage else { return }
+            guard let imageURL = qrImage.save(with: user.referralCode) else { return }
+
+            self.qrImageURL = imageURL
+
+            // Copy code as text
+
+            let activityVC = UIActivityViewController(activityItems: [self], applicationActivities: [UIActivity]())
+            activityVC.excludedActivityTypes = [.assignToContact, .addToReadingList, .openInIBooks, .markupAsPDF]
+            activityVC.overrideUserInterfaceStyle = .dark
+            topMostVC.present(activityVC, animated: true)
+        }
+    }
+
+    @objc fileprivate func didPressSettingsButton() {
+        print("didPressSettingsButton!")
     }
 }
 
@@ -156,3 +197,25 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+extension HomeViewController: UIActivityItemSource {
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return UIImage()
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        guard let activityType = activityType,
+              let excludedTypes = activityViewController.excludedActivityTypes, !excludedTypes.contains(activityType) else { return nil }
+        return qrImageURL
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        guard let user = APIServices.shared.myUser else { return nil }
+
+        let metadata = LPLinkMetadata()
+        metadata.title = user.referralCode
+        metadata.originalURL = qrImageURL // determines the Preview Subtitle
+        metadata.imageProvider = NSItemProvider.init(contentsOf: qrImageURL)
+        return metadata
+    }
+}

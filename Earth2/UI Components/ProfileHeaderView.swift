@@ -34,7 +34,7 @@ class ProfileHeaderView: UIView {
 
     lazy var referralButton: CustomButton = {
         let button = CustomButton(type: .system)
-        button.titleLabel?.font = Font.font(ofSize: 17, weight: .medium)
+        button.titleLabel?.font = Font.font(ofSize: 17, weight: .semibold)
         button.tintColor = Color.white
         button.hitTestEdgeInsets = UIEdgeInsets(-20, -10, -20, -20)
         return button

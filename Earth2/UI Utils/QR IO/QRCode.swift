@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreImage
 
 /// QRCode generator
 public struct QRCode {
@@ -31,6 +32,10 @@ public struct QRCode {
         return String(decoding: data, as: UTF8.self)
     }
 
+    public func image(with logo: UIImage?) -> UIImage? {
+        return getBrandedUIImage(logo)
+    }
+
     /**
     The level of error correction.
     
@@ -48,10 +53,11 @@ public struct QRCode {
     
     let data: Data
 
-    var color = UIColor.black.ciColor
-    var backgroundColor = UIColor.white.ciColor
-    var size = CGSize(width: 200, height: 200)
-    var errorCorrection = ErrorCorrection.Low
+    var color: CIColor = CIColor(red: 0, green: 0, blue: 0)
+    var backgroundColor: CIColor = CIColor(red: 1, green: 1, blue: 1)
+
+    var size: CGSize = CGSize(width: 200, height: 200)
+    var errorCorrection: ErrorCorrection = .Low
     
     // MARK: Initialization
     
@@ -108,4 +114,29 @@ fileprivate extension QRCode {
 
         return colorFilter.outputImage
     }
+
+    func getBrandedUIImage(_ logoImage: UIImage?) -> UIImage? {
+        guard let logoImage = logoImage, let qrImage = getUIImage() else { return nil }
+
+        let rect = CGRect(origin: .zero, size: qrImage.size)
+        let logoWidth = qrImage.size.width / 4
+        let logoRect = CGRect(x: (rect.size.width - logoWidth)/2, y: (rect.size.height - logoWidth)/2,
+                              width: logoWidth, height: logoWidth)
+
+        UIGraphicsBeginImageContextWithOptions(qrImage.size, false, 0)
+        let context = UIGraphicsGetCurrentContext()!
+
+        qrImage.draw(in: rect)
+        logoImage.draw(in: logoRect)
+
+        UIColor(ciColor: color).setFill()
+        context.setBlendMode(.screen)
+        context.fill(logoRect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
+
 }

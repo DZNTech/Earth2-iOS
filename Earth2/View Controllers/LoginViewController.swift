@@ -133,7 +133,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if APIServices.shared.isLoggedIn {
+        if true /* APIServices.shared.isLoggedIn */ {
             presentHome(animated: false)
         } else if firstTimeLoading {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "e2_qr_watermark.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
