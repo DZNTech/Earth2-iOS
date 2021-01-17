@@ -120,14 +120,6 @@ class HomeViewController: UIViewController {
         print("didPressFavoriteButton!")
     }
 
-//    @objc fileprivate func didPressReferralButton() {
-//        guard let user = APIServices.shared.myUser else { return }
-//        guard let topMostVC = UIViewController.topMostViewController() else { return }
-//
-//        let vc = QRViewController(with: "2COCQKIKN2")
-//        topMostVC.presentPanModal(vc)
-//    }
-
     @objc fileprivate func didPressReferralButton() {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
@@ -137,10 +129,12 @@ class HomeViewController: UIViewController {
 
             self.qrImageURL = imageURL
 
-            // Copy code as text
+            // Copy code as text or image
+            let copyStringActivity = CopyItemActivity(with: .copyCode)
+            let copyImageActivity = CopyItemActivity(with: .copyImage)
 
-            let activityVC = UIActivityViewController(activityItems: [self], applicationActivities: [UIActivity]())
-            activityVC.excludedActivityTypes = [.assignToContact, .addToReadingList, .openInIBooks, .markupAsPDF]
+            let activityVC = UIActivityViewController(activityItems: [self], applicationActivities: [copyStringActivity, copyImageActivity])
+            activityVC.excludedActivityTypes = [.assignToContact, .addToReadingList, .openInIBooks, .markupAsPDF, .copyToPasteboard]
             activityVC.overrideUserInterfaceStyle = .dark
             topMostVC.present(activityVC, animated: true)
         }
@@ -204,9 +198,7 @@ extension HomeViewController: UIActivityItemSource {
     }
 
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        guard let activityType = activityType,
-              let excludedTypes = activityViewController.excludedActivityTypes, !excludedTypes.contains(activityType) else { return nil }
-        return qrImageURL
+        return nil
     }
 
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
