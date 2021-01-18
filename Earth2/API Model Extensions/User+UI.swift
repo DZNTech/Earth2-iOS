@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import E2API
 
-extension User {
+extension QRCode {
 
-    var qrImage: UIImage? {
-        var qr = QRCode(with: referralCode)
-        qr?.size = CGSize(square: 512)
-        qr?.color = CIColor(color: UIColor.randomColor(seed: referralCode))
-        qr?.backgroundColor = CIColor(color: Color.white)
+    static func e2QRImage(with username: String, referralCode: String, width: CGFloat = 512) -> UIImage?  {
+        let string = "\(referralCode)---\(username)"
+        let color = UIColor.randomColor(seed: referralCode)
+        return QRCode.image(with: string, color: color, backgroundColor: .white, size: CGSize(square: width))
 
-        return qr?.image(with: UIImage(named: "e2_qr_watermark"))
+//        return qr?.image(with: UIImage(named: "e2_qr_watermark"))
     }
 }

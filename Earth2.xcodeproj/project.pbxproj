@@ -76,6 +76,9 @@
 		4FCA958E25B55987000A2AF3 /* EnumTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA958D25B55987000A2AF3 /* EnumTitle.swift */; };
 		4FCA959325B562A4000A2AF3 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA959225B562A4000A2AF3 /* Bundle+Extensions.swift */; };
 		4FCA959925B5787C000A2AF3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA959825B5787C000A2AF3 /* SettingsManager.swift */; };
+		4FCA95A525B583EE000A2AF3 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95A425B583EE000A2AF3 /* Favorite.swift */; };
+		4FCA95AD25B5855B000A2AF3 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95AC25B5855B000A2AF3 /* FavoriteTableViewCell.swift */; };
+		4FCA95B225B58BC0000A2AF3 /* ReferralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */; };
 		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
 		4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF9925AD1A5500E83E26 /* WebTests.swift */; };
 		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
@@ -209,6 +212,9 @@
 		4FCA958D25B55987000A2AF3 /* EnumTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTitle.swift; sourceTree = "<group>"; };
 		4FCA959225B562A4000A2AF3 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		4FCA959825B5787C000A2AF3 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		4FCA95A425B583EE000A2AF3 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		4FCA95AC25B5855B000A2AF3 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralController.swift; sourceTree = "<group>"; };
 		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
 		4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E2APITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD5DF9925AD1A5500E83E26 /* WebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTests.swift; sourceTree = "<group>"; };
@@ -491,6 +497,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4FCA95A325B58341000A2AF3 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */,
+				4FCA95A425B583EE000A2AF3 /* Favorite.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		4FD5DF9825AD1A5500E83E26 /* E2APITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +522,7 @@
 			children = (
 				4FED88FE25ADB6D60045969A /* PropertyTableViewCell.swift */,
 				4FCA958825B55925000A2AF3 /* FormTableViewCell.swift */,
+				4FCA95AC25B5855B000A2AF3 /* FavoriteTableViewCell.swift */,
 			);
 			path = "UI Cells";
 			sourceTree = "<group>";
@@ -516,7 +532,8 @@
 			children = (
 				4F963EFA259DDA1B001E9829 /* LoginViewController.swift */,
 				4FC3F28925AB995B0039B94C /* HomeViewController.swift */,
-				4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */,
+				4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */,
+				4FCA95A325B58341000A2AF3 /* Favorite */,
 				4FCA959725B57867000A2AF3 /* Settings */,
 				4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */,
 				4FCA953225B27F53000A2AF3 /* QRViewController.swift */,
@@ -874,6 +891,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCA95B225B58BC0000A2AF3 /* ReferralController.swift in Sources */,
 				4FCA953825B27FC6000A2AF3 /* PasteboardLabel.swift in Sources */,
 				4FC3F27725AB08550039B94C /* UITextField+Extensions.swift in Sources */,
 				4FCA950625B267C4000A2AF3 /* AVMetadataObject+QRCode.swift in Sources */,
@@ -893,6 +911,7 @@
 				4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */,
 				4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */,
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
+				4FCA95AD25B5855B000A2AF3 /* FavoriteTableViewCell.swift in Sources */,
 				4FCA954225B27FFA000A2AF3 /* UIView+RecognizerBlock.swift in Sources */,
 				4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */,
 				4FCA94AC25B0D0D0000A2AF3 /* ProfileHeaderView.swift in Sources */,
@@ -917,6 +936,7 @@
 				4FED890D25ADB7DD0045969A /* FavoritesViewController.swift in Sources */,
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
 				4FCA959925B5787C000A2AF3 /* SettingsManager.swift in Sources */,
+				4FCA95A525B583EE000A2AF3 /* Favorite.swift in Sources */,
 				4FCA94D925B24F4A000A2AF3 /* CIColor+QRCode.swift in Sources */,
 				4F54FE1525AEC175000C6D3B /* Font.swift in Sources */,
 				4FC3F26825AAD7D40039B94C /* UILabel+Extensions.swift in Sources */,

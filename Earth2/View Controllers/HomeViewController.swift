@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import E2API
-import LinkPresentation
 
 class HomeViewController: UIViewController {
 
@@ -44,8 +43,6 @@ class HomeViewController: UIViewController {
 
     fileprivate let propertyApi = PropertyApi()
     fileprivate var properties = [Property]()
-
-    fileprivate var qrImageURL: URL?
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
@@ -124,23 +121,11 @@ class HomeViewController: UIViewController {
     }
 
     @objc fileprivate func didPressReferralButton() {
+        guard let user = APIServices.shared.myUser else { return }
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
-        DispatchQueue.main.async {
-            guard let user = APIServices.shared.myUser, let qrImage = user.qrImage else { return }
-            guard let imageURL = qrImage.save(with: user.referralCode) else { return }
-
-            self.qrImageURL = imageURL
-
-            // Copy code as text or image
-            let copyStringActivity = CopyItemActivity(with: .copyCode)
-            let copyImageActivity = CopyItemActivity(with: .copyImage)
-
-            let activityVC = UIActivityViewController(activityItems: [self], applicationActivities: [copyStringActivity, copyImageActivity])
-            activityVC.excludedActivityTypes = [.assignToContact, .addToReadingList, .openInIBooks, .markupAsPDF, .copyToPasteboard]
-            activityVC.overrideUserInterfaceStyle = .dark
-            topMostVC.present(activityVC, animated: true)
-        }
+        let controller = ReferralController(user: user)
+        controller.showActivityController(topMostVC)
     }
 
     @objc fileprivate func didPressSettingsButton() {
@@ -194,26 +179,5 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerView.intrinsicContentSize.height
-    }
-}
-
-extension HomeViewController: UIActivityItemSource {
-
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return UIImage()
-    }
-
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        return nil
-    }
-
-    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        guard let user = APIServices.shared.myUser else { return nil }
-
-        let metadata = LPLinkMetadata()
-        metadata.title = user.referralCode
-        metadata.originalURL = qrImageURL // determines the Preview Subtitle
-        metadata.imageProvider = NSItemProvider.init(contentsOf: qrImageURL)
-        return metadata
     }
 }

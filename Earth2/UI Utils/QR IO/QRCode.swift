@@ -16,8 +16,8 @@ public struct QRCode {
 
     static func image(with string: String, color: UIColor = .black, backgroundColor: UIColor = .white, size: CGSize) -> UIImage? {
         guard var qr = QRCode(with: string) else { return nil }
-        qr.color = color.ciColor
-        qr.backgroundColor = backgroundColor.ciColor
+        qr.color = CIColor(color: color)
+        qr.backgroundColor = CIColor(color: backgroundColor)
         qr.size = size
         return qr.image
     }
