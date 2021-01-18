@@ -194,11 +194,11 @@ extension QRViewController: PanModalPresentable {
     }
 
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(view.frame.width)
+        return .contentHeight(view.bounds.width)
     }
 
     var longFormHeight: PanModalHeight {
-        return .contentHeight(view.frame.width)
+        return .contentHeight(view.bounds.width)
     }
 
     var panModalBackgroundColor: UIColor {

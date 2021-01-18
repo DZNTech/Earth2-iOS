@@ -212,7 +212,7 @@ class ProfileHeaderView: UIView {
         addSubview(separatorLine)
         separatorLine.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
-            $0.height.equalTo(1)
+            $0.height.equalTo(0.5)
         }
 
         statusLabel.text = "Last Update 02-01-2021"

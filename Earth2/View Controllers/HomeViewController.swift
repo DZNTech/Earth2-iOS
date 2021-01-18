@@ -117,7 +117,10 @@ class HomeViewController: UIViewController {
     }
 
     @objc fileprivate func didPressFavoriteButton() {
-        print("didPressFavoriteButton!")
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
+
+        let vc = FavoritesViewController()
+        topMostVC.presentPanModal(vc)
     }
 
     @objc fileprivate func didPressReferralButton() {

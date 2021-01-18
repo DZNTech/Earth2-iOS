@@ -71,6 +71,7 @@
 		4FCA956925B2EC54000A2AF3 /* UIImage+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA956825B2EC54000A2AF3 /* UIImage+Save.swift */; };
 		4FCA957425B40683000A2AF3 /* CopyItemActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA957325B40683000A2AF3 /* CopyItemActivity.swift */; };
 		4FCA957925B41674000A2AF3 /* UIActivityViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA957825B41674000A2AF3 /* UIActivityViewController+Extensions.swift */; };
+		4FCA958125B54DF7000A2AF3 /* DarkModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */; };
 		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
 		4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF9925AD1A5500E83E26 /* WebTests.swift */; };
 		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
@@ -199,6 +200,7 @@
 		4FCA956825B2EC54000A2AF3 /* UIImage+Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Save.swift"; sourceTree = "<group>"; };
 		4FCA957325B40683000A2AF3 /* CopyItemActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyItemActivity.swift; sourceTree = "<group>"; };
 		4FCA957825B41674000A2AF3 /* UIActivityViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityViewController+Extensions.swift"; sourceTree = "<group>"; };
+		4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModalViewController.swift; sourceTree = "<group>"; };
 		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
 		4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E2APITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD5DF9925AD1A5500E83E26 /* WebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTests.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				4FCA953225B27F53000A2AF3 /* QRViewController.swift */,
 				4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */,
 				4FED891125ADB8070045969A /* SettingsViewController.swift */,
+				4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */,
 				4FED891F25ADBE100045969A /* WebViewController.swift */,
 			);
 			path = "View Controllers";
@@ -857,6 +860,7 @@
 				4FCA956925B2EC54000A2AF3 /* UIImage+Save.swift in Sources */,
 				4FC3F1FC25AA676E0039B94C /* GalaxyView.swift in Sources */,
 				4FCA94A725B0CA9F000A2AF3 /* StringConstants.swift in Sources */,
+				4FCA958125B54DF7000A2AF3 /* DarkModalViewController.swift in Sources */,
 				4FCA953D25B27FDC000A2AF3 /* TextCopiable.swift in Sources */,
 				4FED88FF25ADB6D60045969A /* PropertyTableViewCell.swift in Sources */,
 				4FCA94B125B18D44000A2AF3 /* CustomButton.swift in Sources */,

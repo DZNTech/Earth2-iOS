@@ -9,9 +9,8 @@
 import UIKit
 import SnapKit
 import E2API
-import PanModal
 
-class FavoritesViewController: UITabBarController {
+class FavoritesViewController: DarkModalViewController {
 
     // MARK: - Public Variables
 
@@ -33,47 +32,9 @@ class FavoritesViewController: UITabBarController {
         super.viewDidAppear(animated)
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
     // MARK: - Layout
 
     fileprivate func setupLayout() {
-        view.backgroundColor = Color.white
-
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(hex: "222225")
-        view.addSubview(backgroundView)
-        backgroundView.snp.makeConstraints {
-            $0.leading.top.trailing.bottom.equalToSuperview()
-        }
-    }
-}
-
-extension FavoritesViewController: PanModalPresentable {
-
-    var panScrollable: UIScrollView? {
-        return nil
-    }
-
-    var shortFormHeight: PanModalHeight {
-        return .contentHeight(view.frame.width)
-    }
-
-    var longFormHeight: PanModalHeight {
-        return .contentHeight(view.frame.width)
-    }
-
-    var panModalBackgroundColor: UIColor {
-        return UIColor(white: 0, alpha: 0.2)
-    }
-
-    var dragIndicatorBackgroundColor: UIColor {
-        return Color.gray300.withAlphaComponent(0.7)
+        title = "Favorites"
     }
 }
