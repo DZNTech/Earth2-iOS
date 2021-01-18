@@ -49,6 +49,12 @@ class SettingsViewController: DarkModalViewController {
         tableView.delegate = self
         tableView.register(cellType: FormTableViewCell.self)
     }
+
+    // MARK: - Actions
+
+    @objc fileprivate func didSwitchStaySignedIn() {
+        SettingsManager.setShouldSaveCredentials(!SettingsManager.shouldSaveCredentials())
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate {
@@ -96,6 +102,8 @@ extension SettingsViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = "\(Bundle.main.releaseDescriptionPretty)"
         } else if row == .staySignedIn {
             cell.accessory = .switch
+            cell.switch.isOn = SettingsManager.shouldSaveCredentials()
+            cell.switch.addTarget(self, action: #selector(didSwitchStaySignedIn), for: .valueChanged)
         } else if row == .logout {
             cell.textLabel?.textColor = Color.red
             cell.textLabel?.textAlignment = .center

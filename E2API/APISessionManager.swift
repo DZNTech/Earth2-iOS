@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import Valet
 
-class APISessionManager {
+public class APISessionManager {
 
     // MARK: - Session
 

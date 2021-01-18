@@ -34,7 +34,6 @@ class FormTableViewCell: UITableViewCell {
     lazy var `switch`: UISwitch = {
         let view = UISwitch()
         view.onTintColor = Color.green
-        view.isOn = true
         return view
     }()
 

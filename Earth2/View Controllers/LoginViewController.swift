@@ -127,6 +127,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
+
+        // Invalidate session if it should not be resumed
+        if APISessionManager.hasValidSession() && !SettingsManager.shouldSaveCredentials() {
+            APISessionManager.invalidateSession()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
