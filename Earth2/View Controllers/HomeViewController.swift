@@ -106,7 +106,7 @@ class HomeViewController: UIViewController {
 
         headerView.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
         headerView.referralButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
-        headerView.settingsButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
+        headerView.settingsButton.addTarget(self, action: #selector(didPressSettingsButton), for: .touchUpInside)
 
         propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
@@ -141,7 +141,10 @@ class HomeViewController: UIViewController {
     }
 
     @objc fileprivate func didPressSettingsButton() {
-        print("didPressSettingsButton!")
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
+
+        let vc = SettingsViewController()
+        topMostVC.presentPanModal(vc)
     }
 }
 

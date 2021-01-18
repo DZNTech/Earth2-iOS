@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  FavoritesViewController.swift
 //  Earth2
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-12.
@@ -11,7 +11,7 @@ import SnapKit
 import E2API
 import PanModal
 
-class SettingsViewController: UITabBarController {
+class FavoritesViewController: UITabBarController {
 
     // MARK: - Public Variables
 
@@ -55,7 +55,7 @@ class SettingsViewController: UITabBarController {
     }
 }
 
-extension SettingsViewController: PanModalPresentable {
+extension FavoritesViewController: PanModalPresentable {
 
     var panScrollable: UIScrollView? {
         return nil

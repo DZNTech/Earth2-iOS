@@ -76,7 +76,7 @@
 		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
 		4FED88F625ADB2E20045969A /* UITableViewCell+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED88F525ADB2E20045969A /* UITableViewCell+Reuse.swift */; };
 		4FED88FF25ADB6D60045969A /* PropertyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED88FE25ADB6D60045969A /* PropertyTableViewCell.swift */; };
-		4FED890D25ADB7DD0045969A /* CodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED890C25ADB7DD0045969A /* CodesViewController.swift */; };
+		4FED890D25ADB7DD0045969A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */; };
 		4FED891225ADB8070045969A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED891125ADB8070045969A /* SettingsViewController.swift */; };
 		4FED892025ADBE100045969A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED891F25ADBE100045969A /* WebViewController.swift */; };
 		4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED892425ADBE4A0045969A /* UIViewController+Lookup.swift */; };
@@ -205,7 +205,7 @@
 		4FD5DF9B25AD1A5500E83E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FED88F525ADB2E20045969A /* UITableViewCell+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reuse.swift"; sourceTree = "<group>"; };
 		4FED88FE25ADB6D60045969A /* PropertyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTableViewCell.swift; sourceTree = "<group>"; };
-		4FED890C25ADB7DD0045969A /* CodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesViewController.swift; sourceTree = "<group>"; };
+		4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		4FED891125ADB8070045969A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4FED891F25ADBE100045969A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4FED892425ADBE4A0045969A /* UIViewController+Lookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Lookup.swift"; sourceTree = "<group>"; };
@@ -495,7 +495,7 @@
 				4F963EFA259DDA1B001E9829 /* LoginViewController.swift */,
 				4FC3F28925AB995B0039B94C /* HomeViewController.swift */,
 				4FCA953225B27F53000A2AF3 /* QRViewController.swift */,
-				4FED890C25ADB7DD0045969A /* CodesViewController.swift */,
+				4FED890C25ADB7DD0045969A /* FavoritesViewController.swift */,
 				4FED891125ADB8070045969A /* SettingsViewController.swift */,
 				4FED891F25ADBE100045969A /* WebViewController.swift */,
 			);
@@ -887,7 +887,7 @@
 				4FCA94DC25B24F4A000A2AF3 /* CIImage+QRCode.swift in Sources */,
 				4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */,
 				4FCA955C25B2DB47000A2AF3 /* User+UI.swift in Sources */,
-				4FED890D25ADB7DD0045969A /* CodesViewController.swift in Sources */,
+				4FED890D25ADB7DD0045969A /* FavoritesViewController.swift in Sources */,
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
 				4FCA94D925B24F4A000A2AF3 /* CIColor+QRCode.swift in Sources */,
 				4F54FE1525AEC175000C6D3B /* Font.swift in Sources */,
