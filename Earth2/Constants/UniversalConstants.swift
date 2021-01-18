@@ -10,6 +10,6 @@ import UIKit
 
 enum UniversalConstants {
     static let padding: CGFloat = 16
-    static let cellHeight: CGFloat = 90
-    static let cellAvatarHeight: CGFloat = 50
+    static let cellHeight: CGFloat = 50
+    static let cellThumbHeight: CGFloat = 50
 }

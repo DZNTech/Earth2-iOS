@@ -16,6 +16,15 @@ class FavoritesViewController: DarkModalViewController {
 
     // MARK: - Private Variables
 
+    lazy var addButton: CustomButton = {
+        let button = CustomButton(type: .system)
+        button.setImage(UIImage(named: "icn_navbar_add"), for: .normal)
+        button.tintColor = Color.gray100
+        button.hitTestEdgeInsets = UIEdgeInsets(-20, -20, -20, -10)
+        button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
+        return button
+    }()
+
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
     }
@@ -36,5 +45,17 @@ class FavoritesViewController: DarkModalViewController {
 
     fileprivate func setupLayout() {
         title = "Favorites"
+
+        navigationBar.addSubview(addButton)
+        addButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(Constants.padding)
+        }
+    }
+
+    // MARK: - Actions
+
+    @objc fileprivate func didTapAddButton() {
+        print("didTapAddButton")
     }
 }

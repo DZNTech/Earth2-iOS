@@ -82,7 +82,7 @@ class PropertyTableViewCell: UITableViewCell {
 
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
-        static let imageHeight: CGFloat = UniversalConstants.cellAvatarHeight
+        static let imageHeight: CGFloat = UniversalConstants.cellThumbHeight
     }
 
     // MARK: - Initializatiom
