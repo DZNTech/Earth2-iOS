@@ -46,6 +46,10 @@ class FavoritesViewController: DarkModalViewController {
     fileprivate func setupLayout() {
         title = "Favorites"
 
+//        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.register(cellType: FormTableViewCell.self)
+
         navigationBar.addSubview(addButton)
         addButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()

@@ -27,6 +27,6 @@ public extension Bundle {
     }
 
     var releaseDescriptionPretty: String {
-        return "\(applicationName) Companion v\(releaseVersionNumber) (#\(buildVersionNumber))"
+        return "v\(releaseVersionNumber) (#\(buildVersionNumber))"
     }
 }

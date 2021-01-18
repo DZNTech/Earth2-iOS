@@ -21,26 +21,26 @@ class Appearance {
 fileprivate extension Appearance {
 
     static func configureViewAppearance() {
-
+        //
     }
 
     static func configureNavigationBarAppearance() {
-
+        //
     }
 
     static func configureTabBarAppearance() {
-
+        //
     }
 
     static func configureToolBarAppearance() {
-
+        //
     }
 
     static func configureTabBarItemAppearance() {
-        
+        //
     }
 
     static func configureActivityIndicatorAppearance() {
-
+        //
     }
 }

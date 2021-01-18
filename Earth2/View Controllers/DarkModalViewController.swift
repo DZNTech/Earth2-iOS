@@ -14,6 +14,15 @@ class DarkModalViewController: UIViewController {
 
     // MARK: - Public Variables
 
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.tableFooterView = UIView()
+        tableView.separatorColor = Color.gray300.withAlphaComponent(0.4)
+        tableView.separatorInset = .zero
+        tableView.backgroundColor = Color.clear
+        return tableView
+    }()
+
     lazy var navigationBar: UIView = {
         let navigationBar = UIView()
         navigationBar.backgroundColor = Color.clear
@@ -24,6 +33,11 @@ class DarkModalViewController: UIViewController {
         separatorLine.snp.makeConstraints {
             $0.leading.bottom.trailing.equalToSuperview()
             $0.height.equalTo(0.5)
+        }
+
+        navigationBar.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
         }
 
         return navigationBar
@@ -40,7 +54,6 @@ class DarkModalViewController: UIViewController {
 
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "titleLabel"
         label.font = Font.font(ofSize: 18, weight: .medium)
         label.textColor = Color.white
         label.textAlignment = .center
@@ -89,9 +102,10 @@ class DarkModalViewController: UIViewController {
             $0.height.equalTo(54)
         }
 
-        navigationBar.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
@@ -99,7 +113,7 @@ class DarkModalViewController: UIViewController {
 extension DarkModalViewController: PanModalPresentable {
 
     var panScrollable: UIScrollView? {
-        return nil
+        return tableView
     }
 
     var shortFormHeight: PanModalHeight {

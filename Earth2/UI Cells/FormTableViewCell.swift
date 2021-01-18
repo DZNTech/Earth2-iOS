@@ -8,9 +8,35 @@
 
 import UIKit
 
+enum FormAccessory {
+    case chevron, `switch`, none
+}
+
 class FormTableViewCell: UITableViewCell {
 
     // MARK: - Public Variables
+
+    var accessory: FormAccessory = .none {
+        didSet {
+            if accessory == .chevron {
+                let image = UIImage(named: "icn_chevron")?.withRenderingMode(.alwaysTemplate)
+                let imageView = UIImageView(image: image)
+                imageView.tintColor = Color.gray200
+                accessoryView = imageView
+            } else if accessory == .switch {
+                accessoryView = self.switch
+            } else {
+                accessoryView = nil
+            }
+        }
+    }
+
+    lazy var `switch`: UISwitch = {
+        let view = UISwitch()
+        view.onTintColor = Color.green
+        view.isOn = true
+        return view
+    }()
 
     var isLoading: Bool = false {
         didSet {
@@ -58,8 +84,10 @@ class FormTableViewCell: UITableViewCell {
         self.selectedBackgroundView = selectedBackgroundView
 
         textLabel?.font = Font.font(ofSize: 17, weight: .medium)
+        textLabel?.textColor = Color.white
 
-        accessoryType = .disclosureIndicator
+        detailTextLabel?.font = Font.font(ofSize: 17, weight: .medium)
+        detailTextLabel?.textColor = Color.gray200
     }
 }
 

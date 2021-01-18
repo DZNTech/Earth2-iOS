@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import E2API
+import PanModal
 
 class SettingsViewController: DarkModalViewController {
 
@@ -16,22 +17,10 @@ class SettingsViewController: DarkModalViewController {
 
     // MARK: - Private Variables
 
-    fileprivate lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = Color.gray300.withAlphaComponent(0.4)
-        tableView.separatorInset = .zero
-        tableView.backgroundColor = Color.clear
-        tableView.register(cellType: FormTableViewCell.self)
-        return tableView
-    }()
-
     fileprivate let sections: [Section: [Row]] = [
         .earth2: [.goToEarth2],
         .about: [.about, .feedback],
-        .auth: [.stayLoggedIn, .logout]
+        .auth: [.staySignedIn, .logout]
     ]
 
     fileprivate enum Constants {
@@ -56,11 +45,9 @@ class SettingsViewController: DarkModalViewController {
     fileprivate func setupLayout() {
         title = "Settings"
 
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.top.equalTo(navigationBar.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(cellType: FormTableViewCell.self)
     }
 }
 
@@ -70,6 +57,9 @@ extension SettingsViewController: UITableViewDelegate {
         guard let section = Section(rawValue: indexPath.section), let row = sections[section]?[indexPath.row] else { return }
 
         //
+        if row == .goToEarth2 {
+            WebViewController.open(.home)
+        }
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -98,15 +88,18 @@ extension SettingsViewController: UITableViewDataSource {
         let row = rows[indexPath.row]
 
         cell.textLabel?.text = row.title
-        cell.textLabel?.textColor = Color.white
         cell.detailTextLabel?.text = nil
         cell.imageView?.image = UIImage.init(named: row.imageName)
-        cell.accessoryType = .disclosureIndicator
+        cell.accessory = .chevron
 
-        if row == .logout {
+        if row == .feedback {
+            cell.detailTextLabel?.text = "\(Bundle.main.releaseDescriptionPretty)"
+        } else if row == .staySignedIn {
+            cell.accessory = .switch
+        } else if row == .logout {
             cell.textLabel?.textColor = Color.red
             cell.textLabel?.textAlignment = .center
-            cell.accessoryType = .none
+            cell.accessory = .none
         }
         
         return cell
@@ -115,13 +108,11 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let section = Section(rawValue: section) else { return nil }
 
-        if section == .about {
-            return Bundle.main.releaseDescriptionPretty
-        } else if section == .auth {
+        if section == .auth {
             return StringConstants.nonaffiliateLong
-        } else {
-            return nil
         }
+
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -148,7 +139,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
     case about
     case feedback
 
-    case stayLoggedIn
+    case staySignedIn
     case logout
 
     var title: String {
@@ -159,7 +150,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
         case .about:                return "About This App"
         case .feedback:             return "Submit Feedback"
 
-        case .stayLoggedIn:         return "Stay logged In"
+        case .staySignedIn:         return "Stay Signed In"
         case .logout:               return "Logout"
         }
     }
@@ -173,7 +164,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
         case .about:                return "icn_settings_"
         case .feedback:             return "icn_settings_"
 
-        case .stayLoggedIn:         return "icn_settings_"
+        case .staySignedIn:         return "icn_settings_"
         case .logout:               return "icn_settings_"
         }
     }
