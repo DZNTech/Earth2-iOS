@@ -43,6 +43,8 @@ class DarkModalViewController: UIViewController {
         return navigationBar
     }()
 
+    var presentationState: PanModalPresentationController.PresentationState = .shortForm
+
     override var title: String? {
         didSet {
             titleLabel.text = title?.uppercased()
@@ -108,6 +110,13 @@ class DarkModalViewController: UIViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
+
+    // MARK: - Actions
+
+    func willTransitionToPresentationState(_ state: PanModalPresentationController.PresentationState) {
+        presentationState = state
+        tableView.reloadEmptyDataSet()
+    }
 }
 
 extension DarkModalViewController: PanModalPresentable {
@@ -130,5 +139,9 @@ extension DarkModalViewController: PanModalPresentable {
 
     var dragIndicatorBackgroundColor: UIColor {
         return Color.gray300.withAlphaComponent(0.7)
+    }
+
+    func willTransition(to state: PanModalPresentationController.PresentationState) {
+        willTransitionToPresentationState(state)
     }
 }
