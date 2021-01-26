@@ -73,29 +73,35 @@ class LoginViewController: UIViewController {
         return textField
     }()
 
-    fileprivate lazy var whatIsButton: UIButton = {
+    fileprivate lazy var leftButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         button.setTitleColor(Color.lightBlue, for: .normal)
-        button.setTitle("What is Earth 2?", for: .normal)
-        button.addTarget(self, action:#selector(didPressWhatIsButton), for: .touchUpInside)
+        button.setTitle("About This App", for: .normal)
+        button.addTarget(self, action:#selector(didPressLeftButton), for: .touchUpInside)
         return button
     }()
 
-    fileprivate lazy var createAccountButton: UIButton = {
+    fileprivate lazy var rightButton: UIButton = {
         let button = UIButton(type: .system)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.setTitleColor(Color.lightBlue, for: .normal)
-        button.setTitle("Create an account", for: .normal)
-        button.addTarget(self, action:#selector(didPressCreateAccountButton), for: .touchUpInside)
+        button.setTitle("LOGIN", for: .normal)
+        button.addTarget(self, action:#selector(didPressRightButton), for: .touchUpInside)
         return button
     }()
-    
+
     fileprivate lazy var loadingBanner: LoadingBanner = {
         let view = LoadingBanner()
         view.tintColor = Color.white.withAlphaComponent(0.75)
         return view
     }()
+
+    fileprivate var firstResponderTextField: UITextField? {
+        guard !emailField.isFirstResponder else { return emailField }
+        guard !passwordField.isFirstResponder else { return passwordField }
+        return nil
+    }
 
     // IB
     @IBOutlet fileprivate var logoView: UIView!
@@ -243,15 +249,15 @@ class LoginViewController: UIViewController {
             $0.height.greaterThanOrEqualTo(40)
         }
 
-        loginFormView.addSubview(whatIsButton)
-        whatIsButton.snp.makeConstraints {
+        loginFormView.addSubview(rightButton)
+        rightButton.snp.makeConstraints {
             $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
             $0.trailing.equalToSuperview().offset(-Constants.padding)
             $0.bottom.equalToSuperview().offset(-Constants.padding)
         }
 
-        loginFormView.addSubview(createAccountButton)
-        createAccountButton.snp.makeConstraints {
+        loginFormView.addSubview(leftButton)
+        leftButton.snp.makeConstraints {
             $0.top.equalTo(passwordField.snp.bottom).offset(Constants.padding*2)
             $0.leading.equalToSuperview().offset(Constants.padding)
             $0.bottom.equalToSuperview().offset(-Constants.padding)
@@ -279,7 +285,7 @@ class LoginViewController: UIViewController {
         loginFormView.alpha = enable ? 1 : 0.75
         emailField.alpha = enable ? 1 : 0.5
         passwordField.alpha = enable ? 1 : 0.5
-        createAccountButton.alpha = enable ? 1 : 0.5
+        leftButton.alpha = enable ? 1 : 0.5
     }
 
     fileprivate func cleanLoginForm() {
@@ -308,41 +314,6 @@ class LoginViewController: UIViewController {
 
     fileprivate func handleReturnKey(for textField: UITextField) {
 
-        func validateEmail() -> Bool {
-            guard let email = emailField.text else { shakelogoImageView(); return false }
-            guard Validator.isEmail().apply(email) else { shakelogoImageView(); return false }
-            return true
-        }
-
-        func validatePassword() -> Bool {
-            guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakelogoImageView(); return false }
-            return true
-        }
-
-        func prepareToSubmit() {
-            guard let email = emailField.text, let password = passwordField.text else { return }
-
-            textField.resignFirstResponder()
-            loadingBanner.setLoading(true)
-            enableLoginForm(false)
-
-            authApi.login(email, password: password) { [weak self] (user, error) in
-                if let user = user {
-                    self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
-                    self?.presentHome()
-                    self?.cleanLoginForm()
-                } else {
-                    self?.enableLoginForm(true)
-
-                    if let error = error {
-                        self?.loadingBanner.setError(error)
-                    } else {
-                        self?.loadingBanner.setLoading(false)
-                    }
-                }
-            }
-        }
-
         if textField == emailField, validateEmail() {
             if validatePassword() {
                 prepareToSubmit()
@@ -359,15 +330,56 @@ class LoginViewController: UIViewController {
         }
     }
 
-    @objc func didPressWhatIsButton() {
-        WebViewController.open(.about)
+    fileprivate func validateEmail() -> Bool {
+        guard let email = emailField.text else { shakelogoImageView(); return false }
+        guard Validator.isEmail().apply(email) else { shakelogoImageView(); return false }
+        return true
     }
 
-    @objc func didPressCreateAccountButton() {
-        WebViewController.open(.login)
+    fileprivate func validatePassword() -> Bool {
+        guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakelogoImageView(); return false }
+        return true
     }
 
-    @objc func shakelogoImageView() {
+    fileprivate func validateTextFields() -> Bool {
+        guard validateEmail(), validatePassword() else { return false }
+        return true
+    }
+
+    fileprivate func prepareToSubmit() {
+        guard let email = emailField.text, let password = passwordField.text else { return }
+
+        firstResponderTextField?.resignFirstResponder()
+        loadingBanner.setLoading(true)
+        enableLoginForm(false)
+
+        authApi.login(email, password: password) { [weak self] (user, error) in
+            if let user = user {
+                self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
+                self?.presentHome()
+                self?.cleanLoginForm()
+            } else {
+                self?.enableLoginForm(true)
+
+                if let error = error {
+                    self?.loadingBanner.setError(error)
+                } else {
+                    self?.loadingBanner.setLoading(false)
+                }
+            }
+        }
+    }
+
+    @objc fileprivate func didPressLeftButton() {
+        //
+    }
+
+    @objc fileprivate func didPressRightButton() {
+        guard validateTextFields() else { return }
+        prepareToSubmit()
+    }
+
+    @objc fileprivate func shakelogoImageView() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.4
