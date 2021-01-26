@@ -178,8 +178,8 @@ class LoginViewController: UIViewController {
         let viewTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
         view.addGestureRecognizer(viewTapGesture)
 
-        galaxyView.topColor = Color.blue
-        galaxyView.bottomColor = Color.darkBlue
+        galaxyView.topColor = Color.darkBlue
+        galaxyView.bottomColor = Color.blue
 
         logoImageView.isUserInteractionEnabled = true
         logoImageView.addGlow(with: UIColor(hex: "00b0f4"), radius: 30, opacity: 0.25)
