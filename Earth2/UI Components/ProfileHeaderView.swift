@@ -217,8 +217,8 @@ class ProfileHeaderView: UIView {
 
         statusLabel.text = "Last Update 02-01-2021"
 
-        legendLabel1.text = "NET WORTH (\(StringConstants.currencySymbol))"
-        legendLabel2.text = "BALANCE (\(StringConstants.currencySymbol))"
+        legendLabel1.text = "NET WORTH (\(StringConstants.EDSymbol))"
+        legendLabel2.text = "BALANCE (\(StringConstants.USDSymbol))"
     }
 }
 
