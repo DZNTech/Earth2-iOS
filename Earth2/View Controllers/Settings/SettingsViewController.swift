@@ -171,10 +171,10 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
 
     var title: String {
         switch self {
-        case .goToEarth2:           return "Go To Earth2.io"
+        case .goToEarth2:           return "Go To \(Web.displayUrl(.home))"
         case .FAQEarth2:            return "Earth2 FAQ"
 
-        case .about:                return "About This App"
+        case .about:                return "About \(Bundle.main.applicationLongName)"
         case .feedback:             return "Submit Feedback"
 
         case .staySignedIn:         return "Stay Signed In"

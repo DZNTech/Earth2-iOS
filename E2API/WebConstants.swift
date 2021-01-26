@@ -30,4 +30,9 @@ public class Web {
 
         return newUrl
     }
+
+    public static func displayUrl(_ webConstant: WebConstant) -> String {
+        let url = URL(string: webConstant.rawValue)
+        return url?.host ?? webConstant.rawValue
+    }
 }

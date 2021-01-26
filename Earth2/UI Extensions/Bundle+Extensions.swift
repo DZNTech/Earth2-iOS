@@ -18,6 +18,10 @@ public extension Bundle {
         return infoDictionary!["CFBundleDisplayName"] as! String
     }
 
+    var applicationLongName: String {
+        return infoDictionary!["CFBundleDisplayLongName"] as! String
+    }
+
     var releaseVersionNumber: String {
         return infoDictionary!["CFBundleShortVersionString"] as! String
     }
