@@ -111,6 +111,7 @@ class LoginViewController: UIViewController {
 
     fileprivate var isKeyboardVisible: Bool = false
     fileprivate var firstTimeLoading: Bool = true
+    fileprivate let transitionHandler = TransitionHandler()
 
     // API
     fileprivate let authApi = AuthApi()
@@ -154,6 +155,10 @@ class LoginViewController: UIViewController {
         }
 
         firstTimeLoading = false
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -284,8 +289,8 @@ class LoginViewController: UIViewController {
 
     fileprivate func presentHome(animated: Bool = true) {
         let vc = HomeViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate =  transitionHandler
         present(vc, animated: animated, completion: nil)
     }
 
