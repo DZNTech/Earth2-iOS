@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
 
     static func topMostViewController() -> UIViewController? {
-        guard let window = UIApplication.shared.keyWindow, let rootViewController = window.rootViewController else {
+        guard let rootViewController = rootViewController() else {
             return nil
         }
 
@@ -23,5 +23,11 @@ extension UIViewController {
 
         return topController
     }
+
+    static func rootViewController() -> UIViewController? {
+        guard let window = UIApplication.shared.keyWindow else { return nil }
+        return window.rootViewController
+    }
+
 
 }

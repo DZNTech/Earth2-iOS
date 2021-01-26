@@ -29,15 +29,17 @@ public class APIServices {
             return nil
         }
         set { }
-
-//        didSet {
-//            //
-//        }
     }
 
     // MARK: - Initialization
 
     public init() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
+    }
+
+    // MARK: - Invalidation
+
+    public func invalidate() {
+        myUser = nil
     }
 }

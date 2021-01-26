@@ -48,7 +48,6 @@ class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
-        textField.text = APIServices.shared.credential.email
         textField.setPlaceholder("Email", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -69,7 +68,6 @@ class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.textColor = Color.white.withAlphaComponent(0.9)
         textField.backgroundColor = Color.darkBlue.withAlphaComponent(0.9)
-        textField.text = APIServices.shared.credential.password
         textField.setPlaceholder("Password", with: Color.white.withAlphaComponent(0.3))
         textField.setClearButton(color: Color.white.withAlphaComponent(0.3))
         return textField
@@ -134,18 +132,35 @@ class LoginViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        emailField.text = APIServices.shared.credential.email
+        passwordField.text = APIServices.shared.credential.password
+        loadingBanner.setMessage(StringConstants.nonaffiliate)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if true /* APIServices.shared.isLoggedIn */ {
+        if APIServices.shared.isLoggedIn {
             presentHome(animated: false)
-        } else if firstTimeLoading {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(2)) {
+        } else {
+            let delay =  DispatchTimeInterval.seconds(firstTimeLoading ? 2 : 0)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
                 self.emailField.becomeFirstResponder()
-                self.firstTimeLoading = false
             }
         }
+
+        firstTimeLoading = false
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        loadingBanner.setMessage(nil)
+        enableLoginForm(true)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -175,8 +190,6 @@ class LoginViewController: UIViewController {
 
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
-
-        loadingBanner.setMessage(StringConstants.nonaffiliate)
 
         view.addSubview(loadingBanner)
         loadingBanner.snp.makeConstraints {

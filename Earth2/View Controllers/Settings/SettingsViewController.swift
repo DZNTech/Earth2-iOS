@@ -55,6 +55,22 @@ class SettingsViewController: DarkModalViewController {
     @objc fileprivate func didSwitchStaySignedIn() {
         SettingsManager.setShouldSaveCredentials(!SettingsManager.shouldSaveCredentials())
     }
+
+    fileprivate func openWeb(_ web: WebConstant) {
+        WebViewController.open(web)
+    }
+
+    fileprivate func logout() {
+        ActionSheetUtil.presentDestructiveActionSheet(withTitle: "Are you sure you want to log out?", destructiveTitle: "Yes, log out", completion: { (action) in
+            guard let rootViewController = UIViewController.rootViewController() else { return }
+
+            APISessionManager.invalidateSession()
+
+            // dismisses the presented view and displays the login screen view instead
+            rootViewController.dismiss(animated: true)
+
+        }, cancel: nil)
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate {
@@ -63,9 +79,11 @@ extension SettingsViewController: UITableViewDelegate {
         guard let section = Section(rawValue: indexPath.section), let row = sections[section]?[indexPath.row] else { return }
 
         if row == .goToEarth2 {
-            WebViewController.open(.home)
+            openWeb(.home)
         } else if row == .FAQEarth2 {
-            WebViewController.open(.faq)
+            openWeb(.faq)
+        } else if row == .logout {
+            logout()
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
