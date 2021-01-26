@@ -50,11 +50,11 @@ fileprivate extension PropertyViewModel {
     }
 
     static func tileValueLabelString(for property: Property) -> String {
-        return "$\(property.tileValue) / tile"
+        return "\(StringConstants.currencySymbol)\(property.tileValue) / tile"
     }
 
     static func marketValueLabelString(for property: Property) -> String {
-        return "$\(property.marketValue)"
+        return "\(StringConstants.currencySymbol)\(property.marketValue)"
     }
 
     static func profitPctLabelString(for percentage: Float) -> String {

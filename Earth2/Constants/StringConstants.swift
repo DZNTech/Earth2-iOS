@@ -9,6 +9,7 @@
 import Foundation
 
 enum StringConstants {
+    static let currencySymbol = "E$"
     static let nonaffiliate = "Not affiliated or endorsed by to Earth 2."
     static let nonaffiliateLong = "Not affiliated, associated, authorized, endorsed by, or in any way officially connected with Earth 2."
 }
