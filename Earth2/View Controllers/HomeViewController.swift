@@ -56,6 +56,8 @@ class HomeViewController: UIViewController {
 
         setupLayout()
         loadContent()
+
+        print("\(self.description)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +115,8 @@ class HomeViewController: UIViewController {
         }
     }
 
+    // MARK: - Actions
+
     @objc fileprivate func didPressFavoriteButton() {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
@@ -133,6 +137,12 @@ class HomeViewController: UIViewController {
 
         let vc = SettingsViewController()
         topMostVC.presentPanModal(vc)
+    }
+
+    // MARK: - Deinitialization
+
+    deinit {
+        print("deinit \(self.description)")
     }
 }
 

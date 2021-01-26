@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
 
     fileprivate lazy var legendLabel: UILabel = {
         let label = UILabel()
-        label.text = "Login with earth2.io"
+        label.text = "Login with \(Web.displayUrl(.home))"
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = Color.white.withAlphaComponent(0.5)
         return label
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         button.setTitleColor(Color.lightBlue, for: .normal)
-        button.setTitle("About This App", for: .normal)
+        button.setTitle("About \(Bundle.main.applicationLongName)", for: .normal)
         button.addTarget(self, action:#selector(didPressLeftButton), for: .touchUpInside)
         return button
     }()
@@ -302,7 +302,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc func didTapView() {
+    @objc fileprivate func didTapView() {
         if emailField.isFirstResponder {
             emailField.resignFirstResponder()
         } else if passwordField.isFirstResponder {
@@ -389,7 +389,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         guard !isKeyboardVisible else { return }
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
@@ -428,7 +428,7 @@ class LoginViewController: UIViewController {
         isKeyboardVisible = true
     }
 
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc fileprivate func keyboardWillHide(_ notification: Notification) {
         guard isKeyboardVisible else { return }
 
         UIView.animate(withDuration: 0, // inherits the animation duration from the keyboard's
@@ -439,6 +439,12 @@ class LoginViewController: UIViewController {
                        completion: nil)
 
         isKeyboardVisible = false
+    }
+
+    // MARK: - Deinitialization
+
+    deinit {
+        print("deinit \(self.description)")
     }
 }
 
