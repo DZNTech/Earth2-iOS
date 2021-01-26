@@ -20,7 +20,7 @@ class UserTests: XCTestCase {
     }
 
     func testUsersMapping() {
-        guard let dict = JSONUtil.getLocalJSONObject(for: "users/login/") else {
+        guard let dict = JSONUtil.getLocalDictObject(for: "users/login/") else {
             XCTFail()
             return
         }

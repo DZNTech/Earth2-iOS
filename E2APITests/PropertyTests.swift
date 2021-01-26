@@ -20,7 +20,7 @@ class PropertyTests: XCTestCase {
     }
 
     func testPropertiesMapping() {
-        guard let dict = JSONUtil.getLocalJSONObjects(for: "users/properties/") else {
+        guard let dict = JSONUtil.getLocalDictObjects(for: "users/properties/") else {
             XCTFail()
             return
         }
@@ -33,8 +33,7 @@ class PropertyTests: XCTestCase {
         XCTAssertEqual(property?.countryCode, "BR")
 
         XCTAssertEqual(property?.tilesCount, 3)
-        XCTAssertEqual(property?.purchaseValue, 1.70)
+        XCTAssertEqual(property?.tileValue, 1.70)
         XCTAssertEqual(property?.marketValue, 5.09)
-        XCTAssertEqual(property?.profitValue, 3.39)
     }
 }

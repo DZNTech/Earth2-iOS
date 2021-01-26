@@ -35,8 +35,15 @@ public class AuthApi: AuthApiInterface {
 
         // local use
         guard !APIServices.shared.isLocal else {
-            guard let dict = JSONUtil.getLocalJSONObject(for: endpoint) else { return }
-            completion(User.init(JSON: dict), nil)
+            guard let json = JSONUtil.getLocalJSON(for: endpoint) else { return }
+            guard let dict = JSONUtil.getLocalDictObject(from: json) else { return }
+
+            let user = User.init(JSON: dict)
+
+            APIServices.shared.myUser = user
+            APISessionManager.handleSessionJSON(json)
+
+            completion(user, nil)
             return
         }
 

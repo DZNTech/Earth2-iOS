@@ -11,21 +11,28 @@ import SwiftyJSON
 
 public class JSONUtil {
 
-    public static func getLocalJSONObject(for endpoint: String) -> [String : Any]? {
+    public static func getLocalJSON(for endpoint: String) -> JSON? {
         let bundle = Bundle(for: JSONUtil.self)
         guard let path = bundle.path(forResource: endpoint.fileName(), ofType: "json") else { return nil }
         guard let jsonString = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) else { return nil }
+        return JSON(parseJSON: jsonString)
+    }
 
-        let json = JSON(parseJSON: jsonString)
+    public static func getLocalDictObject(for endpoint: String) -> [String : Any]? {
+        guard let json = getLocalJSON(for: endpoint) else { return nil }
         return json.dictionaryObject?[ParameterKey.data] as? [String : Any]
     }
 
-    public static func getLocalJSONObjects(for endpoint: String) -> [[String : Any]]? {
-        let bundle = Bundle(for: JSONUtil.self)
-        guard let path = bundle.path(forResource: endpoint.fileName(), ofType: "json") else { return nil }
-        guard let jsonString = try? String(contentsOfFile: path, encoding: String.Encoding.utf8) else { return nil }
+    public static func getLocalDictObject(from json: JSON) -> [String : Any]? {
+        return json.dictionaryObject?[ParameterKey.data] as? [String : Any]
+    }
 
-        let json = JSON(parseJSON: jsonString)
+    public static func getLocalDictObjects(for endpoint: String) -> [[String : Any]]? {
+        guard let json = getLocalJSON(for: endpoint) else { return nil }
+        return json.dictionaryObject?[ParameterKey.data] as? [[String : Any]]
+    }
+
+    public static func getLocalDictObjects(from json: JSON) -> [[String : Any]]? {
         return json.dictionaryObject?[ParameterKey.data] as? [[String : Any]]
     }
 }
