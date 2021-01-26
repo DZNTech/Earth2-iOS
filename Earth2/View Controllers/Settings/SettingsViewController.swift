@@ -62,9 +62,10 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let section = Section(rawValue: indexPath.section), let row = sections[section]?[indexPath.row] else { return }
 
-        //
         if row == .goToEarth2 {
             WebViewController.open(.home)
+        } else if row == .FAQEarth2 {
+            WebViewController.open(.faq)
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -142,7 +143,7 @@ fileprivate enum Section: Int, EnumTitle, CaseIterable {
 
 fileprivate enum Row: Int, EnumTitle, CaseIterable {
     case goToEarth2
-    case aboutEarth2
+    case FAQEarth2
 
     case about
     case feedback
@@ -153,7 +154,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
     var title: String {
         switch self {
         case .goToEarth2:           return "Go To Earth2.io"
-        case .aboutEarth2:          return "About Earth2"
+        case .FAQEarth2:            return "Earth2 FAQ"
 
         case .about:                return "About This App"
         case .feedback:             return "Submit Feedback"
@@ -167,7 +168,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
     var imageName: String {
         switch self {
         case .goToEarth2:           return "icn_settings_"
-        case .aboutEarth2:          return "icn_settings_"
+        case .FAQEarth2:          return "icn_settings_"
 
         case .about:                return "icn_settings_"
         case .feedback:             return "icn_settings_"
