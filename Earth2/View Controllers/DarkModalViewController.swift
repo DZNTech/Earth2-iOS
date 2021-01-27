@@ -126,7 +126,7 @@ extension DarkModalViewController: PanModalPresentable {
     }
 
     var shortFormHeight: PanModalHeight {
-        return .contentHeight(view.bounds.width)
+        return .contentHeight(view.bounds.height/2)
     }
 
     var longFormHeight: PanModalHeight {
