@@ -14,7 +14,7 @@ public class APIServices {
     public static let shared = APIServices()
     public let credential = APICredentials()
 
-    public var isLocal: Bool = true
+    public var isLocal: Bool = false
 
     public var isLoggedIn: Bool {
         get { return false }

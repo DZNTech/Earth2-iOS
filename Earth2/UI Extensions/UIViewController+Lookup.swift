@@ -29,5 +29,8 @@ extension UIViewController {
         return window.rootViewController
     }
 
+    static func statusBarHeight() -> CGFloat {
+        return UIApplication.shared.statusBarFrame.height
+    }
 
 }

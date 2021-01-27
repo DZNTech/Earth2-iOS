@@ -32,7 +32,7 @@ public class PropertyViewModel: Descriptable {
         self.tileValueLabel = PropertyViewModel.tileValueLabelString(for: property)
         self.marketValueLabel = PropertyViewModel.marketValueLabelString(for: property)
 
-        self.imageUrl = Web.convertMapBoxUrl(from: property.imageUrl, with: CGSize.init(square: 200))
+        self.imageUrl = Web.convertUrl(from: property.imageUrl, with: CGSize.init(square: 200))
     }
 }
 

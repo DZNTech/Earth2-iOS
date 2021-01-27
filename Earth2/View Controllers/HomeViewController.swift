@@ -8,11 +8,14 @@
 
 import UIKit
 import SnapKit
+import ShimmerSwift
 import E2API
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, Shimmable {
 
     // MARK: - Public Variables
+
+    var shimmeringView: ShimmeringView = defaultShimmeringView()
 
     // MARK: - Private Variables
 
@@ -101,6 +104,12 @@ class HomeViewController: UIViewController {
             $0.leading.trailing.top.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+
+        view.addSubview(shimmeringView)
+        shimmeringView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaInsets.top).offset(headerView.intrinsicContentSize.height+UIViewController.statusBarHeight())
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
 
     fileprivate func loadContent() {
@@ -116,9 +125,12 @@ class HomeViewController: UIViewController {
         headerView.referralButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
         headerView.settingsButton.addTarget(self, action: #selector(didPressSettingsButton), for: .touchUpInside)
 
+        isLoading(true)
+
         propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
                 self?.properties += objects
+                self?.isLoading(false)
                 self?.tableView.reloadData()
             }
         }

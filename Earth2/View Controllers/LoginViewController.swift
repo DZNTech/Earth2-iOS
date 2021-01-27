@@ -350,12 +350,12 @@ class LoginViewController: UIViewController {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
         firstResponderTextField?.resignFirstResponder()
-        loadingBanner.setLoading(true)
+        loadingBanner.setLoading(true, with: "Connecting to \(Web.displayUrl(.home))...")
         enableLoginForm(false)
 
         authApi.login(email, password: password) { [weak self] (user, error) in
             if let user = user {
-                self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)")
+                self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)!")
                 self?.presentHome()
                 self?.cleanLoginForm()
             } else {
