@@ -39,6 +39,8 @@ class FavoritesViewController: DarkModalViewController {
 
     fileprivate let favoriteCache = FavoriteCache()
     fileprivate var favorites: [Favorite]
+    fileprivate let codeMaxLength: Int = 10
+    fileprivate let codeTextFieldTag: Int = 2
 
     fileprivate var emptyStateFavorites = EmptyStateViewModel(.noFavorites)
 
@@ -109,22 +111,25 @@ class FavoritesViewController: DarkModalViewController {
 
         alert.addTextField { (textField) in
             textField.placeholder = "Name"
-            textField.keyboardType = .namePhonePad
             textField.returnKeyType = .continue
+            textField.autocapitalizationType = .words
+            textField.delegate = self
         }
 
         alert.addTextField { (textField) in
+            textField.tag = self.codeTextFieldTag
             textField.placeholder = "Referral Code"
-            textField.keyboardType = .namePhonePad
             textField.returnKeyType = .done
+            textField.autocapitalizationType = .allCharacters
+            textField.delegate = self
         }
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         alert.addAction(UIAlertAction(title: "Save", style: .default) { (action) in
-            guard let textField1 = alert.textFields?.first, let text1 = textField1.text,
-                  let textField2 = alert.textFields?.last, let text2 = textField2.text else { return }
-            self.addFavorite(with: text1.capitalized, code: text2.uppercased())
+            guard let textField1 = alert.textFields?.first, let text1 = textField1.text, !text1.isEmpty,
+                  let textField2 = alert.textFields?.last, let text2 = textField2.text, !text2.isEmpty else { return }
+            self.addFavorite(with: text1, code: text2)
         })
 
         guard let topMostVC = UIViewController.topMostViewController() else { return }
@@ -216,6 +221,21 @@ extension FavoritesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.cellHeight
+    }
+}
+
+extension FavoritesViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if textField.tag == codeTextFieldTag {
+            if string.isWhiteSpace {
+                return false
+            } else if let text = textField.text, text.count >= codeMaxLength, !string.isBackSpace  {
+                return false
+            }
+        }
+        return true
     }
 }
 

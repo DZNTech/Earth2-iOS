@@ -21,6 +21,7 @@
 		4F963EFE259DDA1B001E9829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFC259DDA1B001E9829 /* Main.storyboard */; };
 		4F963F00259DDA1C001E9829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFF259DDA1C001E9829 /* Assets.xcassets */; };
 		4F963F03259DDA1C001E9829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */; };
+		4FA0514525C1701200EE9663 /* String+KeyStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */; };
 		4FC3F18925A870310039B94C /* E2API.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FC3F18725A870310039B94C /* E2API.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FC3F18C25A870310039B94C /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; };
 		4FC3F18D25A870310039B94C /* E2API.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -162,6 +163,7 @@
 		4F963EFF259DDA1C001E9829 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F963F02259DDA1C001E9829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F963F04259DDA1C001E9829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+KeyStrokes.swift"; sourceTree = "<group>"; };
 		4FC3F18525A870310039B94C /* E2API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = E2API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC3F18725A870310039B94C /* E2API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = E2API.h; sourceTree = "<group>"; };
 		4FC3F18825A870310039B94C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				4FCA954125B27FFA000A2AF3 /* UIView+RecognizerBlock.swift */,
 				4FCA956825B2EC54000A2AF3 /* UIImage+Save.swift */,
 				4FCA959225B562A4000A2AF3 /* Bundle+Extensions.swift */,
+				4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */,
 			);
 			path = "UI Extensions";
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				4FCA94B125B18D44000A2AF3 /* CustomButton.swift in Sources */,
 				4FCA94DA25B24F4A000A2AF3 /* QRCode.swift in Sources */,
 				4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */,
+				4FA0514525C1701200EE9663 /* String+KeyStrokes.swift in Sources */,
 				4FED892025ADBE100045969A /* WebViewController.swift in Sources */,
 				4FCA958E25B55987000A2AF3 /* EnumTitle.swift in Sources */,
 				4FCA95B725B6C57F000A2AF3 /* EmptyStateViewModel.swift in Sources */,
