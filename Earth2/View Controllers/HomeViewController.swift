@@ -24,7 +24,16 @@ class HomeViewController: UIViewController {
         tableView.register(cellType: PropertyTableViewCell.self)
         tableView.backgroundColor = Color.clear
         tableView.clipsToBounds = true
+        tableView.refreshControl = self.refreshControl
         return tableView
+    }()
+
+    fileprivate lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = Color.darkBlue
+        refreshControl.addTarget(self, action: #selector(didPullRefreshControl), for: .valueChanged)
+        return refreshControl
     }()
 
     fileprivate lazy var headerView: ProfileHeaderView = {
@@ -116,6 +125,10 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Actions
+
+    @objc fileprivate func didPullRefreshControl() {
+        //
+    }
 
     @objc fileprivate func didPressFavoriteButton() {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
