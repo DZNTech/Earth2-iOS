@@ -52,7 +52,8 @@ class FavoritesViewController: DarkModalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        favorites += [Favorite(name: "Stradith", code: "2COCQKIKN2"), Favorite(name: "Nguyen", code: "B76KENO747")]
+        favorites += [Favorite(name: "Stradith", code: "2COCQKIKN2"),
+                      Favorite(name: "Nguyen", code: "B76KENO747")]
 
         setupLayout()
     }

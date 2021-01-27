@@ -51,20 +51,12 @@ extension ReferralController: UIActivityItemSource {
     }
 
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        if activityType == .copyCode {
-            if let user = APIServices.shared.myUser {
-                return user.referralCode
-            }
-        }
-
         return qrImageURL
     }
 
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        guard let user = APIServices.shared.myUser else { return nil }
-
         let metadata = LPLinkMetadata()
-        metadata.title = user.referralCode
+        metadata.title = referralCode
         metadata.originalURL = qrImageURL // determines the Preview Subtitle
         metadata.imageProvider = NSItemProvider.init(contentsOf: qrImageURL)
         return metadata
