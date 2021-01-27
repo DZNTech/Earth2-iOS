@@ -58,9 +58,7 @@ public class APISessionManager {
         if let sessionId = sessionId {
             valet.set(string: sessionId, forKey: sessionIdKey)
         } else {
-            valet.removeObject(forKey: sessionIdKey)
-            valet.removeObject(forKey: sessionEmailKey)
-            valet.removeObject(forKey: sessionPasswordKey)
+            valet.removeAllObjects()
         }
     }
 
