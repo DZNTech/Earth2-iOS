@@ -135,7 +135,7 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let section = Section(rawValue: section) else { return nil }
 
-        if section == .auth {
+        if section == .about {
             return StringConstants.nonaffiliateLong
         }
 
