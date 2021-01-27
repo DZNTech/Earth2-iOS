@@ -96,12 +96,10 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-    lazy var statusLabel: UILabel = {
-        let label = UILabel()
-        label.font = Font.font(ofSize: 15, weight: .regular)
-        label.textColor = Color.paleBlue.withAlphaComponent(0.5)
-        label.textAlignment = .center
-        return label
+    lazy var loadingLabel: LoadingLabel = {
+        let view = LoadingLabel()
+        view.tintColor = Color.paleBlue.withAlphaComponent(0.5)
+        return view
     }()
 
     // MARK: - Private Variables
@@ -203,8 +201,8 @@ class ProfileHeaderView: UIView {
             $0.centerX.equalToSuperview()
         }
 
-        addSubview(statusLabel)
-        statusLabel.snp.makeConstraints {
+        addSubview(loadingLabel)
+        loadingLabel.snp.makeConstraints {
             $0.top.equalTo(amountLabel2.snp.bottom).offset(padding/2)
             $0.centerX.equalToSuperview()
         }
@@ -214,8 +212,6 @@ class ProfileHeaderView: UIView {
             $0.leading.bottom.trailing.equalToSuperview()
             $0.height.equalTo(0.5)
         }
-
-        statusLabel.text = "Last Update 02-01-2021"
 
         legendLabel1.text = "NET WORTH (\(StringConstants.EDSymbol))"
         legendLabel2.text = "BALANCE (\(StringConstants.USDSymbol))"

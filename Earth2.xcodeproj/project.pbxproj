@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */; };
 		4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */; };
-		4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */; };
+		4F21181B25AD97A2007CB0BD /* LoadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */; };
 		4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */; };
 		4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */; };
 		4F54FE1525AEC175000C6D3B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1425AEC175000C6D3B /* Font.swift */; };
@@ -83,6 +83,7 @@
 		4FCA95BC25C00BEF000A2AF3 /* ActionSheetUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95BB25C00BEE000A2AF3 /* ActionSheetUtil.swift */; };
 		4FCA95C125C01415000A2AF3 /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95C025C01414000A2AF3 /* TransitionHandler.swift */; };
 		4FCA95CF25C0FA3B000A2AF3 /* Shimmable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95CE25C0FA3B000A2AF3 /* Shimmable.swift */; };
+		4FCA95D725C1116C000A2AF3 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA95D625C1116C000A2AF3 /* DateUtil.swift */; };
 		4FD5DF8C25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */; };
 		4FD5DF9A25AD1A5500E83E26 /* WebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5DF9925AD1A5500E83E26 /* WebTests.swift */; };
 		4FD5DF9C25AD1A5500E83E26 /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; platformFilter = ios; };
@@ -147,7 +148,7 @@
 		4F2117F825AD570B007CB0BD /* Earth2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Earth2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyComposerTests.swift; sourceTree = "<group>"; };
 		4F2117FC25AD570C007CB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBanner.swift; sourceTree = "<group>"; };
+		4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLabel.swift; sourceTree = "<group>"; };
 		4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
 		4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extensions.swift"; sourceTree = "<group>"; };
 		4F54FE1425AEC175000C6D3B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -223,6 +224,7 @@
 		4FCA95BB25C00BEE000A2AF3 /* ActionSheetUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetUtil.swift; sourceTree = "<group>"; };
 		4FCA95C025C01414000A2AF3 /* TransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandler.swift; sourceTree = "<group>"; };
 		4FCA95CE25C0FA3B000A2AF3 /* Shimmable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmable.swift; sourceTree = "<group>"; };
+		4FCA95D625C1116C000A2AF3 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		4FD5DF8B25AC51C700E83E26 /* UIActivityIndicatorView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extensions.swift"; sourceTree = "<group>"; };
 		4FD5DF9725AD1A5500E83E26 /* E2APITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E2APITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD5DF9925AD1A5500E83E26 /* WebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTests.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				4FCA957325B40683000A2AF3 /* CopyItemActivity.swift */,
 				4FCA958D25B55987000A2AF3 /* EnumTitle.swift */,
 				4FCA95BB25C00BEE000A2AF3 /* ActionSheetUtil.swift */,
+				4FCA95D625C1116C000A2AF3 /* DateUtil.swift */,
 				4FCA95C025C01414000A2AF3 /* TransitionHandler.swift */,
 			);
 			path = "UI Utils";
@@ -442,7 +445,7 @@
 			children = (
 				4FC3F1FB25AA676D0039B94C /* GalaxyView.swift */,
 				4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */,
-				4F21181A25AD97A2007CB0BD /* LoadingBanner.swift */,
+				4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */,
 				4FCA94AB25B0D0D0000A2AF3 /* ProfileHeaderView.swift */,
 				4FCA94B025B18D44000A2AF3 /* CustomButton.swift */,
 				4FCA953725B27FC6000A2AF3 /* PasteboardLabel.swift */,
@@ -916,6 +919,7 @@
 				4FCA95CF25C0FA3B000A2AF3 /* Shimmable.swift in Sources */,
 				4FCA953D25B27FDC000A2AF3 /* TextCopiable.swift in Sources */,
 				4FED88FF25ADB6D60045969A /* PropertyTableViewCell.swift in Sources */,
+				4FCA95D725C1116C000A2AF3 /* DateUtil.swift in Sources */,
 				4FCA94B125B18D44000A2AF3 /* CustomButton.swift in Sources */,
 				4FCA94DA25B24F4A000A2AF3 /* QRCode.swift in Sources */,
 				4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */,
@@ -931,7 +935,7 @@
 				4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */,
 				4FCA94AC25B0D0D0000A2AF3 /* ProfileHeaderView.swift in Sources */,
 				4FCA94B625B1943A000A2AF3 /* UserViewModel.swift in Sources */,
-				4F21181B25AD97A2007CB0BD /* LoadingBanner.swift in Sources */,
+				4F21181B25AD97A2007CB0BD /* LoadingLabel.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
 				4FCA95C125C01415000A2AF3 /* TransitionHandler.swift in Sources */,
 				4FCA94DB25B24F4A000A2AF3 /* UIImageView+QRCode.swift in Sources */,

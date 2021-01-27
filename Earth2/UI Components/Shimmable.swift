@@ -12,18 +12,18 @@ import ShimmerSwift
 protocol Shimmable {
     var shimmeringView: ShimmeringView { get }
 
-    func isLoading(_ loading: Bool)
+    func displayShimmer(_ display: Bool)
     static func defaultShimmeringView() -> ShimmeringView
 }
 
 extension Shimmable where Self: UIViewController {
 
-    func isLoading(_ loading: Bool) {
-        guard shimmeringView.isShimmering != loading else { return }
+    func displayShimmer(_ display: Bool) {
+        guard shimmeringView.isShimmering != display else { return }
 
-        shimmeringView.isShimmering = loading
-        shimmeringView.isHidden = !loading
-        view.isUserInteractionEnabled = !loading
+        shimmeringView.isShimmering = display
+        shimmeringView.isHidden = !display
+        view.isUserInteractionEnabled = !display
     }
 
     static func defaultShimmeringView() -> ShimmeringView {

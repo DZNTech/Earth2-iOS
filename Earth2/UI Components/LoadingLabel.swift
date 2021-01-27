@@ -1,5 +1,5 @@
 //
-//  LoadingBanner.swift
+//  LoadingLabel.swift
 //  Earth2
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-12.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class LoadingBanner: UIView {
+class LoadingLabel: UIView {
 
     // MARK: - Public Methods
 
@@ -18,7 +18,7 @@ class LoadingBanner: UIView {
         activityIndicatorView.animate(loading)
     }
 
-    func setLoading(_ loading: Bool = true, with message: String) {
+    func setLoading(_ loading: Bool = true, with message: String?) {
         setMessage(message)
         activityIndicatorView.animate(loading)
     }
@@ -33,6 +33,12 @@ class LoadingBanner: UIView {
         setMessage(error.localizedDescription)
         messageLabel.textColor = Color.yellow
         activityIndicatorView.animate(false)
+    }
+
+    var axis: NSLayoutConstraint.Axis = .vertical {
+        didSet {
+            stackView.axis = axis
+        }
     }
 
     override var tintColor: UIColor! {
@@ -60,6 +66,15 @@ class LoadingBanner: UIView {
         return label
     }()
 
+    fileprivate lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [activityIndicatorView, messageLabel])
+        stackView.axis = self.axis
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.spacing = Constants.padding*3/4
+        return stackView
+    }()
+
     fileprivate enum Constants {
         static let padding: CGFloat = UniversalConstants.padding
     }
@@ -78,15 +93,9 @@ class LoadingBanner: UIView {
 
     fileprivate func setupLayout() {
 
-        addSubview(activityIndicatorView)
-        activityIndicatorView.snp.makeConstraints {
+        addSubview(stackView)
+        stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-        }
-
-        addSubview(messageLabel)
-        messageLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(activityIndicatorView.snp.bottom).offset(Constants.padding*3/4)
         }
     }
 }

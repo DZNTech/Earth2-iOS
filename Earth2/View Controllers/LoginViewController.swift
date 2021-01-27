@@ -91,8 +91,8 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    fileprivate lazy var loadingBanner: LoadingBanner = {
-        let view = LoadingBanner()
+    fileprivate lazy var loadingLabel: LoadingLabel = {
+        let view = LoadingLabel()
         view.tintColor = Color.white.withAlphaComponent(0.75)
         return view
     }()
@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
 
         emailField.text = APIServices.shared.credential.email
         passwordField.text = APIServices.shared.credential.password
-        loadingBanner.setMessage(StringConstants.nonaffiliate)
+        loadingLabel.setMessage(StringConstants.nonaffiliate)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -170,7 +170,7 @@ class LoginViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        loadingBanner.setMessage(nil)
+        loadingLabel.setMessage(nil)
         enableLoginForm(true)
     }
 
@@ -202,8 +202,8 @@ class LoginViewController: UIViewController {
         subtitleLabel.addCharacterSpacing(kernValue: 9)
         subtitleLabel.addGlow(with: Color.black, radius: 3)
 
-        view.addSubview(loadingBanner)
-        loadingBanner.snp.makeConstraints {
+        view.addSubview(loadingLabel)
+        loadingLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-Constants.padding*6)
         }
@@ -350,21 +350,22 @@ class LoginViewController: UIViewController {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
         firstResponderTextField?.resignFirstResponder()
-        loadingBanner.setLoading(true, with: "Connecting to \(Web.displayUrl(.home))...")
+        loadingLabel.setLoading(true, with: "Connecting to \(Web.displayUrl(.home))...")
         enableLoginForm(false)
-
+        return
+            
         authApi.login(email, password: password) { [weak self] (user, error) in
             if let user = user {
-                self?.loadingBanner.setLoading(false, with: "Welcome back \(user.username)!")
+                self?.loadingLabel.setLoading(false, with: "Welcome back \(user.username)!")
                 self?.presentHome()
                 self?.cleanLoginForm()
             } else {
                 self?.enableLoginForm(true)
 
                 if let error = error {
-                    self?.loadingBanner.setError(error)
+                    self?.loadingLabel.setError(error)
                 } else {
-                    self?.loadingBanner.setLoading(false)
+                    self?.loadingLabel.setLoading(false)
                 }
             }
         }

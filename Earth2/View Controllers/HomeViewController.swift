@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, Shimmable {
         tableView.register(cellType: PropertyTableViewCell.self)
         tableView.backgroundColor = Color.clear
         tableView.clipsToBounds = true
-        tableView.refreshControl = self.refreshControl
+//        tableView.refreshControl = self.refreshControl
         return tableView
     }()
 
@@ -41,6 +41,7 @@ class HomeViewController: UIViewController, Shimmable {
 
     fileprivate lazy var headerView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        view.loadingLabel.axis = .horizontal
         return view
     }()
 
@@ -162,6 +163,16 @@ class HomeViewController: UIViewController, Shimmable {
 
         let vc = SettingsViewController()
         topMostVC.presentPanModal(vc)
+    }
+
+    // MARK: - Shimmable
+
+    func isLoading(_ loading: Bool) {
+        displayShimmer(loading)
+
+        let today = DateUtil.formDateFormatter.string(from: Date())
+        let message = loading ? "Fetching your properties..." : "Last Update \(today)"
+        headerView.loadingLabel.setLoading(loading, with: message)
     }
 
     // MARK: - Deinitialization
