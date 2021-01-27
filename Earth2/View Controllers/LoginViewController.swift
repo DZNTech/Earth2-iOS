@@ -151,10 +151,12 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if APIServices.shared.isLoggedIn {
-            presentHome(animated: false)
+        if APISessionManager.hasValidSession() {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.presentHome(animated: true)
+            }
         } else {
-            let delay =  DispatchTimeInterval.seconds(firstTimeLoading ? 2 : 0)
+            let delay =  DispatchTimeInterval.seconds(firstTimeLoading ? 1 : 0)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
                 self.emailField.becomeFirstResponder()
             }

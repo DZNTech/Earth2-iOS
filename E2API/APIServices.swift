@@ -16,10 +16,6 @@ public class APIServices {
 
     public var isLocal: Bool = false
 
-    public var isLoggedIn: Bool {
-        get { return false }
-    }
-
     public var myUser: User?
 
     // MARK: - Initialization

@@ -111,6 +111,10 @@ class HomeViewController: UIViewController, Shimmable {
             $0.top.equalTo(view.safeAreaInsets.top).offset(headerView.intrinsicContentSize.height+UIViewController.statusBarHeight())
             $0.leading.trailing.bottom.equalToSuperview()
         }
+
+        headerView.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
+        headerView.referralButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
+        headerView.settingsButton.addTarget(self, action: #selector(didPressSettingsButton), for: .touchUpInside)
     }
 
     fileprivate func loadContent() {
@@ -121,10 +125,6 @@ class HomeViewController: UIViewController, Shimmable {
         headerView.amountLabel2.setCount(user.balance)
         headerView.statsLabel1.setCount(user.profitIncreaseNet, format: "+%@")
         headerView.statsLabel2.setCount(user.profitIncreasePct, format: "+%@%%")
-
-        headerView.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
-        headerView.referralButton.addTarget(self, action: #selector(didPressReferralButton), for: .touchUpInside)
-        headerView.settingsButton.addTarget(self, action: #selector(didPressSettingsButton), for: .touchUpInside)
 
         isLoading(true)
 
@@ -139,10 +139,6 @@ class HomeViewController: UIViewController, Shimmable {
 
     // MARK: - Actions
 
-    @objc fileprivate func didPullRefreshControl() {
-        //
-    }
-
     @objc fileprivate func didPressFavoriteButton() {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
@@ -151,8 +147,8 @@ class HomeViewController: UIViewController, Shimmable {
     }
 
     @objc fileprivate func didPressReferralButton() {
-        guard let user = APIServices.shared.myUser else { return }
         guard let topMostVC = UIViewController.topMostViewController() else { return }
+        guard let user = APIServices.shared.myUser else { return }
 
         let controller = ReferralController(user: user)
         controller.showActivityController(topMostVC)
@@ -163,6 +159,10 @@ class HomeViewController: UIViewController, Shimmable {
 
         let vc = SettingsViewController()
         topMostVC.presentPanModal(vc)
+    }
+
+    @objc fileprivate func didPullRefreshControl() {
+        //
     }
 
     // MARK: - Shimmable
