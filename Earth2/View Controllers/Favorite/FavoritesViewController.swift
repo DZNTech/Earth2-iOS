@@ -15,8 +15,6 @@ class FavoritesViewController: DarkModalViewController {
 
     // MARK: - Public Variables
 
-    var favorites = [Favorite]()
-
     // MARK: - Private Variables
 
     lazy var addButton: CustomButton = {
@@ -39,6 +37,9 @@ class FavoritesViewController: DarkModalViewController {
         return button
     }()
 
+    fileprivate let favoriteCache = FavoriteCache()
+    fileprivate var favorites: [Favorite]
+
     fileprivate var emptyStateFavorites = EmptyStateViewModel(.noFavorites)
 
     fileprivate enum Constants {
@@ -47,13 +48,21 @@ class FavoritesViewController: DarkModalViewController {
         static let cellHeight: CGFloat = 60
     }
 
+    // MARK: - Initializer
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        favorites = favoriteCache.getFavorites()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - View Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        favorites += [Favorite(name: "Stradith", code: "2COCQKIKN2"),
-                      Favorite(name: "Nguyen", code: "B76KENO747")]
 
         setupLayout()
     }
@@ -89,23 +98,58 @@ class FavoritesViewController: DarkModalViewController {
     // MARK: - Actions
 
     @objc fileprivate func didTapAddButton() {
-        print("didTapAddButton")
-
         guard !tableView.isEditing else {
             isEditing(false, animated: true)
             return
         }
+
+        let alert = UIAlertController(title: "New Referral Code", message: nil, preferredStyle: .alert)
+        alert.overrideUserInterfaceStyle = .dark
+        alert.view.tintColor = Color.white
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "Name"
+            textField.keyboardType = .namePhonePad
+            textField.returnKeyType = .continue
+        }
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "Referral Code"
+            textField.keyboardType = .namePhonePad
+            textField.returnKeyType = .done
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        alert.addAction(UIAlertAction(title: "Save", style: .default) { (action) in
+            guard let textField1 = alert.textFields?.first, let text1 = textField1.text,
+                  let textField2 = alert.textFields?.last, let text2 = textField2.text else { return }
+            self.addFavorite(with: text1.capitalized, code: text2.uppercased())
+        })
+
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
+        topMostVC.present(alert, animated: true)
     }
 
     @objc fileprivate func didTapEditButton() {
-        print("didTapEditButton")
-
         isEditing(!tableView.isEditing, animated: true)
     }
 
-    func isEditing(_ editing: Bool = true, animated: Bool) {
+    fileprivate func isEditing(_ editing: Bool = true, animated: Bool) {
         tableView.setEditing(editing, animated: animated)
         editButton.setTitle(editing ? "Done" : "Edit", for: .normal)
+    }
+
+    fileprivate func addFavorite(with name: String, code: String) {
+        let favorite = Favorite(name: name, code: code)
+
+        favorites += [favorite]
+
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: favorites.count-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+
+        favoriteCache.saveFavorites(favorites)
     }
 }
 
@@ -143,6 +187,8 @@ extension FavoritesViewController: UITableViewDelegate {
         if favorites.count == 0 {
             isEditing(false, animated: false)
         }
+
+        favoriteCache.saveFavorites(favorites)
     }
 }
 
@@ -192,7 +238,7 @@ extension FavoritesViewController: EmptyDataSetSource {
     }
 
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        let offset = -(view.bounds.height-(topOffset+view.bounds.width))/2
+        let offset = -(view.bounds.height/4)
         return (presentationState == .shortForm) ? offset : 0
     }
 }

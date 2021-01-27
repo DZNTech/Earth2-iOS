@@ -37,8 +37,8 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         var text: String?
 
         switch emptyState {
-        case .noFavorites:
-            text = "No Saved Codes"
+        case .noInternet:
+            text = "No Internet"
         default:
             return nil
         }
@@ -93,9 +93,9 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         attributes[NSAttributedString.Key.font] = Font.font(ofSize: 19, weight: .medium)
 
         if state == .highlighted {
-            attributes[NSAttributedString.Key.foregroundColor] = Color.paleBlue.withAlphaComponent(0.5)
+            attributes[NSAttributedString.Key.foregroundColor] = Color.white.withAlphaComponent(0.5)
         } else {
-            attributes[NSAttributedString.Key.foregroundColor] = Color.paleBlue
+            attributes[NSAttributedString.Key.foregroundColor] = Color.white
         }
 
         return NSAttributedString.init(string: title, attributes: attributes)

@@ -10,17 +10,6 @@ import Foundation
 
 public class DateUtil {
 
-    public static let standardFormat: String = "yyyy-MM-dd h:mm a"
-
-    public static func deserializeJSONDate(_ jsonDate: String) -> Date? {
-        let dateFor: DateFormatter = DateFormatter()
-        dateFor.dateFormat = standardFormat
-        return dateFor.date(from: jsonDate)
-    }
-}
-
-public extension DateUtil {
-
     static let displayFullDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMMM d @ h:mm a"

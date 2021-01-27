@@ -63,7 +63,7 @@ public class APISessionManager {
         }
     }
 
-    fileprivate static let valet = Valet.valet(with: Identifier(nonEmpty: "e2")!, accessibility: .whenUnlocked)
+    fileprivate static let valet = Valet.valet(with: Identifier(nonEmpty: "e2-api")!, accessibility: .whenUnlocked)
 
     fileprivate static let sessionIdKey = "com.dzntech.e2.session.id"
     fileprivate static let sessionEmailKey = "com.dzntech.e2.session.email"

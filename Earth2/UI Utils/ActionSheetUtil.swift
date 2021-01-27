@@ -8,11 +8,11 @@
 
 import UIKit
 
-public typealias AlertCompletionBlock = (UIAlertAction) -> Void
+public typealias ActionSheetCompletionBlock = (UIAlertAction) -> Void
 
 class ActionSheetUtil {
 
-    static func presentActionSheet(withTitle title: String, message: String? = nil, buttonTitle: String? = nil, completion: @escaping AlertCompletionBlock, cancel: AlertCompletionBlock? = nil) {
+    static func presentActionSheet(withTitle title: String, message: String? = nil, buttonTitle: String? = nil, completion: @escaping ActionSheetCompletionBlock, cancel: ActionSheetCompletionBlock? = nil) {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -25,7 +25,7 @@ class ActionSheetUtil {
         topMostVC.present(alert, animated: true)
     }
 
-    static func presentDestructiveActionSheet(withTitle title: String, message: String? = nil, destructiveTitle: String? = nil, completion: AlertCompletionBlock? = nil, cancel: AlertCompletionBlock? = nil) {
+    static func presentDestructiveActionSheet(withTitle title: String, message: String? = nil, destructiveTitle: String? = nil, completion: ActionSheetCompletionBlock? = nil, cancel: ActionSheetCompletionBlock? = nil) {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
