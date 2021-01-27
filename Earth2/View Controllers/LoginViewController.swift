@@ -158,10 +158,7 @@ class LoginViewController: UIViewController {
         } else if APISessionManager.hasValidSession(), let email = APISessionManager.getSessionEmail(), let pwd = APISessionManager.getSessionPassword() {
             login(with: email, password: pwd) // login with saved credentials
         } else {
-            let delay = DispatchTimeInterval.seconds(firstTimeLoading ? 1 : 0)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
-                self.emailField.becomeFirstResponder()
-            }
+            activateLoginForm(with: firstTimeLoading ? 1 : 0)
         }
 
         firstTimeLoading = false
@@ -370,14 +367,29 @@ class LoginViewController: UIViewController {
                 self?.presentHome()
                 self?.cleanLoginForm()
             } else {
-                self?.enableLoginForm(true)
-
-                if let error = error {
-                    self?.loadingLabel.setError(error)
-                } else {
-                    self?.loadingLabel.setLoading(false)
-                }
+                self?.handleLoginError(error)
             }
+        }
+    }
+
+    fileprivate func handleLoginError(_ error: Error?) {
+        enableLoginForm(true)
+
+        if let error = error {
+            loadingLabel.setError(error)
+        } else {
+            loadingLabel.setLoading(false)
+        }
+
+        // show login form is not visible yet
+        if loginFormView.alpha == 0 {
+            activateLoginForm()
+        }
+    }
+
+    fileprivate func activateLoginForm(with delay: TimeInterval = 1) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
+            self.emailField.becomeFirstResponder()
         }
     }
 
