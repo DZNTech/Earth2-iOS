@@ -21,13 +21,14 @@ public enum WebConstant: String {
 public class Web {
 
     // Converts an existing MapBox URL for custom sizing and custom API key
-    public static func convertMapBoxUrl(from url: String, with size: CGSize) -> String? {
+    // Unless these are self-hosted images from AWS
+    public static func convertUrl(from url: String, with size: CGSize) -> String? {
+        guard url.range(of: "amazonaws", options: .caseInsensitive) == nil else { return url }
         guard let range = url.range(of: "/", options: .backwards) else { return nil }
         var newUrl = String(url[...range.lowerBound])
 
         newUrl += "\(Int(size.width))x\(Int(size.height))"
         newUrl += "?access_token=\(APIServices.shared.credential.mapboxAPIKey)"
-
         return newUrl
     }
 
