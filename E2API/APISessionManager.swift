@@ -15,8 +15,7 @@ public class APISessionManager {
     // MARK: - Session
 
     public static func hasValidSession() -> Bool {
-        // to re-enable once there's local data persistency
-        return false // getSessionId() != nil
+        return getSessionId() != nil
     }
 
     public static func getSessionId() -> String? {

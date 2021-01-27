@@ -151,12 +151,14 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
 
         // Skip login if there's a persisted sessionId
-        if APISessionManager.hasValidSession() {
+        if APISessionManager.hasValidSession(), APIServices.shared.myUser != nil {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                 self.presentHome(animated: true)
             }
+        } else if APISessionManager.hasValidSession(), let email = APISessionManager.getSessionEmail(), let pwd = APISessionManager.getSessionPassword() {
+            login(with: email, password: pwd) // login with saved credentials
         } else {
-            let delay =  DispatchTimeInterval.seconds(firstTimeLoading ? 1 : 0)
+            let delay = DispatchTimeInterval.seconds(firstTimeLoading ? 1 : 0)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
                 self.emailField.becomeFirstResponder()
             }
@@ -283,6 +285,8 @@ class LoginViewController: UIViewController {
     }
 
     fileprivate func enableLoginForm(_ enable: Bool = true) {
+        guard loginFormView.alpha > 0 else { return }
+        
         loginFormView.isUserInteractionEnabled = enable
         loginFormView.alpha = enable ? 1 : 0.75
         emailField.alpha = enable ? 1 : 0.5
@@ -352,10 +356,14 @@ class LoginViewController: UIViewController {
         guard let email = emailField.text, let password = passwordField.text else { return }
 
         firstResponderTextField?.resignFirstResponder()
+        login(with: email, password: password)
+    }
+
+    fileprivate func login(with email: String, password: String) {
+
         loadingLabel.setLoading(true, with: "Connecting to \(Web.displayUrl(.home))...")
         enableLoginForm(false)
-        return
-            
+
         authApi.login(email, password: password) { [weak self] (user, error) in
             if let user = user {
                 self?.loadingLabel.setLoading(false, with: "Welcome back \(user.username)!")
