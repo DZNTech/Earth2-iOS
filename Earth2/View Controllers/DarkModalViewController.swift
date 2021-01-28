@@ -70,8 +70,7 @@ class DarkModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        _setupLayout()
+        setupLayout()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -88,7 +87,7 @@ class DarkModalViewController: UIViewController {
 
     // MARK: - Layout
 
-    fileprivate func _setupLayout() {
+    open func setupLayout() {
         view.backgroundColor = Color.gray500
 
         let backgroundView = UIView()

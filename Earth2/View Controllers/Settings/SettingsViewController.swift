@@ -42,7 +42,9 @@ class SettingsViewController: DarkModalViewController {
 
     // MARK: - Layout
 
-    fileprivate func setupLayout() {
+    override func setupLayout() {
+        super.setupLayout()
+
         title = "Settings"
 
         tableView.dataSource = self

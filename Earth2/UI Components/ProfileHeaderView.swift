@@ -156,7 +156,7 @@ class ProfileHeaderView: UIView {
         addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalToSuperview().offset(-UIApplication.shared.statusBarFrame.height)
+            $0.top.equalToSuperview().offset(-UIViewController.topLayoutOffset())
         }
 
         addSubview(leftButtonsStackView)

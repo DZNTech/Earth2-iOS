@@ -14,9 +14,8 @@ public class APIServices {
     public static let shared = APIServices()
     public let credential = APICredentials()
 
-    public var isLocal: Bool = false
-
     public var myUser: User?
+    public var isLocal: Bool = true
 
     // MARK: - Initialization
 

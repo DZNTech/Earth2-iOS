@@ -19,7 +19,9 @@ protocol EmptyStateViewModelInterface {
 
 enum EmptyState {
     case noFavorites
+    case noProperties
 
+    case error
     case noInternet
 }
 
@@ -37,6 +39,10 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         var text: String?
 
         switch emptyState {
+        case .noProperties:
+            text = "No Properties"
+        case .error:
+            text = nil
         case .noInternet:
             text = "No Internet"
         default:
@@ -47,7 +53,7 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
 
         var attributes: [NSAttributedString.Key: Any] = [:]
         attributes[NSAttributedString.Key.font] = Font.font(ofSize: 25, weight: .regular)
-        attributes[NSAttributedString.Key.foregroundColor] = Color.gray200
+        attributes[NSAttributedString.Key.foregroundColor] = Color.gray100.withAlphaComponent(0.4)
 
         return NSAttributedString.init(string: title, attributes: attributes)
     }
@@ -59,17 +65,21 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         switch emptyState {
         case .noFavorites:
             text = "You haven't saved any referral codes yet."
+        case .noProperties:
+            text = "You don't seem to own any properties yet."
+        case .error:
+            text = "Something went wrong. Please try again."
         default:
             return nil
         }
 
-        guard let title = text else { return nil }
+        guard let description = text else { return nil }
 
         var attributes: [NSAttributedString.Key: Any] = [:]
         attributes[NSAttributedString.Key.font] = Font.font(ofSize: 19, weight: .regular)
-        attributes[NSAttributedString.Key.foregroundColor] = Color.gray200
+        attributes[NSAttributedString.Key.foregroundColor] = Color.gray200.withAlphaComponent(0.75)
 
-        return NSAttributedString.init(string: title, attributes: attributes)
+        return NSAttributedString.init(string: description, attributes: attributes)
     }
 
     var image: UIImage? {
@@ -83,6 +93,8 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         switch emptyState {
         case .noFavorites:
             text = "Add Referral Code"
+        case .error:
+            text = "Reload"
         default:
             return nil
         }
@@ -93,9 +105,9 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
         attributes[NSAttributedString.Key.font] = Font.font(ofSize: 19, weight: .medium)
 
         if state == .highlighted {
-            attributes[NSAttributedString.Key.foregroundColor] = Color.white.withAlphaComponent(0.5)
+            attributes[NSAttributedString.Key.foregroundColor] = Color.white.withAlphaComponent(0.25)
         } else {
-            attributes[NSAttributedString.Key.foregroundColor] = Color.white
+            attributes[NSAttributedString.Key.foregroundColor] = Color.white.withAlphaComponent(0.5)
         }
 
         return NSAttributedString.init(string: title, attributes: attributes)

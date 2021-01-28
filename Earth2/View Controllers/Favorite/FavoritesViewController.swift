@@ -75,7 +75,9 @@ class FavoritesViewController: DarkModalViewController {
 
     // MARK: - Layout
 
-    fileprivate func setupLayout() {
+    override func setupLayout() {
+        super.setupLayout()
+
         title = "Referral Codes"
 
         tableView.dataSource = self
