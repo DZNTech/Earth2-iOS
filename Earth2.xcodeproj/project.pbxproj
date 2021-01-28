@@ -10,6 +10,7 @@
 		4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117F025AD5699007CB0BD /* GalaxyComposer.swift */; };
 		4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */; };
 		4F21181B25AD97A2007CB0BD /* LoadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */; };
+		4F268B4A25C2B76100843917 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B4925C2B76100843917 /* UIImage+Extensions.swift */; };
 		4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */; };
 		4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */; };
 		4F54FE1525AEC175000C6D3B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1425AEC175000C6D3B /* Font.swift */; };
@@ -152,6 +153,7 @@
 		4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaxyComposerTests.swift; sourceTree = "<group>"; };
 		4F2117FC25AD570C007CB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLabel.swift; sourceTree = "<group>"; };
+		4F268B4925C2B76100843917 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
 		4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extensions.swift"; sourceTree = "<group>"; };
 		4F54FE1425AEC175000C6D3B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */,
 				4FCA954125B27FFA000A2AF3 /* UIView+RecognizerBlock.swift */,
 				4FCA956825B2EC54000A2AF3 /* UIImage+Save.swift */,
+				4F268B4925C2B76100843917 /* UIImage+Extensions.swift */,
 				4FCA959225B562A4000A2AF3 /* Bundle+Extensions.swift */,
 				4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */,
 			);
@@ -950,6 +953,7 @@
 				4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */,
 				4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */,
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
+				4F268B4A25C2B76100843917 /* UIImage+Extensions.swift in Sources */,
 				4FCA95AD25B5855B000A2AF3 /* FavoriteTableViewCell.swift in Sources */,
 				4FCA954225B27FFA000A2AF3 /* UIView+RecognizerBlock.swift in Sources */,
 				4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */,

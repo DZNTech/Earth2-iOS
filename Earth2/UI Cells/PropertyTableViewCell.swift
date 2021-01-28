@@ -25,7 +25,7 @@ class PropertyTableViewCell: UITableViewCell {
 
     lazy var thumbImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = Color.white
+        imageView.backgroundColor = Color.clear
         imageView.clipsToBounds = true
         return imageView
     }()

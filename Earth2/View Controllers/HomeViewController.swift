@@ -236,7 +236,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.profitLabel.text = viewModel.marketValueLabel
         cell.profitLabel.textColor = Color.green
 
-        cell.thumbImageView.setImageUrl(viewModel.imageUrl, placeholderImage: nil)
+        cell.thumbImageView.setImageUrl(viewModel.imageUrl, placeholderImage: viewModel.placeholderImage)
         cell.isOdd = (indexPath.row%2 == 0)
     }
 

@@ -21,6 +21,7 @@ public class PropertyViewModel: Descriptable {
     let marketValueLabel: String
 
     let imageUrl: String?
+    let placeholderImage: UIImage?
 
     // MARK: - Initializatiom
 
@@ -32,7 +33,8 @@ public class PropertyViewModel: Descriptable {
         self.tileValueLabel = PropertyViewModel.tileValueLabelString(for: property)
         self.marketValueLabel = PropertyViewModel.marketValueLabelString(for: property)
 
-        self.imageUrl = Web.convertUrl(from: property.imageUrl, with: CGSize.init(square: 200))
+        self.imageUrl = Web.convertUrl(from: property.imageUrl, with: CGSize(square: 200))
+        self.placeholderImage = UIImage.image(with: Color.paleBlue.withAlphaComponent(0.1), size: CGSize(square: 200))
     }
 }
 

@@ -19,7 +19,7 @@ class SettingsViewController: DarkModalViewController {
 
     fileprivate let sections: [Section: [Row]] = [
         .earth2: [.goToEarth2],
-        .about: [.about, .feedback],
+        .about: [.feedback, .about],
         .auth: [.staySignedIn, .logout]
     ]
 

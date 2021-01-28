@@ -22,18 +22,28 @@ extension Shimmable where Self: UIViewController {
         guard shimmeringView.isShimmering != display else { return }
 
         shimmeringView.isShimmering = display
-        shimmeringView.isHidden = !display
         view.isUserInteractionEnabled = !display
+
+        if display {
+            shimmeringView.isHidden = false
+            shimmeringView.alpha = 1
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.shimmeringView.alpha = 0
+            } completion: { (finished) in
+                self.shimmeringView.isHidden = true
+            }
+        }
     }
 
     static func defaultShimmeringView() -> ShimmeringView {
         let view = ShimmeringView()
+        view.backgroundColor = Color.clear
         view.contentView = tableViewCellShimmerView()
         view.shimmerAnimationOpacity = 0.4
         view.shimmerOpacity = 1.0
         view.shimmerPauseDuration = 0.3
         view.shimmerSpeed = 300
-        view.backgroundColor = Color.clear
         view.isHidden = true
         return view
     }
