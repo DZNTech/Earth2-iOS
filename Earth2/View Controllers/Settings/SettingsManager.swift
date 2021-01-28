@@ -11,48 +11,55 @@ import Foundation
 class SettingsManager {
 
     static var lastUpdate: Date? {
-        get { return lastUpdateDate() }
-        set { setLastUpdateDate(newValue) }
+        get { return getDateSetting(for: .lastUpdateDate, defaultValue: nil) }
+        set { setDateSetting(newValue, for: .lastUpdateDate) }
     }
 
-    static var staySignedIn: Bool {
-        get { return shouldSaveCredentials() }
-        set { setShouldSaveCredentials(newValue) }
+    static var saveDataEnabled: Bool {
+        get { return getBoolSetting(for: .saveData) }
+        set { setBoolSetting(newValue, for: .saveData) }
+    }
+
+    static var saveCredentialsEnabled: Bool {
+        get { return getBoolSetting(for: .saveCredentials) }
+        set { setBoolSetting(newValue, for: .saveCredentials) }
     }
 }
 
 fileprivate extension SettingsManager {
 
-    static func lastUpdateDate() -> Date? {
-        guard let timestamp = UserDefaults.standard.string(forKey: lastUpdateDateKey) else { return nil }
+    static func getDateSetting(for key: SettingsKey, defaultValue: Date? = Date()) -> Date? {
+        guard let timestamp = UserDefaults.standard.string(forKey: key.rawValue) else { return defaultValue }
 
         let formatter = DateUtil.standardFormatter
         return formatter.date(from: timestamp)
     }
 
-    static func setLastUpdateDate(_ date: Date?) {
+    static func setDateSetting(_ date: Date?, for key: SettingsKey) {
         if let date = date {
             let formatter = DateUtil.standardFormatter
             let timestamp = formatter.string(from: date)
-            UserDefaults.standard.set(timestamp, forKey: lastUpdateDateKey)
+            UserDefaults.standard.set(timestamp, forKey: key.rawValue)
         } else {
-            UserDefaults.standard.set(nil, forKey: lastUpdateDateKey)
+            UserDefaults.standard.set(nil, forKey: key.rawValue)
         }
     }
 
-    static func shouldSaveCredentials() -> Bool {
-        if UserDefaults.standard.object(forKey: saveCredentialsKey) == nil {
-            setShouldSaveCredentials(true) // default value
+    static func getBoolSetting(for key: SettingsKey, defaultValue: Bool = true) -> Bool {
+        if UserDefaults.standard.object(forKey: key.rawValue) == nil {
+            setBoolSetting(defaultValue, for: key) // default value
         }
 
-        return UserDefaults.standard.bool(forKey: saveCredentialsKey)
+        return UserDefaults.standard.bool(forKey: key.rawValue)
     }
 
-    static func setShouldSaveCredentials(_ value: Bool) {
-        UserDefaults.standard.set(value, forKey: saveCredentialsKey)
+    static func setBoolSetting(_ value: Bool, for key: SettingsKey) {
+        UserDefaults.standard.set(value, forKey: key.rawValue)
     }
-
-    static let lastUpdateDateKey = "com.dzntech.e2.settings.lastUpdateDate"
-    static let saveCredentialsKey = "com.dzntech.e2.settings.saveCredentials"
 }
 
+fileprivate enum SettingsKey: String {
+    case lastUpdateDate = "com.dzntech.e2.settings.lastUpdateDate"
+    case saveData = "com.dzntech.e2.settings.saveData"
+    case saveCredentials = "com.dzntech.e2.settings.saveCredentials"
+}

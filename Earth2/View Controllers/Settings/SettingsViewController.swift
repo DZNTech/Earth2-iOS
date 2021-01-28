@@ -20,7 +20,7 @@ class SettingsViewController: DarkModalViewController {
     fileprivate let sections: [Section: [Row]] = [
         .earth2: [.goToEarth2],
         .about: [.feedback, .about],
-        .auth: [.staySignedIn, .logout]
+        .auth: [.cacheDataEnabled, .cacheLoginEnabled, .logout]
     ]
 
     fileprivate enum Constants {
@@ -54,8 +54,12 @@ class SettingsViewController: DarkModalViewController {
 
     // MARK: - Actions
 
-    @objc fileprivate func didSwitchStaySignedIn() {
-        SettingsManager.staySignedIn = !SettingsManager.staySignedIn
+    @objc fileprivate func didSwitchCacheData() {
+        SettingsManager.saveDataEnabled.toggle()
+    } didSwitchCacheData
+
+    @objc fileprivate func didSwitchCacheLogin() {
+        SettingsManager.saveCredentialsEnabled.toggle()
     }
 
     fileprivate func openWeb(_ web: WebConstant) {
@@ -124,10 +128,14 @@ extension SettingsViewController: UITableViewDataSource {
 
         if row == .feedback {
             cell.detailTextLabel?.text = "\(Bundle.main.releaseDescriptionPretty)"
-        } else if row == .staySignedIn {
+        } else if row == .cacheDataEnabled {
             cell.accessory = .switch
-            cell.switch.isOn = SettingsManager.staySignedIn
-            cell.switch.addTarget(self, action: #selector(didSwitchStaySignedIn), for: .valueChanged)
+            cell.switch.isOn = SettingsManager.saveDataEnabled
+            cell.switch.addTarget(self, action: #selector(didSwitchCacheData), for: .valueChanged)
+        } else if row == .cacheLoginEnabled {
+            cell.accessory = .switch
+            cell.switch.isOn = SettingsManager.saveCredentialsEnabled
+            cell.switch.addTarget(self, action: #selector(didSwitchCacheLogin), for: .valueChanged)
         } else if row == .logout {
             cell.textLabel?.textColor = Color.red
             cell.textLabel?.textAlignment = .center
@@ -173,7 +181,8 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
     case about
     case feedback
 
-    case staySignedIn
+    case cacheDataEnabled
+    case cacheLoginEnabled
     case logout
 
     var title: String {
@@ -184,7 +193,8 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
         case .about:                return "About \(Bundle.main.applicationLongName)"
         case .feedback:             return "Submit Feedback"
 
-        case .staySignedIn:         return "Stay Signed In"
+        case .cacheDataEnabled:     return "Store Data Locally"
+        case .cacheLoginEnabled:    return "Stay Signed In"
         case .logout:               return "Logout"
         }
     }
@@ -198,7 +208,8 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
         case .about:                return "icn_settings_"
         case .feedback:             return "icn_settings_"
 
-        case .staySignedIn:         return "icn_settings_"
+        case .cacheDataEnabled:     return "icn_settings_"
+        case .cacheLoginEnabled:    return "icn_settings_"
         case .logout:               return "icn_settings_"
         }
     }
