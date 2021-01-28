@@ -84,6 +84,9 @@ extension SettingsViewController: UITableViewDelegate {
             openWeb(.home)
         } else if row == .FAQEarth2 {
             openWeb(.faq)
+        } else if row == .feedback {
+            guard let url = Web.getPrefilledFeedbackFormUrl() else { return }
+            WebViewController.openUrl(url)
         } else if row == .logout {
             logout()
         }

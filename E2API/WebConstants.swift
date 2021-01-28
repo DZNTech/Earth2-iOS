@@ -16,6 +16,8 @@ public enum WebConstant: String {
     case map = "https://app.earth2.io/#thegrid/"
     case about = "https://earth2.io/about"
     case faq = "https://earth2.io/faq"
+
+    case feeback = "https://docs.google.com/forms/d/e/1FAIpQLSdVo_t4EDcBMENDKeYb2cecOiUrvzRxrBUdHYoOUpWM6_OOaA/viewform"
 }
 
 public class Web {
@@ -35,5 +37,21 @@ public class Web {
     public static func displayUrl(_ webConstant: WebConstant) -> String {
         let url = URL(string: webConstant.rawValue)
         return url?.host ?? webConstant.rawValue
+    }
+
+    public static func getPrefilledFeedbackFormUrl() -> String? {
+        guard var urlComponents = URLComponents(string: WebConstant.feeback.rawValue) else { return nil }
+        var queryItems = [URLQueryItem]()
+
+        if let user = APIServices.shared.myUser {
+            queryItems.append(URLQueryItem(name: "entry.1807575595", value: user.username))
+        }
+
+        if let email = APIServices.shared.credential.email {
+            queryItems.append(URLQueryItem(name: "entry.1185283391", value: email))
+        }
+
+        urlComponents.queryItems = queryItems
+        return urlComponents.url?.absoluteString
     }
 }
