@@ -22,6 +22,8 @@
 		4F963F00259DDA1C001E9829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F963EFF259DDA1C001E9829 /* Assets.xcassets */; };
 		4F963F03259DDA1C001E9829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F963F01259DDA1C001E9829 /* LaunchScreen.storyboard */; };
 		4FA0514525C1701200EE9663 /* String+KeyStrokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */; };
+		4FA0515D25C26A5E00EE9663 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0515C25C26A5E00EE9663 /* QRScannerViewController.swift */; };
+		4FA0516825C294C300EE9663 /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0516725C294C300EE9663 /* Vibrator.swift */; };
 		4FC3F18925A870310039B94C /* E2API.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FC3F18725A870310039B94C /* E2API.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FC3F18C25A870310039B94C /* E2API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; };
 		4FC3F18D25A870310039B94C /* E2API.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3F18525A870310039B94C /* E2API.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,7 +66,7 @@
 		4FCA94DC25B24F4A000A2AF3 /* CIImage+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94D825B24F49000A2AF3 /* CIImage+QRCode.swift */; };
 		4FCA94F825B25DCC000A2AF3 /* QRCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA94F725B25DCC000A2AF3 /* QRCodeTests.swift */; };
 		4FCA950625B267C4000A2AF3 /* AVMetadataObject+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA950525B267C4000A2AF3 /* AVMetadataObject+QRCode.swift */; };
-		4FCA953325B27F53000A2AF3 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA953225B27F53000A2AF3 /* QRViewController.swift */; };
+		4FCA953325B27F53000A2AF3 /* QRViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA953225B27F53000A2AF3 /* QRViewerViewController.swift */; };
 		4FCA953825B27FC6000A2AF3 /* PasteboardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA953725B27FC6000A2AF3 /* PasteboardLabel.swift */; };
 		4FCA953D25B27FDC000A2AF3 /* TextCopiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA953C25B27FDC000A2AF3 /* TextCopiable.swift */; };
 		4FCA954225B27FFA000A2AF3 /* UIView+RecognizerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA954125B27FFA000A2AF3 /* UIView+RecognizerBlock.swift */; };
@@ -164,6 +166,8 @@
 		4F963F02259DDA1C001E9829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F963F04259DDA1C001E9829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FA0514425C1701200EE9663 /* String+KeyStrokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+KeyStrokes.swift"; sourceTree = "<group>"; };
+		4FA0515C25C26A5E00EE9663 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		4FA0516725C294C300EE9663 /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		4FC3F18525A870310039B94C /* E2API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = E2API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC3F18725A870310039B94C /* E2API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = E2API.h; sourceTree = "<group>"; };
 		4FC3F18825A870310039B94C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,7 +210,7 @@
 		4FCA94D825B24F49000A2AF3 /* CIImage+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+QRCode.swift"; sourceTree = "<group>"; };
 		4FCA94F725B25DCC000A2AF3 /* QRCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeTests.swift; sourceTree = "<group>"; };
 		4FCA950525B267C4000A2AF3 /* AVMetadataObject+QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMetadataObject+QRCode.swift"; sourceTree = "<group>"; };
-		4FCA953225B27F53000A2AF3 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		4FCA953225B27F53000A2AF3 /* QRViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewerViewController.swift; sourceTree = "<group>"; };
 		4FCA953725B27FC6000A2AF3 /* PasteboardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardLabel.swift; sourceTree = "<group>"; };
 		4FCA953C25B27FDC000A2AF3 /* TextCopiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCopiable.swift; sourceTree = "<group>"; };
 		4FCA954125B27FFA000A2AF3 /* UIView+RecognizerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RecognizerBlock.swift"; sourceTree = "<group>"; };
@@ -363,6 +367,16 @@
 			path = Earth2;
 			sourceTree = "<group>";
 		};
+		4FA0515B25C26A4400EE9663 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA953225B27F53000A2AF3 /* QRViewerViewController.swift */,
+				4FA0515C25C26A5E00EE9663 /* QRScannerViewController.swift */,
+				4FCA94D425B23637000A2AF3 /* QR IO */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
 		4FC3F18625A870310039B94C /* E2API */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,7 +441,6 @@
 		4FC3F1F225A9714E0039B94C /* UI Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4FCA94D425B23637000A2AF3 /* QR IO */,
 				4FC3F1F325A971590039B94C /* Appearance.swift */,
 				4FC3F1F725A971670039B94C /* Color.swift */,
 				4F54FE1425AEC175000C6D3B /* Font.swift */,
@@ -453,6 +466,7 @@
 				4FCA953725B27FC6000A2AF3 /* PasteboardLabel.swift */,
 				4FCA953C25B27FDC000A2AF3 /* TextCopiable.swift */,
 				4FCA95CE25C0FA3B000A2AF3 /* Shimmable.swift */,
+				4FA0516725C294C300EE9663 /* Vibrator.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -553,8 +567,8 @@
 				4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */,
 				4FCA95A325B58341000A2AF3 /* Favorite */,
 				4FCA959725B57867000A2AF3 /* Settings */,
+				4FA0515B25C26A4400EE9663 /* QR */,
 				4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */,
-				4FCA953225B27F53000A2AF3 /* QRViewController.swift */,
 				4FED891F25ADBE100045969A /* WebViewController.swift */,
 			);
 			path = "View Controllers";
@@ -913,10 +927,12 @@
 				4FCA953825B27FC6000A2AF3 /* PasteboardLabel.swift in Sources */,
 				4FC3F27725AB08550039B94C /* UITextField+Extensions.swift in Sources */,
 				4FCA950625B267C4000A2AF3 /* AVMetadataObject+QRCode.swift in Sources */,
+				4FA0515D25C26A5E00EE9663 /* QRScannerViewController.swift in Sources */,
 				4FCA956925B2EC54000A2AF3 /* UIImage+Save.swift in Sources */,
 				4FC3F1FC25AA676E0039B94C /* GalaxyView.swift in Sources */,
 				4FCA959325B562A4000A2AF3 /* Bundle+Extensions.swift in Sources */,
 				4FCA94A725B0CA9F000A2AF3 /* StringConstants.swift in Sources */,
+				4FA0516825C294C300EE9663 /* Vibrator.swift in Sources */,
 				4FCA95BC25C00BEF000A2AF3 /* ActionSheetUtil.swift in Sources */,
 				4FCA958125B54DF7000A2AF3 /* DarkModalViewController.swift in Sources */,
 				4FCA95CF25C0FA3B000A2AF3 /* Shimmable.swift in Sources */,
@@ -949,7 +965,7 @@
 				4FCA957425B40683000A2AF3 /* CopyItemActivity.swift in Sources */,
 				4FCA958925B55925000A2AF3 /* FormTableViewCell.swift in Sources */,
 				4FC3F1F825A971670039B94C /* Color.swift in Sources */,
-				4FCA953325B27F53000A2AF3 /* QRViewController.swift in Sources */,
+				4FCA953325B27F53000A2AF3 /* QRViewerViewController.swift in Sources */,
 				4F2117F125AD569A007CB0BD /* GalaxyComposer.swift in Sources */,
 				4FCA957925B41674000A2AF3 /* UIActivityViewController+Extensions.swift in Sources */,
 				4FC3F1F425A9715A0039B94C /* Appearance.swift in Sources */,

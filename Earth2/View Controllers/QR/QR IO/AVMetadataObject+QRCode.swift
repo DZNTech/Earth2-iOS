@@ -16,3 +16,4 @@ extension AVMetadataObject {
         return stringValue
     }
 }
+

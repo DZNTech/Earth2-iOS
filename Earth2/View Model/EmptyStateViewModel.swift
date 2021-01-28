@@ -92,7 +92,7 @@ struct EmptyStateViewModel: EmptyStateViewModelInterface {
 
         switch emptyState {
         case .noFavorites:
-            text = "Add Referral Code"
+            text = "Add Code"
         case .error:
             text = "Reload"
         default:

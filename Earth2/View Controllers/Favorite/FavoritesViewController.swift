@@ -26,6 +26,15 @@ class FavoritesViewController: DarkModalViewController {
         return button
     }()
 
+    lazy var scanButton: CustomButton = {
+        let button = CustomButton(type: .system)
+        button.setImage(UIImage(named: "icn_navbar_scan"), for: .normal)
+        button.tintColor = Color.gray200
+        button.hitTestEdgeInsets = UIEdgeInsets(-20, -20, -20, -10)
+        button.addTarget(self, action: #selector(didTapScanButton), for: .touchUpInside)
+        return button
+    }()
+
     lazy var editButton: CustomButton = {
         let button = CustomButton(type: .system)
         button.tintColor = Color.gray100
@@ -67,6 +76,7 @@ class FavoritesViewController: DarkModalViewController {
         super.viewDidLoad()
 
         setupLayout()
+        updateEditButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +88,7 @@ class FavoritesViewController: DarkModalViewController {
     override func setupLayout() {
         super.setupLayout()
 
-        title = "Referral Codes"
+        title = "Codes"
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -90,6 +100,12 @@ class FavoritesViewController: DarkModalViewController {
         addButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(Constants.padding)
+        }
+
+        navigationBar.addSubview(scanButton)
+        scanButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(addButton.snp.trailing).offset(Constants.padding)
         }
 
         navigationBar.addSubview(editButton)
@@ -106,8 +122,28 @@ class FavoritesViewController: DarkModalViewController {
             isEditing(false, animated: true)
             return
         }
+        presentFavoriteInput()
+    }
 
-        let alert = UIAlertController(title: "New Referral Code", message: nil, preferredStyle: .alert)
+    @objc fileprivate func didTapScanButton() {
+        guard !tableView.isEditing else {
+            isEditing(false, animated: true)
+            return
+        }
+        presentQRScanner()
+    }
+
+    @objc fileprivate func didTapEditButton() {
+        isEditing(!tableView.isEditing, animated: true)
+    }
+
+    fileprivate func isEditing(_ editing: Bool = true, animated: Bool) {
+        tableView.setEditing(editing, animated: animated)
+        editButton.setTitle(editing ? "Done" : "Edit", for: .normal)
+    }
+
+    fileprivate func presentFavoriteInput() {
+        let alert = UIAlertController(title: "New Code", message: nil, preferredStyle: .alert)
         alert.overrideUserInterfaceStyle = .dark
         alert.view.tintColor = Color.white
 
@@ -138,13 +174,12 @@ class FavoritesViewController: DarkModalViewController {
         topMostVC.present(alert, animated: true)
     }
 
-    @objc fileprivate func didTapEditButton() {
-        isEditing(!tableView.isEditing, animated: true)
-    }
+    fileprivate func presentQRScanner() {
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
 
-    fileprivate func isEditing(_ editing: Bool = true, animated: Bool) {
-        tableView.setEditing(editing, animated: animated)
-        editButton.setTitle(editing ? "Done" : "Edit", for: .normal)
+        let vc = QRScannerViewController()
+        vc.delegate = self
+        topMostVC.presentPanModal(vc)
     }
 
     fileprivate func addFavorite(with name: String, code: String) {
@@ -156,7 +191,12 @@ class FavoritesViewController: DarkModalViewController {
         tableView.insertRows(at: [IndexPath(row: favorites.count-1, section: 0)], with: .automatic)
         tableView.endUpdates()
 
+        updateEditButton()
         favoriteCache.saveFavorites(favorites)
+    }
+
+    fileprivate func updateEditButton() {
+        editButton.isEnabled = favorites.count > 0
     }
 }
 
@@ -188,13 +228,13 @@ extension FavoritesViewController: UITableViewDelegate {
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         favorites.remove(at: indexPath.row)
-        editButton.isEnabled = favorites.count > 0
         tableView.endUpdates()
 
         if favorites.count == 0 {
             isEditing(false, animated: false)
         }
 
+        updateEditButton()
         favoriteCache.saveFavorites(favorites)
     }
 }
@@ -238,6 +278,31 @@ extension FavoritesViewController: UITextFieldDelegate {
             }
         }
         return true
+    }
+}
+
+extension FavoritesViewController: QRScannerViewControllerDelegate {
+
+    func qrScanningDidFail(_ viewController: QRScannerViewController) {
+
+    }
+
+    func qrScanningSucceeded(_ viewController: QRScannerViewController, with string: String) {
+        viewController.dismiss(animated: true)
+
+        Vibrator.vibrate()
+
+        let strings = string.components(separatedBy: "---")
+
+        if strings.count == 2, let name = strings.last, let code = strings.first {
+            addFavorite(with: name, code: code)
+        } else {
+            addFavorite(with: string, code: string)
+        }
+    }
+
+    func qrScanningDidStop(_ viewController: QRScannerViewController) {
+
     }
 }
 

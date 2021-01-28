@@ -1,5 +1,5 @@
 //
-//  QRViewController.swift
+//  QRViewerViewController.swift
 //  Earth2
 //
 //  Created by Ignacio Romero Zurbuchen on 2021-01-15.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import PanModal
 
-class QRViewController: UIViewController {
+class QRViewerViewController: UIViewController {
 
     // MARK: - Private Variables
 
@@ -187,7 +187,7 @@ class QRViewController: UIViewController {
     }
 }
 
-extension QRViewController: PanModalPresentable {
+extension QRViewerViewController: PanModalPresentable {
 
     var panScrollable: UIScrollView? {
         return nil
