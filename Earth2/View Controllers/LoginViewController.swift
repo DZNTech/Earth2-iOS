@@ -144,7 +144,7 @@ class LoginViewController: UIViewController {
 
         emailField.text = APIServices.shared.credential.email
         passwordField.text = APIServices.shared.credential.password
-        loadingLabel.setMessage(StringConstants.nonaffiliate)
+        loadingLabel.setMessage(StringConstants.nonaffiliateDisc)
     }
 
     override func viewDidAppear(_ animated: Bool) {

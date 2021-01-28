@@ -141,10 +141,12 @@ extension SettingsViewController: UITableViewDataSource {
         guard let section = Section(rawValue: section) else { return nil }
 
         if section == .about {
-            return StringConstants.nonaffiliateLong
+            return StringConstants.nonaffiliateDiscLong
+        } else if section == .auth {
+            return StringConstants.logOutDisc
+        } else {
+            return nil
         }
-
-        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -191,7 +193,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
     var imageName: String {
         switch self {
         case .goToEarth2:           return "icn_settings_"
-        case .FAQEarth2:          return "icn_settings_"
+        case .FAQEarth2:            return "icn_settings_"
 
         case .about:                return "icn_settings_"
         case .feedback:             return "icn_settings_"
