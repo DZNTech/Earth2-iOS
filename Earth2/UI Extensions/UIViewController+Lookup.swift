@@ -25,12 +25,19 @@ extension UIViewController {
     }
 
     static func rootViewController() -> UIViewController? {
-        guard let window = UIApplication.shared.keyWindow else { return nil }
+        guard let window = keyWindow() else { return nil }
         return window.rootViewController
     }
 
-    static func statusBarHeight() -> CGFloat {
-        return UIApplication.shared.statusBarFrame.height
+    static func keyWindow() -> UIWindow? {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let delegate = windowScene.delegate as? SceneDelegate, let window = delegate.window else { return nil }
+               return window
+    }
+
+    static func topLayoutOffset() -> CGFloat {
+        guard let rootVC = rootViewController() else { return 0}
+        if #available(iOS 11.0, *) { return rootVC.view.safeAreaInsets.top } else { return rootVC.topLayoutGuide.length }
     }
 
 }
