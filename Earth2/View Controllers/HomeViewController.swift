@@ -63,8 +63,7 @@ class HomeViewController: UIViewController, Shimmable {
             displayShimmer(isLoading)
             tableView.reloadEmptyDataSet()
 
-            let today = DateUtil.formDateFormatter.string(from: Date())
-            let message = isLoading ? "Fetching your properties..." : "Last Update \(today)"
+            let message = isLoading ? "Fetching your properties..." : lastUpdateText()
             headerView.loadingLabel.setLoading(isLoading, with: message)
         }
     }
@@ -158,6 +157,7 @@ class HomeViewController: UIViewController, Shimmable {
         propertyApi.listMyProperties { [weak self] (objects, error) in
             if let objects = objects {
                 self?.properties += objects
+                SettingsManager.lastUpdate = Date()
             } else if let _ = error {
                 self?.didError = true
             }
@@ -165,6 +165,12 @@ class HomeViewController: UIViewController, Shimmable {
             self?.isLoading = false
             self?.tableView.reloadData()
         }
+    }
+
+    fileprivate func lastUpdateText() -> String? {
+        guard let date = SettingsManager.lastUpdate else { return nil }
+        let text = DateUtil.formDateFormatter.string(from: date)
+        return "Last Update \(text)"
     }
 
     // MARK: - Actions

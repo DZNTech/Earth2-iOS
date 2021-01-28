@@ -10,6 +10,14 @@ import Foundation
 
 public class DateUtil {
 
+    static let standardFormat: String = "yyyy-MM-dd h:mm a"
+
+    static let standardFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateUtil.standardFormat
+        return formatter
+    }()
+
     static let displayFullDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMMM d @ h:mm a"

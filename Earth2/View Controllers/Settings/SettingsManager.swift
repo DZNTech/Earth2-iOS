@@ -10,6 +10,36 @@ import Foundation
 
 class SettingsManager {
 
+    static var lastUpdate: Date? {
+        get { return lastUpdateDate() }
+        set { setLastUpdateDate(newValue) }
+    }
+
+    static var staySignedIn: Bool {
+        get { return shouldSaveCredentials() }
+        set { setShouldSaveCredentials(newValue) }
+    }
+}
+
+fileprivate extension SettingsManager {
+
+    static func lastUpdateDate() -> Date? {
+        guard let timestamp = UserDefaults.standard.string(forKey: lastUpdateDateKey) else { return nil }
+
+        let formatter = DateUtil.standardFormatter
+        return formatter.date(from: timestamp)
+    }
+
+    static func setLastUpdateDate(_ date: Date?) {
+        if let date = date {
+            let formatter = DateUtil.standardFormatter
+            let timestamp = formatter.string(from: date)
+            UserDefaults.standard.set(timestamp, forKey: lastUpdateDateKey)
+        } else {
+            UserDefaults.standard.set(nil, forKey: lastUpdateDateKey)
+        }
+    }
+
     static func shouldSaveCredentials() -> Bool {
         if UserDefaults.standard.object(forKey: saveCredentialsKey) == nil {
             setShouldSaveCredentials(true) // default value
@@ -22,5 +52,7 @@ class SettingsManager {
         UserDefaults.standard.set(value, forKey: saveCredentialsKey)
     }
 
-    fileprivate static let saveCredentialsKey = "com.dzntech.e2.settings.saveCredentials"
+    static let lastUpdateDateKey = "com.dzntech.e2.settings.lastUpdateDate"
+    static let saveCredentialsKey = "com.dzntech.e2.settings.saveCredentials"
 }
+

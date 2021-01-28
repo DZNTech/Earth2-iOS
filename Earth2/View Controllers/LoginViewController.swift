@@ -134,7 +134,7 @@ class LoginViewController: UIViewController {
         setupLayout()
 
         // Invalidate session if it should not be resumed
-        if APISessionManager.hasValidSession() && !SettingsManager.shouldSaveCredentials() {
+        if APISessionManager.hasValidSession() && !SettingsManager.staySignedIn {
             APISessionManager.invalidateSession()
         }
     }

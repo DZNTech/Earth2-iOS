@@ -98,7 +98,7 @@ class ProfileHeaderView: UIView {
 
     lazy var loadingLabel: LoadingLabel = {
         let view = LoadingLabel()
-        view.tintColor = Color.paleBlue.withAlphaComponent(0.5)
+        view.tintColor = Color.paleBlue.withAlphaComponent(0.4)
         return view
     }()
 

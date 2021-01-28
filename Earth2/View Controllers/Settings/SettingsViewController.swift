@@ -55,7 +55,7 @@ class SettingsViewController: DarkModalViewController {
     // MARK: - Actions
 
     @objc fileprivate func didSwitchStaySignedIn() {
-        SettingsManager.setShouldSaveCredentials(!SettingsManager.shouldSaveCredentials())
+        SettingsManager.staySignedIn = !SettingsManager.staySignedIn
     }
 
     fileprivate func openWeb(_ web: WebConstant) {
@@ -126,7 +126,7 @@ extension SettingsViewController: UITableViewDataSource {
             cell.detailTextLabel?.text = "\(Bundle.main.releaseDescriptionPretty)"
         } else if row == .staySignedIn {
             cell.accessory = .switch
-            cell.switch.isOn = SettingsManager.shouldSaveCredentials()
+            cell.switch.isOn = SettingsManager.staySignedIn
             cell.switch.addTarget(self, action: #selector(didSwitchStaySignedIn), for: .valueChanged)
         } else if row == .logout {
             cell.textLabel?.textColor = Color.red
