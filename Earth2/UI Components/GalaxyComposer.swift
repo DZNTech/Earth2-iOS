@@ -10,7 +10,6 @@ import UIKit
 
 public class GalaxyComposer {
 
-    // 30% faster than generateStars(bounds:)
     public static func galaxyAsLayer(in bounds: CGRect) -> CALayer {
         let layer = CALayer.init()
         layer.bounds = bounds
