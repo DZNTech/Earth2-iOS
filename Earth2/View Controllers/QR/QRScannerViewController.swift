@@ -138,38 +138,42 @@ class QRScannerViewController: UIViewController {
     func setupVideoPreview() {
         captureSession = AVCaptureSession()
 
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-        let videoInput: AVCaptureDeviceInput
-        do {
-            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        } catch let error {
-            print(error)
-            return
+        DispatchQueue.global(qos: .background).async {
+            guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+            let videoInput: AVCaptureDeviceInput
+            do {
+                videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+            } catch let error {
+                print(error)
+                return
+            }
+
+            DispatchQueue.main.async { [ weak self] in
+                if (self?.captureSession?.canAddInput(videoInput) ?? false) {
+                    self?.captureSession?.addInput(videoInput)
+                } else {
+                    self?.scanningDidFail()
+                    return
+                }
+
+                let metadataOutput = AVCaptureMetadataOutput()
+
+                if (self?.captureSession?.canAddOutput(metadataOutput) ?? false) {
+                    self?.captureSession?.addOutput(metadataOutput)
+
+                    metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+                    metadataOutput.metadataObjectTypes = [.qr, .ean8, .ean13, .pdf417]
+                } else {
+                    self?.scanningDidFail()
+                    return
+                }
+
+                self?.videoPreview.layer.session = self?.captureSession
+                self?.videoPreview.layer.videoGravity = .resizeAspectFill
+
+                self?.captureSession?.startRunning()
+            }
         }
-
-        if (captureSession?.canAddInput(videoInput) ?? false) {
-            captureSession?.addInput(videoInput)
-        } else {
-            scanningDidFail()
-            return
-        }
-
-        let metadataOutput = AVCaptureMetadataOutput()
-
-        if (captureSession?.canAddOutput(metadataOutput) ?? false) {
-            captureSession?.addOutput(metadataOutput)
-
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr, .ean8, .ean13, .pdf417]
-        } else {
-            scanningDidFail()
-            return
-        }
-
-        videoPreview.layer.session = captureSession
-        videoPreview.layer.videoGravity = .resizeAspectFill
-
-        captureSession?.startRunning()
     }
 
     func startScanning() {
