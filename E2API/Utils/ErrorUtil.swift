@@ -85,10 +85,10 @@ class ErrorUtil {
         )
     }
 
-    static let undefinedError: NSError = generateError("Undefined Error", withCode: .undefined)
-    static let generalError: NSError = generateError("Something went wrong", withCode: .malfunction)
-    static let authError: NSError = generateError("Your session has expired", withCode: .authorization)
-    static let notFoundError: NSError = generateError("Resource not found", withCode: .notFound)
+    static let undefinedError: NSError = generateError("Undefined Error.", withCode: .undefined)
+    static let generalError: NSError = generateError("Something went wrong. Please try again.", withCode: .malfunction)
+    static let authError: NSError = generateError("Your session has expired.", withCode: .authorization)
+    static let notFoundError: NSError = generateError("Resource not found.", withCode: .notFound)
 
     static func generateError(_ localizedDescription: String, withCode code: ErrorCode) -> NSError {
         return NSError(domain: "Error", code: code.rawValue, userInfo: [NSLocalizedDescriptionKey : localizedDescription])

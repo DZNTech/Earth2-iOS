@@ -55,11 +55,27 @@ class SettingsViewController: DarkModalViewController {
     // MARK: - Actions
 
     @objc fileprivate func didSwitchCacheData() {
-        SettingsManager.saveDataEnabled.toggle()
-    } 
+        if SettingsManager.saveCredentialsEnabled {
+            ActionSheetUtil.presentDestructiveActionSheet(withTitle: "\(StringConstants.dataSavingDisc).\nAre you sure you want to disable this feature?", destructiveTitle: "Yes, disable", completion: { (action) in
+                SettingsManager.saveCredentialsEnabled.toggle()
+            }) { (action) in
+                self.tableView.reloadData()
+            }
+        } else {
+            SettingsManager.saveDataEnabled.toggle()
+        }
+    }
 
     @objc fileprivate func didSwitchCacheLogin() {
-        SettingsManager.saveCredentialsEnabled.toggle()
+        if SettingsManager.saveCredentialsEnabled {
+            ActionSheetUtil.presentDestructiveActionSheet(withTitle: "\(StringConstants.credentialSavingDisc).\nAre you sure you want to disable this feature?", destructiveTitle: "Yes, disable", completion: { (action) in
+                SettingsManager.saveCredentialsEnabled.toggle()
+            }) { (action) in
+                self.tableView.reloadData()
+            }
+        } else {
+            SettingsManager.saveCredentialsEnabled.toggle()
+        }
     }
 
     fileprivate func openWeb(_ web: WebConstant) {
