@@ -56,7 +56,7 @@ class SettingsViewController: DarkModalViewController {
 
     @objc fileprivate func didSwitchCacheData() {
         SettingsManager.saveDataEnabled.toggle()
-    } didSwitchCacheData
+    } 
 
     @objc fileprivate func didSwitchCacheLogin() {
         SettingsManager.saveCredentialsEnabled.toggle()
