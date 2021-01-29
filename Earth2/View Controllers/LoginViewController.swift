@@ -289,11 +289,12 @@ class LoginViewController: UIViewController {
         emailField.alpha = enable ? 1 : 0.5
         passwordField.alpha = enable ? 1 : 0.5
         leftButton.alpha = enable ? 1 : 0.5
+        rightButton.alpha = enable ? 1 : 0.5
     }
 
     fileprivate func cleanLoginForm() {
-        emailField.text = ""
-        passwordField.text = ""
+        emailField.text = nil
+        passwordField.text = nil
     }
 
     fileprivate func presentHome(animated: Bool = true) {
