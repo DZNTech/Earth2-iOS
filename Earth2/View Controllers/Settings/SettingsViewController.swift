@@ -209,7 +209,7 @@ fileprivate enum Row: Int, EnumTitle, CaseIterable {
         case .goToEarth2:           return "Go To \(Web.displayUrl(.home))"
         case .FAQEarth2:            return "Earth2 FAQ"
 
-        case .about:                return "About \(Bundle.main.applicationLongName)"
+        case .about:                return "About \(Bundle.main.applicationName)"
         case .feedback:             return "Submit Feedback"
 
         case .cacheDataEnabled:     return "Store Data Locally"

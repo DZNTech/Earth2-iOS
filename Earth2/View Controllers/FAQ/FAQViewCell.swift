@@ -13,33 +13,6 @@ class FAQViewCell: UITableViewCell {
 
     // MARK: Public
 
-    var questionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        return label
-    }()
-
-    var answerTextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.backgroundColor = UIColor.clear
-        textView.isScrollEnabled = false
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        textView.isEditable = false
-        textView.dataDetectorTypes = []
-        return textView
-    }()
-
-    var indicatorImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-
-    var answerTextViewBottom = NSLayoutConstraint()
-
     var configuration: FAQConfiguration? {
         didSet {
             setup(with: configuration)
@@ -50,35 +23,149 @@ class FAQViewCell: UITableViewCell {
 
     // MARK: Private
 
-    private let actionByQuestionTap = #selector(didTapQuestion)
+    fileprivate var label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
 
-    private var containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let labelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
+        label.addGestureRecognizer(labelGestureRecognizer)
+        return label
     }()
 
-    // MARK: Initialization
+    fileprivate var textView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = Color.clear
+        textView.textContainerInset = .zero
+        textView.dataDetectorTypes = []
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.dataDetectorTypes = [.link]
+        return textView
+    }()
+
+    fileprivate var indicatorView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+
+        let viewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
+        imageView.addGestureRecognizer(viewGestureRecognizer)
+
+        return imageView
+    }()
+
+    fileprivate var textViewBottom = NSLayoutConstraint()
+    fileprivate var textViewBottomConstraint: Constraint?
+
+    // MARK: - Initializatiom
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        viewSetup()
-    }
-
-    fileprivate func viewSetup() {
-        selectionSetup()
-        self.containerView.addSubview(indicatorImageView)
-        contentView.addSubview(questionLabel)
-        contentView.addSubview(answerTextView)
-        contentView.addSubview(containerView)
-        addLabelConstraints()
+        setupLayout()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: Layout
+
+    fileprivate func setupLayout() {
+
+        if true {
+            contentView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+
+            contentView.addSubview(textView)
+            textView.translatesAutoresizingMaskIntoConstraints = false
+
+            contentView.addSubview(indicatorView)
+            indicatorView.translatesAutoresizingMaskIntoConstraints = false
+
+            setupConstraints()
+        } else {
+//            let containerView = UIView()
+//            containerView.backgroundColor = .red
+//            contentView.addSubview(containerView)
+//            containerView.snp.makeConstraints {
+//                $0.trailing.equalToSuperview().offset(-20)
+//                $0.leading.equalToSuperview().offset(20)
+//                $0.top.bottom.equalToSuperview()
+//            }
+
+            contentView.addSubview(label)
+            label.snp.makeConstraints {
+                $0.trailing.equalToSuperview().offset(-48)
+                $0.leading.equalToSuperview().offset(24)
+                $0.top.equalToSuperview().offset(12)
+            }
+
+            contentView.addSubview(textView)
+            textView.snp.makeConstraints {
+                $0.trailing.equalToSuperview().offset(-48)
+                $0.leading.equalToSuperview().offset(24)
+                $0.top.equalTo(label.snp.bottom).offset(12)
+
+                textViewBottomConstraint = $0.bottom.equalToSuperview().constraint
+                textViewBottomConstraint?.activate()
+            }
+
+            contentView.addSubview(indicatorView)
+            indicatorView.snp.makeConstraints {
+                $0.trailing.equalToSuperview().offset(-15)
+                $0.top.equalTo(label.snp.top)
+            }
+        }
+    }
+
+    fileprivate func setup(with configuration: FAQConfiguration?) {
+        backgroundColor = Color.clear
+
+        label.font = configuration?.questionTextFont
+        label.textColor = configuration?.questionTextColor
+
+        textView.textColor = configuration?.answerTextColor
+        textView.font = configuration?.answerTextFont
+
+        if let textColor = configuration?.questionTextColor {
+            indicatorView.image = UIImage(named: "icn_arrow_down")?.withTintColor(textColor)
+        }
+
+        if let tintColor = configuration?.tintColor {
+            textView.tintColor = tintColor
+        }
+    }
+
+    fileprivate func setupConstraints() {
+
+        // TODO: Refactor this mess!
+
+        var constraints = [NSLayoutConstraint]()
+
+        constraints += [NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: -24)]
+        constraints += [NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leadingMargin, multiplier: 1, constant: 0)]
+        constraints += [NSLayoutConstraint(item: label, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 12)]
+
+        constraints += [NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: -24)]
+        constraints += [NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leadingMargin, multiplier: 1, constant: -5)]
+        constraints += [NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: label, attribute: .bottom, multiplier: 1, constant: 12)]
+
+        constraints += [NSLayoutConstraint(item: indicatorView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: 5)]
+        constraints += [NSLayoutConstraint(item: indicatorView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24)]
+        constraints += [NSLayoutConstraint(item: indicatorView, attribute: .top, relatedBy: .equal, toItem: contentView,attribute: .top, multiplier: 1, constant: 12)]
+
+        textViewBottom = NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: textView, attribute: .bottom, multiplier: 1, constant: 0)
+        constraints += [textViewBottom]
+
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    // MARK: External Configuration
+
     func configure(currentItem: FAQItem, indexPath: IndexPath, cellOperation: FAQCellOperation) {
-        questionLabel.text = currentItem.question
+
+        label.text = currentItem.question
 
         switch cellOperation {
         case .collapsed:
@@ -100,96 +187,45 @@ class FAQViewCell: UITableViewCell {
         }
     }
 
-    // MARK: Private Methods
-
-    fileprivate func selectionSetup() {
-        questionLabel.isUserInteractionEnabled = true
-        indicatorImageView.isUserInteractionEnabled = true
-
-        let questionLabelGestureRecognizer = UITapGestureRecognizer(target: self, action : actionByQuestionTap)
-        questionLabel.addGestureRecognizer(questionLabelGestureRecognizer)
-
-        let imageGestureRecognizer = UITapGestureRecognizer(target: self, action: actionByQuestionTap)
-        indicatorImageView.addGestureRecognizer(imageGestureRecognizer)
-    }
-
-    fileprivate func setup(with configuration: FAQConfiguration?) {
-
-        backgroundColor = configuration?.cellBackgroundColor
-        questionLabel.textColor = configuration?.questionTextColor
-        answerTextView.textColor = configuration?.answerTextColor
-        questionLabel.font = configuration?.questionTextFont
-        answerTextView.font = configuration?.answerTextFont
-
-        if let textColor = configuration?.questionTextColor {
-            indicatorImageView.image = UIImage(named: "icn_arrow_down")?.withTintColor(textColor)
-        }
-
-        if let dataDetectorTypes = configuration?.dataDetectorTypes {
-            answerTextView.dataDetectorTypes = dataDetectorTypes
-        }
-
-        if let tintColor = configuration?.tintColor {
-            answerTextView.tintColor = tintColor
-        }
-    }
-
-    fileprivate func addLabelConstraints() {
-        let questionLabelTrailing = NSLayoutConstraint(item: questionLabel, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: -30)
-        let questionLabelLeading = NSLayoutConstraint(item: questionLabel, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leadingMargin, multiplier: 1, constant: 0)
-        let questionLabelTop = NSLayoutConstraint(item: questionLabel, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 10)
-
-        let answerTextViewTrailing = NSLayoutConstraint(item: answerTextView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: -30)
-        let answerTextViewLeading = NSLayoutConstraint(item: answerTextView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leadingMargin, multiplier: 1, constant: -5)
-        let answerTextViewTop = NSLayoutConstraint(item: answerTextView, attribute: .top, relatedBy: .equal, toItem: questionLabel, attribute: .bottom, multiplier: 1, constant: 10)
-        answerTextViewBottom = NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: answerTextView, attribute: .bottom, multiplier: 1, constant: 0)
-
-        let indicatorHorizontalCenter = NSLayoutConstraint(item: indicatorImageView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0)
-        let indicatorVerticalCenter = NSLayoutConstraint(item: indicatorImageView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0)
-//        let indicatorWidth = NSLayoutConstraint(item: indicatorImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-//        let indicatorHeight = NSLayoutConstraint(item: indicatorImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-
-        let containerTrailing = NSLayoutConstraint(item: containerView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: 5)
-        let containerWidth = NSLayoutConstraint(item: containerView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
-        let containerTop = NSLayoutConstraint(item: containerView, attribute: .top, relatedBy: .equal, toItem: contentView,attribute: .top, multiplier: 1, constant: 10)
-        let containerHeight = NSLayoutConstraint(item: containerView, attribute: .height, relatedBy: .equal, toItem: questionLabel, attribute: .height, multiplier: 1, constant: 0)
-
-        NSLayoutConstraint.activate([questionLabelTrailing, questionLabelLeading, questionLabelTop, answerTextViewLeading
-          , answerTextViewTrailing, answerTextViewTop ,answerTextViewBottom, indicatorVerticalCenter, indicatorHorizontalCenter, containerTrailing, containerTop, containerWidth, containerHeight])
-    }
+    // MARK: Actions
 
     @objc fileprivate func didTapQuestion(_ recognizer: UIGestureRecognizer) {
         didSelectQuestion?(self)
     }
 
     fileprivate func expand(withAnswer answer: String, animated: Bool) {
-        answerTextView.text = answer
+        textView.text = answer
         expand(animated: animated)
     }
 
     fileprivate func expand(withAttributedAnswer attributedAnswer: NSAttributedString, animated: Bool) {
-        answerTextView.attributedText = attributedAnswer
+        textView.attributedText = attributedAnswer
         expand(animated: animated)
     }
 
     fileprivate func expand(animated: Bool) {
-        answerTextView.isHidden = false
+        textView.isHidden = false
 
         if animated {
-            answerTextView.alpha = 0
+            textView.alpha = 0
             UIView.animate(withDuration: 0.5, animations: {
-              self.answerTextView.alpha = 1
+              self.textView.alpha = 1
             })
         }
 
-        answerTextViewBottom.constant = 20
+        textViewBottom.constant = 12
+        textViewBottomConstraint?.update(offset: 12)
+
         update(arrow: .up, animated: animated)
     }
 
     fileprivate func collapse(animated: Bool) {
-        answerTextView.text = ""
-        answerTextView.isHidden = true
-        answerTextViewBottom.constant = -20
+        textView.text = ""
+        textView.isHidden = true
+
+        textViewBottom.constant = -12
+        textViewBottomConstraint?.update(offset: -12)
+
         update(arrow: .down, animated: animated)
     }
 
@@ -198,20 +234,20 @@ class FAQViewCell: UITableViewCell {
         case .up:
             if animated {
                 // Change direction from down to up with animation
-                indicatorImageView.rotate(withAngle: CGFloat(0), animated: false)
-                indicatorImageView.rotate(withAngle: CGFloat(Double.pi), animated: true)
+                indicatorView.rotate(withAngle: CGFloat(0), animated: false)
+                indicatorView.rotate(withAngle: CGFloat(Double.pi), animated: true)
             } else {
                 // Change direction from down to up without animation
-                indicatorImageView.rotate(withAngle: CGFloat(Double.pi), animated: false)
+                indicatorView.rotate(withAngle: CGFloat(Double.pi), animated: false)
             }
         case .down:
             if animated {
                 // Change direction from up to down with animation
-                indicatorImageView.rotate(withAngle: CGFloat(Double.pi), animated: false)
-                indicatorImageView.rotate(withAngle: CGFloat(0), animated: true)
+                indicatorView.rotate(withAngle: CGFloat(Double.pi), animated: false)
+                indicatorView.rotate(withAngle: CGFloat(0), animated: true)
             } else {
                 // Change direction from up to down without animation
-                indicatorImageView.rotate(withAngle: CGFloat(0), animated: false)
+                indicatorView.rotate(withAngle: CGFloat(0), animated: false)
             }
         }
     }

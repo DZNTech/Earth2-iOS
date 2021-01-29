@@ -38,29 +38,6 @@ class FAQView: UIView {
         set(value) { configuration.answerTextFont = value }
     }
 
-    var viewBackgroundColor: UIColor? {
-        get { return configuration.viewBackgroundColor }
-        set(value) {
-            configuration.viewBackgroundColor = value
-            self.backgroundColor = configuration.viewBackgroundColor
-        }
-    }
-
-    var cellBackgroundColor: UIColor? {
-        get { return configuration.cellBackgroundColor }
-        set(value) { configuration.cellBackgroundColor = value }
-    }
-
-    var separatorColor: UIColor? {
-        get { return configuration.separatorColor }
-        set(value) { configuration.separatorColor = value }
-    }
-
-    var dataDetectorTypes: UIDataDetectorTypes? {
-        get {  return configuration.dataDetectorTypes }
-        set(value) { configuration.dataDetectorTypes = value }
-    }
-
     var answerTintColor: UIColor? {
         get { return configuration.tintColor }
         set(value) { configuration.tintColor = value }
@@ -74,8 +51,9 @@ class FAQView: UIView {
         tableView.backgroundColor = Color.clear
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.estimatedRowHeight = 50
-        tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 48
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 24))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 48))
         return tableView
     }()
 
@@ -104,8 +82,10 @@ class FAQView: UIView {
         } else {
             expandedCells[section] = .expand
         }
-        tableView.reloadSections(IndexSet(integer: section), with: .fade)
-        tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+
+        tableView.beginUpdates()
+        tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        tableView.endUpdates()
     }
 
     fileprivate func updateCellOperation(section: Int, cellOperation: FAQCellOperation) {
@@ -119,7 +99,7 @@ class FAQView: UIView {
     // MARK: Private Methods
 
     fileprivate func setupLayout() {
-        backgroundColor = configuration.viewBackgroundColor
+        backgroundColor = Color.clear
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -174,17 +154,15 @@ extension FAQView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 6
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = configuration.separatorColor
-        return view
+        return UIView()
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        return 6
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -215,10 +193,6 @@ class FAQConfiguration {
     var answerTextColor: UIColor?
     var questionTextFont: UIFont?
     var answerTextFont: UIFont?
-    var viewBackgroundColor: UIColor?
-    var cellBackgroundColor: UIColor?
-    var separatorColor: UIColor?
-    var dataDetectorTypes: UIDataDetectorTypes?
     var tintColor: UIColor?
 
     init() {
@@ -230,10 +204,6 @@ class FAQConfiguration {
         self.answerTextColor = UIColor.black
         self.questionTextFont = UIFont(name: "HelveticaNeue-Bold", size: 16)
         self.answerTextFont = UIFont(name: "HelveticaNeue-Light", size: 15)
-        let colorValue: CGFloat = 210/255
-        self.viewBackgroundColor = UIColor(red: colorValue, green: colorValue, blue: colorValue, alpha: 1)
-        self.cellBackgroundColor = UIColor.white
-        self.separatorColor = UIColor(red: colorValue, green: colorValue, blue: colorValue, alpha: 1)
     }
 }
 

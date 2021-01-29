@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         button.setTitleColor(Color.lightBlue, for: .normal)
-        button.setTitle("About \(Bundle.main.applicationLongName)", for: .normal)
+        button.setTitle("About \(Bundle.main.applicationName)", for: .normal)
         button.addTarget(self, action:#selector(didPressLeftButton), for: .touchUpInside)
         return button
     }()
