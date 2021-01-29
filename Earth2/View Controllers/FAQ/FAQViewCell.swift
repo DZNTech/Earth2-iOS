@@ -27,10 +27,17 @@ class FAQViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
-
-        let labelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
-        label.addGestureRecognizer(labelGestureRecognizer)
         return label
+    }()
+
+    fileprivate var button: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.textAlignment = .left
+        button.titleLabel?.snp.makeConstraints {
+            $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+        return button
     }()
 
     fileprivate var textView: UITextView = {
@@ -48,10 +55,6 @@ class FAQViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
-
-        let viewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
-        imageView.addGestureRecognizer(viewGestureRecognizer)
-
         return imageView
     }()
 
@@ -72,6 +75,12 @@ class FAQViewCell: UITableViewCell {
     // MARK: Layout
 
     fileprivate func setupLayout() {
+
+        let labelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
+        label.addGestureRecognizer(labelGestureRecognizer)
+
+        let viewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapQuestion))
+        indicatorView.addGestureRecognizer(viewGestureRecognizer)
 
         if true {
             contentView.addSubview(label)
@@ -106,15 +115,17 @@ class FAQViewCell: UITableViewCell {
                 $0.trailing.equalToSuperview().offset(-48)
                 $0.leading.equalToSuperview().offset(24)
                 $0.top.equalTo(label.snp.bottom).offset(12)
-
-                textViewBottomConstraint = $0.bottom.equalToSuperview().constraint
-                textViewBottomConstraint?.activate()
             }
 
             contentView.addSubview(indicatorView)
             indicatorView.snp.makeConstraints {
                 $0.trailing.equalToSuperview().offset(-15)
                 $0.top.equalTo(label.snp.top)
+            }
+
+            contentView.snp.makeConstraints {
+                textViewBottomConstraint = $0.bottom.equalTo(textView.snp.bottom).constraint
+                textViewBottomConstraint?.activate()
             }
         }
     }
@@ -153,7 +164,7 @@ class FAQViewCell: UITableViewCell {
 
         constraints += [NSLayoutConstraint(item: indicatorView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailingMargin, multiplier: 1, constant: 5)]
         constraints += [NSLayoutConstraint(item: indicatorView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24)]
-        constraints += [NSLayoutConstraint(item: indicatorView, attribute: .top, relatedBy: .equal, toItem: contentView,attribute: .top, multiplier: 1, constant: 12)]
+        constraints += [NSLayoutConstraint(item: indicatorView, attribute: .top, relatedBy: .equal, toItem: label, attribute: .top, multiplier: 1, constant: 3)]
 
         textViewBottom = NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: textView, attribute: .bottom, multiplier: 1, constant: 0)
         constraints += [textViewBottom]
