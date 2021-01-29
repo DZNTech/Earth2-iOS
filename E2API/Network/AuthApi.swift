@@ -53,7 +53,7 @@ public class AuthApi: AuthApiInterface {
         ]
 
         repositoryAdapter.networkAdapter.httpRequest(endpoint, method: .post, parameters: parameters) { (request) in
-            print("Starting request \(String(describing: request.request?.url)) with parameters \(String(describing: parameters))")
+            print("Starting request \(String(describing: request.request?.url)))")
             request.responseObject(keyPath: ParameterKey.data, completionHandler: { (response: DataResponse<User>) in
                 print("Ended request with code \(String(describing: response.response?.statusCode))")
 
