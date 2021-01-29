@@ -17,7 +17,10 @@ public enum WebConstant: String {
     case about = "https://earth2.io/about"
     case faq = "https://earth2.io/faq"
 
-    case feeback = "https://docs.google.com/forms/d/e/1FAIpQLSdVo_t4EDcBMENDKeYb2cecOiUrvzRxrBUdHYoOUpWM6_OOaA/viewform"
+    case feebackPrefill = "https://docs.google.com/forms/d/e/1FAIpQLSdVo_t4EDcBMENDKeYb2cecOiUrvzRxrBUdHYoOUpWM6_OOaA/viewform"
+    case feebackShort = "https://forms.gle/nkn4YFjukjXy8DKz9"
+
+    case testFlight = "https://testflight.apple.com/join/LaXLaVB4"
     case sourceCode = "https://github.com/DZNTech/Earth2-iOS"
     case linkedIn = "https://www.linkedin.com/in/ignacioromeroz/"
 }
@@ -42,7 +45,7 @@ public class Web {
     }
 
     public static func getPrefilledFeedbackFormUrl() -> String? {
-        guard var urlComponents = URLComponents(string: WebConstant.feeback.rawValue) else { return nil }
+        guard var urlComponents = URLComponents(string: WebConstant.feebackPrefill.rawValue) else { return nil }
         var queryItems = [URLQueryItem]()
 
         if let user = APIServices.shared.myUser {
