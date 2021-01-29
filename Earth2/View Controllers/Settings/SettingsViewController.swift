@@ -107,6 +107,9 @@ extension SettingsViewController: UITableViewDelegate {
         } else if row == .feedback {
             guard let url = Web.getPrefilledFeedbackFormUrl() else { return }
             WebViewController.openUrl(url)
+        } else if row == .about {
+            guard let topMostVC = UIViewController.topMostViewController() else { return }
+            topMostVC.presentPanModal(FAQViewController())
         } else if row == .logout {
             logout()
         }

@@ -11,6 +11,10 @@
 		4F2117FB25AD570C007CB0BD /* GalaxyComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2117FA25AD570B007CB0BD /* GalaxyComposerTests.swift */; };
 		4F21181B25AD97A2007CB0BD /* LoadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */; };
 		4F268B4A25C2B76100843917 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B4925C2B76100843917 /* UIImage+Extensions.swift */; };
+		4F268B6525C37B8500843917 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B6425C37B8500843917 /* FAQViewController.swift */; };
+		4F268B6D25C37D8A00843917 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B6C25C37D8A00843917 /* FAQView.swift */; };
+		4F268B8625C3828300843917 /* FAQViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B8525C3828300843917 /* FAQViewCell.swift */; };
+		4F268B8E25C3835A00843917 /* FAQViewCellEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F268B8D25C3835A00843917 /* FAQViewCellEnums.swift */; };
 		4F54FE0825AEBA78000C6D3B /* ImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */; };
 		4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */; };
 		4F54FE1525AEC175000C6D3B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54FE1425AEC175000C6D3B /* Font.swift */; };
@@ -154,6 +158,10 @@
 		4F2117FC25AD570C007CB0BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F21181A25AD97A2007CB0BD /* LoadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingLabel.swift; sourceTree = "<group>"; };
 		4F268B4925C2B76100843917 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		4F268B6425C37B8500843917 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		4F268B6C25C37D8A00843917 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		4F268B8525C3828300843917 /* FAQViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewCell.swift; sourceTree = "<group>"; };
+		4F268B8D25C3835A00843917 /* FAQViewCellEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewCellEnums.swift; sourceTree = "<group>"; };
 		4F54FE0725AEBA78000C6D3B /* ImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworking.swift; sourceTree = "<group>"; };
 		4F54FE0C25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extensions.swift"; sourceTree = "<group>"; };
 		4F54FE1425AEC175000C6D3B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -312,6 +320,17 @@
 				4F2117FC25AD570C007CB0BD /* Info.plist */,
 			);
 			path = Earth2Tests;
+			sourceTree = "<group>";
+		};
+		4F268B6325C37B7700843917 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				4F268B6425C37B8500843917 /* FAQViewController.swift */,
+				4F268B6C25C37D8A00843917 /* FAQView.swift */,
+				4F268B8525C3828300843917 /* FAQViewCell.swift */,
+				4F268B8D25C3835A00843917 /* FAQViewCellEnums.swift */,
+			);
+			path = FAQ;
 			sourceTree = "<group>";
 		};
 		4F54FE1E25AEC52D000C6D3B /* View Model */ = {
@@ -567,10 +586,11 @@
 			children = (
 				4F963EFA259DDA1B001E9829 /* LoginViewController.swift */,
 				4FC3F28925AB995B0039B94C /* HomeViewController.swift */,
-				4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */,
 				4FCA95A325B58341000A2AF3 /* Favorite */,
 				4FCA959725B57867000A2AF3 /* Settings */,
 				4FA0515B25C26A4400EE9663 /* QR */,
+				4FCA95B125B58BC0000A2AF3 /* ReferralController.swift */,
+				4F268B6325C37B7700843917 /* FAQ */,
 				4FCA958025B54DF7000A2AF3 /* DarkModalViewController.swift */,
 				4FED891F25ADBE100045969A /* WebViewController.swift */,
 			);
@@ -951,13 +971,16 @@
 				4FCA95B725B6C57F000A2AF3 /* EmptyStateViewModel.swift in Sources */,
 				4FC3F27325AB06000039B94C /* UniversalConstants.swift in Sources */,
 				4FED892525ADBE4A0045969A /* UIViewController+Lookup.swift in Sources */,
+				4F268B8E25C3835A00843917 /* FAQViewCellEnums.swift in Sources */,
 				4F54FE0D25AEBBB2000C6D3B /* CoreGraphics+Extensions.swift in Sources */,
 				4F963EFB259DDA1B001E9829 /* LoginViewController.swift in Sources */,
 				4F268B4A25C2B76100843917 /* UIImage+Extensions.swift in Sources */,
 				4FCA95AD25B5855B000A2AF3 /* FavoriteTableViewCell.swift in Sources */,
 				4FCA954225B27FFA000A2AF3 /* UIView+RecognizerBlock.swift in Sources */,
 				4F54FE1A25AEC216000C6D3B /* FlagEmojiGenerator.swift in Sources */,
+				4F268B6D25C37D8A00843917 /* FAQView.swift in Sources */,
 				4FCA94AC25B0D0D0000A2AF3 /* ProfileHeaderView.swift in Sources */,
+				4F268B6525C37B8500843917 /* FAQViewController.swift in Sources */,
 				4FCA94B625B1943A000A2AF3 /* UserViewModel.swift in Sources */,
 				4F21181B25AD97A2007CB0BD /* LoadingLabel.swift in Sources */,
 				4F963EF7259DDA1B001E9829 /* AppDelegate.swift in Sources */,
@@ -981,6 +1004,7 @@
 				4FC3F26F25AAFFA30039B94C /* UIColor+Extensions.swift in Sources */,
 				4FCA959925B5787C000A2AF3 /* SettingsManager.swift in Sources */,
 				4FCA95A525B583EE000A2AF3 /* Favorite.swift in Sources */,
+				4F268B8625C3828300843917 /* FAQViewCell.swift in Sources */,
 				4FCA94D925B24F4A000A2AF3 /* CIColor+QRCode.swift in Sources */,
 				4F54FE1525AEC175000C6D3B /* Font.swift in Sources */,
 				4FC3F26825AAD7D40039B94C /* UILabel+Extensions.swift in Sources */,

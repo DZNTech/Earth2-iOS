@@ -15,7 +15,7 @@ public class APIServices {
     public let credential = APICredentials()
 
     public var myUser: User?
-    public var isLocal: Bool = false
+    public var isLocal: Bool = true
 
     // MARK: - Initialization
 

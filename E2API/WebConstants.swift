@@ -18,6 +18,8 @@ public enum WebConstant: String {
     case faq = "https://earth2.io/faq"
 
     case feeback = "https://docs.google.com/forms/d/e/1FAIpQLSdVo_t4EDcBMENDKeYb2cecOiUrvzRxrBUdHYoOUpWM6_OOaA/viewform"
+    case sourceCode = "https://github.com/DZNTech/Earth2-iOS"
+    case linkedIn = "https://www.linkedin.com/in/ignacioromeroz/"
 }
 
 public class Web {

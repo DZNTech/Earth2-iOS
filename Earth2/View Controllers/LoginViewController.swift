@@ -394,7 +394,8 @@ class LoginViewController: UIViewController {
     }
 
     @objc fileprivate func didPressLeftButton() {
-        //
+        guard let topMostVC = UIViewController.topMostViewController() else { return }
+        topMostVC.presentPanModal(FAQViewController())
     }
 
     @objc fileprivate func didPressRightButton() {
