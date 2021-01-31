@@ -48,6 +48,12 @@ class LoadingLabel: UIView {
         }
     }
 
+    var textFont: UIFont = UIFont.systemFont(ofSize: 15, weight: .medium) {
+        didSet {
+            messageLabel.font = textFont
+        }
+    }
+
     // MARK: - Private Variables
 
     fileprivate lazy var activityIndicatorView: UIActivityIndicatorView = {
@@ -59,7 +65,7 @@ class LoadingLabel: UIView {
 
     fileprivate lazy var messageLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.font = textFont
         label.textColor = tintColor
         label.textAlignment = .center
         label.isHidden = true

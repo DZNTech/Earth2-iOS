@@ -94,6 +94,7 @@ class LoginViewController: UIViewController {
     fileprivate lazy var loadingLabel: LoadingLabel = {
         let view = LoadingLabel()
         view.tintColor = Color.white.withAlphaComponent(0.75)
+        view.textFont = UIFont.systemFont(ofSize: 14, weight: .regular)
         return view
     }()
 
@@ -206,7 +207,7 @@ class LoginViewController: UIViewController {
         view.addSubview(loadingLabel)
         loadingLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-Constants.padding*6)
+            $0.bottom.equalToSuperview().offset(-Constants.padding*4)
         }
 
         layoutLoginForm()
@@ -216,6 +217,9 @@ class LoginViewController: UIViewController {
     fileprivate func layoutLoginForm() {
 
         loginFormView.alpha = 0
+        addParallaxToView(loginFormView)
+        addParallaxToView(logoImageView)
+        addParallaxToView(loadingLabel)
 
         view.addSubview(loginFormView)
         loginFormView.snp.makeConstraints {
@@ -335,13 +339,13 @@ class LoginViewController: UIViewController {
     }
 
     fileprivate func validateEmail() -> Bool {
-        guard let email = emailField.text else { shakelogoImageView(); return false }
-        guard Validator.isEmail().apply(email) else { shakelogoImageView(); return false }
+        guard let email = emailField.text else { shakeView(logoImageView); return false }
+        guard Validator.isEmail().apply(email) else { shakeView(logoImageView); return false }
         return true
     }
 
     fileprivate func validatePassword() -> Bool {
-        guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakelogoImageView(); return false }
+        guard let password = passwordField.text, !Validator.isEmpty().apply(password) else { shakeView(logoImageView); return false }
         return true
     }
 
@@ -394,6 +398,8 @@ class LoginViewController: UIViewController {
         }
     }
 
+    // MARK: - Actions
+
     @objc fileprivate func didPressLeftButton() {
         guard let topMostVC = UIViewController.topMostViewController() else { return }
         topMostVC.presentPanModal(FAQViewController())
@@ -403,16 +409,6 @@ class LoginViewController: UIViewController {
         guard validateTextFields() else { return }
         prepareToSubmit()
     }
-
-    @objc fileprivate func shakelogoImageView() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        animation.duration = 0.4
-        animation.values = [-20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
-        logoImageView.layer.add(animation, forKey: "shake")
-    }
-
-    // MARK: - Actions
 
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         guard !isKeyboardVisible else { return }
@@ -464,6 +460,32 @@ class LoginViewController: UIViewController {
                        completion: nil)
 
         isKeyboardVisible = false
+    }
+
+    // MARK: - Effects
+
+    @objc fileprivate func shakeView(_ vw: UIView) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.4
+        animation.values = [-20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        vw.layer.add(animation, forKey: "shake")
+    }
+
+    fileprivate func addParallaxToView(_ vw: UIView) {
+        let amount = 20
+
+        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        horizontal.minimumRelativeValue = -amount
+        horizontal.maximumRelativeValue = amount
+
+        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        vertical.minimumRelativeValue = -amount
+        vertical.maximumRelativeValue = amount
+
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontal, vertical]
+        vw.addMotionEffect(group)
     }
 
     // MARK: - Deinitialization
