@@ -1,4 +1,4 @@
-# Earth2-iOS
+# Earth2 Companion
 
 Unofficial E2 app client for iOS, built for fun (never released).
 
