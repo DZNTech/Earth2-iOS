@@ -1,6 +1,6 @@
 # Earth2-iOS
 
-Unofficial E2 app client for iOS, built for fun (never released to the App Store since the homebrew API was scrapping their website and was way too slow). E2 was fun at first but then became a place for scammers and all sorts of abuses. The product was quickly iterating and I lost interest on keep going.
+Unofficial E2 app client for iOS, built for fun (never released).
 
 This project involved creating a custom Python web scraper (DJango) of https://earth2.io/, allowing a user to login, list all the tiles they owned, and feed all the public info back to the iOS app using a custom API.
 
